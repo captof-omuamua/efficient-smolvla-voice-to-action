@@ -1,0 +1,11 @@
+WARNING:torchao:Failed to load <project>/lerobot-pr4634/.venv/lib/python3.12/site-packages/torchao/_C_mxfp8.cpython-310-x86_64-linux-gnu.so: Could not load this library: <project>/lerobot-pr4634/.venv/lib/python3.12/site-packages/torchao/_C_mxfp8.cpython-310-x86_64-linux-gnu.so
+WARNING:torchao:Failed to load <project>/lerobot-pr4634/.venv/lib/python3.12/site-packages/torchao/_C_cutlass_90a.abi3.so: Could not load this library: <project>/lerobot-pr4634/.venv/lib/python3.12/site-packages/torchao/_C_cutlass_90a.abi3.so
+`torch_dtype` is deprecated! Use `dtype` instead!
+Loading  HuggingFaceTB/SmolVLM2-500M-Video-Instruct weights ...
+
+Loading weights:   0%|          | 0/489 [00:00<?, ?it/s]
+Loading weights:  58%|█████▊    | 282/489 [00:00<00:00, 2786.72it/s]
+Loading weights: 100%|██████████| 489/489 [00:00<00:00, 3663.27it/s]
+Reducing the number of VLM layers to 16 ...
+ready: first call 5261 ms, warm-up 300
+{"decisions": 600, "skipped_beats": 0, "ms": {"p50": 13.695, "p99": 14.871, "max": 15.173}, "stopped_ns": 43123014288557}

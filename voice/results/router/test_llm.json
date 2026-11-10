@@ -1,0 +1,17 @@
+{
+ "summary": {
+  "split": "test",
+  "mode": "llm",
+  "right_pct": 94.0,
+  "wrong_pct": 1.0,
+  "wrongly_refused_pct": 5.0,
+  "correct_refusal_pct": 100.0,
+  "no_llm_pct_of_can_do": 0.0,
+  "levels": {
+   "llm": 130
+  },
+  "median_ms": 103.90014999939012,
+  "p99_ms": 113.16797317296732,
+  "peak_gpu_mb": 9334.096896
+ }
+}

@@ -1,0 +1,187 @@
+{
+  "setup": "B",
+  "label": "fill",
+  "created": "2026-11-07T19:08:10+00:00",
+  "import_s": 6.6,
+  "load_s": 2.99,
+  "first_call_s": 158.12,
+  "second_call_ms": 64.6,
+  "script_start_to_first_action_s": 167.79,
+  "median_ms_warm_calls": 18.93,
+  "warm_calls": 50,
+  "peak_gpu_mb_allocated": 897,
+  "peak_gpu_mb_reserved": 1090,
+  "compile_mode": "max-autotune",
+  "dynamo_after_first_call": {
+    "frames": {
+      "total": 20,
+      "ok": 18
+    },
+    "unimplemented": {
+      "Dynamic shape operator\n  Explanation: Operator `aten.nonzero.default`'s output shape depends on input Tensor data.\n  Hint: Enable tracing of dynamic shape operators with `torch._dynamo.config.capture_dynamic_output_shape_ops = True`\n\n  Developer debug context: aten.nonzero.default\n\n For more details about this graph break, please visit: https://meta-pytorch.github.io/compile-graph-break-site/gb/gb0036.html": 2,
+      "Reconstruction failure\n  Explanation: Dynamo has no bytecode reconstruction implemented for sourceless variable DictItemsIterator().\n  Hint: If Dynamo is attempting to trace a return statement and your code is attempting to return a variable that Dynamo cannot reconstruct, then remove it from the return statement.\n  Hint: This graph break may have been caused by an earlier graph break. Resolving the earlier graph break may resolve this one.\n  Hint: Report an issue to PyTorch if you need reconstrtuction support. Note that objects that don't have reconstruction rules may be fundamentally unreconstructable.\n\n  Developer debug context: DictItemsIterator()\n\n For more details about this graph break, please visit: https://meta-pytorch.github.io/compile-graph-break-site/gb/gb0092.html": 1,
+      "Reconstruction failure\n  Explanation: Dynamo has no bytecode reconstruction implemented for sourceless variable DictIterator().\n  Hint: If Dynamo is attempting to trace a return statement and your code is attempting to return a variable that Dynamo cannot reconstruct, then remove it from the return statement.\n  Hint: This graph break may have been caused by an earlier graph break. Resolving the earlier graph break may resolve this one.\n  Hint: Report an issue to PyTorch if you need reconstrtuction support. Note that objects that don't have reconstruction rules may be fundamentally unreconstructable.\n\n  Developer debug context: DictIterator()\n\n For more details about this graph break, please visit: https://meta-pytorch.github.io/compile-graph-break-site/gb/gb0092.html": 1
+    },
+    "graph_break": {
+      "Dynamic shape operator\n  Explanation: Operator `aten.nonzero.default`'s output shape depends on input Tensor data.\n  Hint: Enable tracing of dynamic shape operators with `torch._dynamo.config.capture_dynamic_output_shape_ops = True`\n\n  Developer debug context: aten.nonzero.default\n\n For more details about this graph break, please visit: https://meta-pytorch.github.io/compile-graph-break-site/gb/gb0036.html": 6
+    },
+    "stats": {
+      "calls_captured": 3919,
+      "unique_graphs": 11
+    },
+    "aot_autograd": {
+      "total": 11,
+      "autograd_cache_miss": 11,
+      "ok": 11,
+      "autograd_cache_saved": 10
+    },
+    "inductor": {
+      "fxgraph_cache_miss": 10,
+      "async_compile_cache_miss": 792,
+      "triton_bundler_save_kernel": 4400,
+      "triton_bundler_save_static_autotuner": 9,
+      "benchmarking.InductorBenchmarker.benchmark": 1243,
+      "benchmarking.InductorBenchmarker.benchmark_gpu": 1245,
+      "coordesc_tuning_bench": 515,
+      "pattern_matcher_count": 1666,
+      "pattern_matcher_nodes": 2098,
+      "select_algorithm_precompile": 26,
+      "select_algorithm_num_precompiles": 492,
+      "select_algorithm_autotune": 26,
+      "flop_count": 2415919104,
+      "extern_calls": 122,
+      "async_compile_cache_hit": 190,
+      "cudagraph_partitions": 2,
+      "generated_module_cache_miss": 482,
+      "generated_module_cache_hit": 6734,
+      "removed_pointless_view_pair": 93,
+      "pad_mm_bench": 1
+    },
+    "resumes": {
+      "torch_dynamo_resume_in_sample_actions_at_807": 1,
+      "torch_dynamo_resume_in_embed_prefix_at_630": 1,
+      "torch_dynamo_resume_in__embed_images_at_614": 1,
+      "torch_dynamo_resume_in_embed_image_at_207": 1,
+      "torch_dynamo_resume_in_forward_at_351": 1,
+      "torch_dynamo_resume_in_forward_at_130": 1
+    },
+    "aten_mm_info": {
+      "aten.addmm_2048_768_768": 48,
+      "aten.addmm_2048_3072_768": 12,
+      "aten.addmm_2048_768_3072": 12,
+      "aten.mm_128_960_12288": 1,
+      "aten.addmm_1_960_32": 1,
+      "aten.mm_177_960_960": 30,
+      "aten.mm_177_320_960": 32,
+      "aten.bmm_15_177_177_64": 15,
+      "aten.bmm_15_177_64_177": 15,
+      "aten.mm_177_2560_960": 30,
+      "aten.mm_177_960_2560": 15,
+      "aten.addmm_50_720_32": 1,
+      "aten.mm_50_720_1440": 1,
+      "aten.mm_50_720_720": 1,
+      "aten.mm_50_960_720": 16,
+      "aten.mm_50_320_720": 16,
+      "aten.bmm_15_50_227_64": 8,
+      "aten.bmm_15_50_64_227": 8,
+      "aten.mm_50_720_960": 16,
+      "aten.mm_50_2048_720": 32,
+      "aten.mm_50_720_2048": 16,
+      "aten.mm_177_320_320": 16,
+      "aten.bmm_15_50_177_64": 8,
+      "aten.bmm_15_50_64_177": 8,
+      "aten.mm_50_32_720": 1
+    }
+  },
+  "dynamo_after_warm_calls": {
+    "frames": {
+      "total": 20,
+      "ok": 18
+    },
+    "unimplemented": {
+      "Dynamic shape operator\n  Explanation: Operator `aten.nonzero.default`'s output shape depends on input Tensor data.\n  Hint: Enable tracing of dynamic shape operators with `torch._dynamo.config.capture_dynamic_output_shape_ops = True`\n\n  Developer debug context: aten.nonzero.default\n\n For more details about this graph break, please visit: https://meta-pytorch.github.io/compile-graph-break-site/gb/gb0036.html": 2,
+      "Reconstruction failure\n  Explanation: Dynamo has no bytecode reconstruction implemented for sourceless variable DictItemsIterator().\n  Hint: If Dynamo is attempting to trace a return statement and your code is attempting to return a variable that Dynamo cannot reconstruct, then remove it from the return statement.\n  Hint: This graph break may have been caused by an earlier graph break. Resolving the earlier graph break may resolve this one.\n  Hint: Report an issue to PyTorch if you need reconstrtuction support. Note that objects that don't have reconstruction rules may be fundamentally unreconstructable.\n\n  Developer debug context: DictItemsIterator()\n\n For more details about this graph break, please visit: https://meta-pytorch.github.io/compile-graph-break-site/gb/gb0092.html": 1,
+      "Reconstruction failure\n  Explanation: Dynamo has no bytecode reconstruction implemented for sourceless variable DictIterator().\n  Hint: If Dynamo is attempting to trace a return statement and your code is attempting to return a variable that Dynamo cannot reconstruct, then remove it from the return statement.\n  Hint: This graph break may have been caused by an earlier graph break. Resolving the earlier graph break may resolve this one.\n  Hint: Report an issue to PyTorch if you need reconstrtuction support. Note that objects that don't have reconstruction rules may be fundamentally unreconstructable.\n\n  Developer debug context: DictIterator()\n\n For more details about this graph break, please visit: https://meta-pytorch.github.io/compile-graph-break-site/gb/gb0092.html": 1
+    },
+    "graph_break": {
+      "Dynamic shape operator\n  Explanation: Operator `aten.nonzero.default`'s output shape depends on input Tensor data.\n  Hint: Enable tracing of dynamic shape operators with `torch._dynamo.config.capture_dynamic_output_shape_ops = True`\n\n  Developer debug context: aten.nonzero.default\n\n For more details about this graph break, please visit: https://meta-pytorch.github.io/compile-graph-break-site/gb/gb0036.html": 6
+    },
+    "stats": {
+      "calls_captured": 3919,
+      "unique_graphs": 11
+    },
+    "aot_autograd": {
+      "total": 11,
+      "autograd_cache_miss": 11,
+      "ok": 11,
+      "autograd_cache_saved": 10
+    },
+    "inductor": {
+      "fxgraph_cache_miss": 10,
+      "async_compile_cache_miss": 792,
+      "triton_bundler_save_kernel": 4400,
+      "triton_bundler_save_static_autotuner": 9,
+      "benchmarking.InductorBenchmarker.benchmark": 1243,
+      "benchmarking.InductorBenchmarker.benchmark_gpu": 1245,
+      "coordesc_tuning_bench": 515,
+      "pattern_matcher_count": 1666,
+      "pattern_matcher_nodes": 2098,
+      "select_algorithm_precompile": 26,
+      "select_algorithm_num_precompiles": 492,
+      "select_algorithm_autotune": 26,
+      "flop_count": 2415919104,
+      "extern_calls": 122,
+      "async_compile_cache_hit": 190,
+      "cudagraph_partitions": 2,
+      "generated_module_cache_miss": 482,
+      "generated_module_cache_hit": 6734,
+      "removed_pointless_view_pair": 93,
+      "pad_mm_bench": 1,
+      "cudagraph_recorded_non_static_inputs": 8
+    },
+    "resumes": {
+      "torch_dynamo_resume_in_sample_actions_at_807": 1,
+      "torch_dynamo_resume_in_embed_prefix_at_630": 1,
+      "torch_dynamo_resume_in__embed_images_at_614": 1,
+      "torch_dynamo_resume_in_embed_image_at_207": 1,
+      "torch_dynamo_resume_in_forward_at_351": 1,
+      "torch_dynamo_resume_in_forward_at_130": 1
+    },
+    "aten_mm_info": {
+      "aten.addmm_2048_768_768": 48,
+      "aten.addmm_2048_3072_768": 12,
+      "aten.addmm_2048_768_3072": 12,
+      "aten.mm_128_960_12288": 1,
+      "aten.addmm_1_960_32": 1,
+      "aten.mm_177_960_960": 30,
+      "aten.mm_177_320_960": 32,
+      "aten.bmm_15_177_177_64": 15,
+      "aten.bmm_15_177_64_177": 15,
+      "aten.mm_177_2560_960": 30,
+      "aten.mm_177_960_2560": 15,
+      "aten.addmm_50_720_32": 1,
+      "aten.mm_50_720_1440": 1,
+      "aten.mm_50_720_720": 1,
+      "aten.mm_50_960_720": 16,
+      "aten.mm_50_320_720": 16,
+      "aten.bmm_15_50_227_64": 8,
+      "aten.bmm_15_50_64_227": 8,
+      "aten.mm_50_720_960": 16,
+      "aten.mm_50_2048_720": 32,
+      "aten.mm_50_720_2048": 16,
+      "aten.mm_177_320_320": 16,
+      "aten.bmm_15_50_177_64": 8,
+      "aten.bmm_15_50_64_177": 8,
+      "aten.mm_50_32_720": 1
+    }
+  },
+  "recompiled_after_first_call": false,
+  "env": {
+    "TORCHINDUCTOR_FORCE_DISABLE_CACHES": null,
+    "TORCHINDUCTOR_CACHE_DIR": "<scratch>/final/inductor_cache_gtOV",
+    "TRITON_CACHE_DIR": "<scratch>/final/inductor_cache_gtOV/triton/0",
+    "TORCH_LOGS": null,
+    "HF_HUB_OFFLINE": "1"
+  },
+  "torch": "2.15.0+cu132"
+}

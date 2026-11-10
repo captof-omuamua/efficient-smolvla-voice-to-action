@@ -1,0 +1,40 @@
+{
+ "fps": 20,
+ "steps": 136,
+ "success": false,
+ "goals_hold_at_end": false,
+ "expected": null,
+ "did_expected": false,
+ "earlier_goals_hold": false,
+ "plan": [],
+ "done": [],
+ "lines": [
+  {
+   "file": "<project>/voice-robot/results/voice_robot/stage1_take2/runs/line5_refuse_s0/line_1_trimmed.raw",
+   "recorded_s": 3.3263125,
+   "trim_flag": "",
+   "speech_end_s": 1.52,
+   "start_s": 0.0,
+   "end_s": 1.62,
+   "heard": "Close the top drawer.",
+   "event": "refuse",
+   "commands": [],
+   "level": "llm",
+   "speech_ms": 62.87602100019285,
+   "parse_ms": 113.8772849990346,
+   "effect_s": 1.8
+  }
+ ],
+ "states": [
+  {
+   "from_step": 0,
+   "state": "WAITING",
+   "command": null
+  },
+  {
+   "from_step": 136,
+   "state": "WAITING",
+   "command": null
+  }
+ ]
+}

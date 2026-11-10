@@ -1,0 +1,1233 @@
+{
+  "what": "Final numbers for the 10 Nov talk, measured 7-8 Nov 2026 on today's LeRobot",
+  "sources": {
+    "speed_energy": {
+      "pass1": "bench/results_final_2026-11-07/session/session.json",
+      "pass2": "bench/results_final_2026-11-07/session_pass2/session.json"
+    },
+    "precision_check": "bench/results_final_2026-11-07/precision_check/precision_check.json",
+    "startup": "bench/results_final_2026-11-07/startup/",
+    "libero_runs": "libero_runs/"
+  },
+  "code": {
+    "lerobot_file": "<project>/lerobot-final-2026-11-07/src/lerobot/__init__.py",
+    "worktree": "<project>/lerobot-final-2026-11-07",
+    "head": "d490e472a5d1a207cfe0255caaaf74b6d66e4656",
+    "merge_head": "2d2003349a0347e2b33a533c3b3d7802b9fbd457",
+    "status": "M  src/lerobot/policies/smolvla/configuration_smolvla.py\nMM src/lerobot/policies/smolvla/modeling_smolvla.py\nM  src/lerobot/policies/smolvla/smolvlm_with_expert.py\nA  tests/policies/smolvla/test_smolvla_compile_parity.py\n?? tests/policies/smolvla/test_smolvla_vision_inference.py",
+    "patch": "<project>/bench/results_pr_batch_cameras_2026-11-07/batch_cameras.patch",
+    "patch_sha256": "6ebf9e2f39a19be6a1d0704c6c04c6d8faa53f0c73859c2c9e8a00a1eb1628aa",
+    "modeling_smolvla_sha256": "9e81556d9490ea40f78558f908a1ceeaaa3211da4a4579fc2212ccb02a267eb2",
+    "smolvlm_with_expert_sha256": "528ca8529258a7a1c7c91197e58f84eee8836b3fc2cbd2ca465b512894fa1623",
+    "script_sha256": "b56cc546122e202631f9d8617237f5f3cb5a297ab7696cc80b98fa0ce1d7a3a7"
+  },
+  "environment": {
+    "python": "3.12.13",
+    "torch": "2.15.0+cu132",
+    "cuda_runtime": "13.2",
+    "cudnn": 92600,
+    "transformers": "5.22.1",
+    "triton": "3.9.0",
+    "nvidia_ml_py": "13.615.71",
+    "gpu": "NVIDIA GeForce RTX 5090 Laptop GPU",
+    "driver": "595.99.02",
+    "power_limit_w_enforced_at_end": 110.0,
+    "power_limit_w_default": 95.0,
+    "platform_profile": "balanced",
+    "on_ac_power": "1",
+    "os": "Linux-7.0.0-43-generic-x86_64-with-glibc2.43",
+    "model_snapshot": "~/.cache/huggingface/hub/models--lerobot--smolvla_libero/snapshots/a24f1f380461b665158d52acd140152c79e8b36d/config.json",
+    "python_executable": "<project>/lerobot-final-2026-11-07/.venv/bin/python",
+    "float32_matmul_precision": "high",
+    "cuda_matmul_allow_tf32": true,
+    "cudnn_allow_tf32": true,
+    "cudnn_benchmark": false,
+    "env": {
+      "TORCHINDUCTOR_FORCE_DISABLE_CACHES": "1",
+      "TORCHINDUCTOR_CACHE_DIR": "<scratch>/final/inductor_cold_session_89J6",
+      "TRITON_CACHE_DIR": "<scratch>/final/inductor_cold_session_89J6/triton/0",
+      "HF_HUB_OFFLINE": "1",
+      "PYTHONPATH": null,
+      "CUDA_VISIBLE_DEVICES": null,
+      "TORCH_LOGS": null
+    }
+  },
+  "session_settings": {
+    "pass1": {
+      "order": [
+        "A0",
+        "A1",
+        "C",
+        "B",
+        "B",
+        "C",
+        "A1",
+        "A0",
+        "A0",
+        "A1",
+        "C",
+        "B",
+        "B",
+        "C",
+        "A1",
+        "A0",
+        "A0",
+        "A1",
+        "C",
+        "B",
+        "B",
+        "C",
+        "A1",
+        "A0"
+      ],
+      "calls_per_block": {
+        "A0": 100,
+        "A1": 104,
+        "C": 405,
+        "B": 765
+      },
+      "window_s_target": 11.17,
+      "settle_median_ms": {
+        "A0": 111.73,
+        "A1": 107.51,
+        "C": 27.61,
+        "B": 14.61
+      },
+      "inputs_identical_to_A1": {
+        "A0": true,
+        "A1": true,
+        "C": true,
+        "B": true
+      }
+    },
+    "pass2": {
+      "order": [
+        "A0",
+        "A1",
+        "C",
+        "B",
+        "B",
+        "C",
+        "A1",
+        "A0",
+        "A0",
+        "A1",
+        "C",
+        "B",
+        "B",
+        "C",
+        "A1",
+        "A0",
+        "A0",
+        "A1",
+        "C",
+        "B",
+        "B",
+        "C",
+        "A1",
+        "A0"
+      ],
+      "calls_per_block": {
+        "A0": 100,
+        "A1": 110,
+        "C": 435,
+        "B": 773
+      },
+      "window_s_target": 11.74,
+      "settle_median_ms": {
+        "A0": 117.35,
+        "A1": 107.12,
+        "C": 26.95,
+        "B": 15.17
+      },
+      "inputs_identical_to_A1": {
+        "A0": true,
+        "A1": true,
+        "C": true,
+        "B": true
+      }
+    }
+  },
+  "speed_energy": {
+    "pass1": {
+      "A0": {
+        "setup": "talk baseline definition: eager, 10 steps, 1 blank camera slot, cameras one call each",
+        "median_ms": 118.93,
+        "p99_ms": 146.95,
+        "calls": 600,
+        "block_medians_ms": [
+          114.56,
+          122.54,
+          117.22,
+          132.93,
+          120.53,
+          114.5
+        ],
+        "j_per_decision_total": 11.468,
+        "j_per_decision_total_range": [
+          10.862,
+          12.045
+        ],
+        "j_per_decision_above_idle": 8.54,
+        "j_per_decision_above_idle_range": [
+          8.141,
+          9.009
+        ],
+        "busy_w": 94.4,
+        "idle_w": 24.0,
+        "first_call_s_in_session": 0.45,
+        "other_programs_cpu_cores_mean_over_blocks": 0.75
+      },
+      "A1": {
+        "setup": "today's default baseline: eager, 10 steps, no blank slot, cameras one call each",
+        "median_ms": 110.99,
+        "p99_ms": 146.98,
+        "calls": 624,
+        "block_medians_ms": [
+          112.3,
+          110.46,
+          109.8,
+          113.89,
+          114.86,
+          108.16
+        ],
+        "j_per_decision_total": 11.002,
+        "j_per_decision_total_range": [
+          10.817,
+          11.632
+        ],
+        "j_per_decision_above_idle": 8.394,
+        "j_per_decision_above_idle_range": [
+          8.058,
+          8.905
+        ],
+        "busy_w": 96.9,
+        "idle_w": 23.0,
+        "first_call_s_in_session": 0.11,
+        "other_programs_cpu_cores_mean_over_blocks": 0.64
+      },
+      "C": {
+        "setup": "no compiler: eager, 1 step, no blank slot, cameras batched",
+        "median_ms": 27.89,
+        "p99_ms": 39.17,
+        "calls": 2430,
+        "block_medians_ms": [
+          27.42,
+          28.54,
+          27.72,
+          27.76,
+          28.69,
+          27.77
+        ],
+        "j_per_decision_total": 2.828,
+        "j_per_decision_total_range": [
+          2.68,
+          3.002
+        ],
+        "j_per_decision_above_idle": 2.178,
+        "j_per_decision_above_idle_range": [
+          2.025,
+          2.348
+        ],
+        "busy_w": 98.7,
+        "idle_w": 22.7,
+        "first_call_s_in_session": 0.04,
+        "other_programs_cpu_cores_mean_over_blocks": 0.62
+      },
+      "B": {
+        "setup": "tuned: whole-model compile (default mode), 1 step, no blank slot, cameras batched",
+        "median_ms": 14.41,
+        "p99_ms": 16.8,
+        "calls": 4590,
+        "block_medians_ms": [
+          14.2,
+          14.19,
+          14.57,
+          14.56,
+          14.62,
+          14.54
+        ],
+        "j_per_decision_total": 1.44,
+        "j_per_decision_total_range": [
+          1.416,
+          1.462
+        ],
+        "j_per_decision_above_idle": 1.112,
+        "j_per_decision_above_idle_range": [
+          1.074,
+          1.159
+        ],
+        "busy_w": 99.8,
+        "idle_w": 22.8,
+        "first_call_s_in_session": 161.3,
+        "other_programs_cpu_cores_mean_over_blocks": 0.31
+      }
+    },
+    "pass2": {
+      "A0": {
+        "setup": "talk baseline definition: eager, 10 steps, 1 blank camera slot, cameras one call each",
+        "median_ms": 118.8,
+        "p99_ms": 144.5,
+        "calls": 600,
+        "block_medians_ms": [
+          119.81,
+          117.51,
+          116.6,
+          120.81,
+          114.45,
+          119.54
+        ],
+        "j_per_decision_total": 11.36,
+        "j_per_decision_total_range": [
+          10.825,
+          11.769
+        ],
+        "j_per_decision_above_idle": 8.536,
+        "j_per_decision_above_idle_range": [
+          8.057,
+          8.866
+        ],
+        "busy_w": 95.5,
+        "idle_w": 23.8,
+        "first_call_s_in_session": 0.46,
+        "other_programs_cpu_cores_mean_over_blocks": 0.68
+      },
+      "A1": {
+        "setup": "today's default baseline: eager, 10 steps, no blank slot, cameras one call each",
+        "median_ms": 112.87,
+        "p99_ms": 137.01,
+        "calls": 660,
+        "block_medians_ms": [
+          115.23,
+          111.53,
+          109.97,
+          114.61,
+          108.29,
+          113.41
+        ],
+        "j_per_decision_total": 10.893,
+        "j_per_decision_total_range": [
+          10.417,
+          11.374
+        ],
+        "j_per_decision_above_idle": 8.213,
+        "j_per_decision_above_idle_range": [
+          7.917,
+          8.677
+        ],
+        "busy_w": 96.4,
+        "idle_w": 23.7,
+        "first_call_s_in_session": 0.1,
+        "other_programs_cpu_cores_mean_over_blocks": 0.66
+      },
+      "C": {
+        "setup": "no compiler: eager, 1 step, no blank slot, cameras batched",
+        "median_ms": 27.53,
+        "p99_ms": 37.5,
+        "calls": 2610,
+        "block_medians_ms": [
+          29.57,
+          28.79,
+          27.14,
+          27.24,
+          26.71,
+          28.27
+        ],
+        "j_per_decision_total": 2.82,
+        "j_per_decision_total_range": [
+          2.715,
+          2.966
+        ],
+        "j_per_decision_above_idle": 2.151,
+        "j_per_decision_above_idle_range": [
+          2.056,
+          2.215
+        ],
+        "busy_w": 99.4,
+        "idle_w": 23.5,
+        "first_call_s_in_session": 0.04,
+        "other_programs_cpu_cores_mean_over_blocks": 0.58
+      },
+      "B": {
+        "setup": "tuned: whole-model compile (default mode), 1 step, no blank slot, cameras batched",
+        "median_ms": 14.86,
+        "p99_ms": 17.16,
+        "calls": 4638,
+        "block_medians_ms": [
+          15.27,
+          15.22,
+          14.79,
+          14.82,
+          14.35,
+          14.96
+        ],
+        "j_per_decision_total": 1.469,
+        "j_per_decision_total_range": [
+          1.437,
+          1.547
+        ],
+        "j_per_decision_above_idle": 1.121,
+        "j_per_decision_above_idle_range": [
+          1.084,
+          1.182
+        ],
+        "busy_w": 99.0,
+        "idle_w": 23.4,
+        "first_call_s_in_session": 152.05,
+        "other_programs_cpu_cores_mean_over_blocks": 0.48
+      }
+    }
+  },
+  "ratios": {
+    "pass1": {
+      "A0_over_A1": {
+        "j_per_call_total": {
+          "overall": 1.04,
+          "per_round_min": 1.0,
+          "per_round_max": 1.11,
+          "per_round": [
+            1.01,
+            1.04,
+            1.07,
+            1.11,
+            1.03,
+            1.0
+          ]
+        },
+        "j_per_call_above_idle": {
+          "overall": 1.02,
+          "per_round_min": 0.97,
+          "per_round_max": 1.07,
+          "per_round": [
+            0.99,
+            1.0,
+            1.06,
+            1.07,
+            1.01,
+            0.97
+          ]
+        },
+        "median_ms": 1.07,
+        "p99_ms": 1.0
+      },
+      "A0_over_C": {
+        "j_per_call_total": {
+          "overall": 4.06,
+          "per_round_min": 3.75,
+          "per_round_max": 4.27,
+          "per_round": [
+            3.94,
+            3.75,
+            4.13,
+            4.2,
+            4.27,
+            4.05
+          ]
+        },
+        "j_per_call_above_idle": {
+          "overall": 3.92,
+          "per_round_min": 3.51,
+          "per_round_max": 4.27,
+          "per_round": [
+            3.79,
+            3.51,
+            4.07,
+            3.92,
+            4.27,
+            4.02
+          ]
+        },
+        "median_ms": 4.26,
+        "p99_ms": 3.75
+      },
+      "A0_over_B": {
+        "j_per_call_total": {
+          "overall": 7.96,
+          "per_round_min": 7.5,
+          "per_round_max": 8.4,
+          "per_round": [
+            7.5,
+            7.83,
+            8.01,
+            8.36,
+            8.4,
+            7.67
+          ]
+        },
+        "j_per_call_above_idle": {
+          "overall": 7.68,
+          "per_round_min": 7.22,
+          "per_round_max": 8.32,
+          "per_round": [
+            7.22,
+            7.26,
+            7.91,
+            7.84,
+            8.32,
+            7.58
+          ]
+        },
+        "median_ms": 8.25,
+        "p99_ms": 8.75
+      },
+      "A1_over_A0": {
+        "j_per_call_total": {
+          "overall": 0.96,
+          "per_round_min": 0.9,
+          "per_round_max": 1.0,
+          "per_round": [
+            0.99,
+            0.96,
+            0.93,
+            0.9,
+            0.97,
+            1.0
+          ]
+        },
+        "j_per_call_above_idle": {
+          "overall": 0.98,
+          "per_round_min": 0.93,
+          "per_round_max": 1.03,
+          "per_round": [
+            1.01,
+            1.0,
+            0.94,
+            0.93,
+            0.99,
+            1.03
+          ]
+        },
+        "median_ms": 0.93,
+        "p99_ms": 1.0
+      },
+      "A1_over_C": {
+        "j_per_call_total": {
+          "overall": 3.89,
+          "per_round_min": 3.6,
+          "per_round_max": 4.15,
+          "per_round": [
+            3.92,
+            3.6,
+            3.84,
+            3.8,
+            4.15,
+            4.07
+          ]
+        },
+        "j_per_call_above_idle": {
+          "overall": 3.85,
+          "per_round_min": 3.51,
+          "per_round_max": 4.22,
+          "per_round": [
+            3.85,
+            3.51,
+            3.83,
+            3.65,
+            4.22,
+            4.12
+          ]
+        },
+        "median_ms": 3.98,
+        "p99_ms": 3.75
+      },
+      "A1_over_B": {
+        "j_per_call_total": {
+          "overall": 7.64,
+          "per_round_min": 7.45,
+          "per_round_max": 8.17,
+          "per_round": [
+            7.45,
+            7.51,
+            7.46,
+            7.56,
+            8.17,
+            7.7
+          ]
+        },
+        "j_per_call_above_idle": {
+          "overall": 7.55,
+          "per_round_min": 7.26,
+          "per_round_max": 8.22,
+          "per_round": [
+            7.33,
+            7.26,
+            7.45,
+            7.31,
+            8.22,
+            7.77
+          ]
+        },
+        "median_ms": 7.7,
+        "p99_ms": 8.75
+      }
+    },
+    "pass2": {
+      "A0_over_A1": {
+        "j_per_call_total": {
+          "overall": 1.04,
+          "per_round_min": 0.99,
+          "per_round_max": 1.06,
+          "per_round": [
+            1.06,
+            1.06,
+            0.99,
+            1.03,
+            1.06,
+            1.06
+          ]
+        },
+        "j_per_call_above_idle": {
+          "overall": 1.04,
+          "per_round_min": 0.96,
+          "per_round_max": 1.07,
+          "per_round": [
+            1.07,
+            1.06,
+            0.96,
+            1.02,
+            1.05,
+            1.07
+          ]
+        },
+        "median_ms": 1.05,
+        "p99_ms": 1.05
+      },
+      "A0_over_C": {
+        "j_per_call_total": {
+          "overall": 4.03,
+          "per_round_min": 3.91,
+          "per_round_max": 4.26,
+          "per_round": [
+            3.92,
+            3.91,
+            3.99,
+            4.26,
+            4.04,
+            4.06
+          ]
+        },
+        "j_per_call_above_idle": {
+          "overall": 3.97,
+          "per_round_min": 3.84,
+          "per_round_max": 4.18,
+          "per_round": [
+            3.98,
+            3.86,
+            3.92,
+            4.18,
+            3.84,
+            4.04
+          ]
+        },
+        "median_ms": 4.32,
+        "p99_ms": 3.85
+      },
+      "A0_over_B": {
+        "j_per_call_total": {
+          "overall": 7.73,
+          "per_round_min": 7.28,
+          "per_round_max": 8.19,
+          "per_round": [
+            7.94,
+            7.28,
+            7.49,
+            8.19,
+            7.64,
+            7.89
+          ]
+        },
+        "j_per_call_above_idle": {
+          "overall": 7.61,
+          "per_round_min": 7.1,
+          "per_round_max": 8.18,
+          "per_round": [
+            8.06,
+            7.1,
+            7.38,
+            8.18,
+            7.3,
+            7.72
+          ]
+        },
+        "median_ms": 7.99,
+        "p99_ms": 8.42
+      },
+      "A1_over_A0": {
+        "j_per_call_total": {
+          "overall": 0.96,
+          "per_round_min": 0.94,
+          "per_round_max": 1.01,
+          "per_round": [
+            0.94,
+            0.95,
+            1.01,
+            0.97,
+            0.94,
+            0.95
+          ]
+        },
+        "j_per_call_above_idle": {
+          "overall": 0.96,
+          "per_round_min": 0.93,
+          "per_round_max": 1.04,
+          "per_round": [
+            0.93,
+            0.94,
+            1.04,
+            0.98,
+            0.95,
+            0.94
+          ]
+        },
+        "median_ms": 0.95,
+        "p99_ms": 0.95
+      },
+      "A1_over_C": {
+        "j_per_call_total": {
+          "overall": 3.86,
+          "per_round_min": 3.69,
+          "per_round_max": 4.11,
+          "per_round": [
+            3.69,
+            3.71,
+            4.04,
+            4.11,
+            3.8,
+            3.85
+          ]
+        },
+        "j_per_call_above_idle": {
+          "overall": 3.82,
+          "per_round_min": 3.64,
+          "per_round_max": 4.09,
+          "per_round": [
+            3.71,
+            3.64,
+            4.06,
+            4.09,
+            3.65,
+            3.78
+          ]
+        },
+        "median_ms": 4.1,
+        "p99_ms": 3.65
+      },
+      "A1_over_B": {
+        "j_per_call_total": {
+          "overall": 7.42,
+          "per_round_min": 6.9,
+          "per_round_max": 7.92,
+          "per_round": [
+            7.48,
+            6.9,
+            7.59,
+            7.92,
+            7.18,
+            7.47
+          ]
+        },
+        "j_per_call_above_idle": {
+          "overall": 7.33,
+          "per_round_min": 6.7,
+          "per_round_max": 8.01,
+          "per_round": [
+            7.52,
+            6.7,
+            7.64,
+            8.01,
+            6.95,
+            7.21
+          ]
+        },
+        "median_ms": 7.6,
+        "p99_ms": 7.98
+      }
+    }
+  },
+  "recompiled_during_session_blocks": {
+    "pass1": false,
+    "pass2": false
+  },
+  "redone_blocks": {
+    "pass1": [],
+    "pass2": []
+  },
+  "startup_and_memory": {
+    "A0_eager": {
+      "source": "bench/results_final_2026-11-07/startup/A0_eager.json",
+      "first_call_s": 0.49,
+      "load_s": 1.73,
+      "script_start_to_first_action_s": 9.14,
+      "peak_gpu_mb_allocated": 946,
+      "peak_gpu_mb_reserved": 970,
+      "median_ms_warm_calls": 107.27,
+      "recompiled_after_first_call": false,
+      "dynamo_frames": null,
+      "unique_graphs": null,
+      "graph_break_reasons": {},
+      "graph_break_counter": 0
+    },
+    "A1_eager": {
+      "source": "bench/results_final_2026-11-07/startup/A1_eager.json",
+      "first_call_s": 0.48,
+      "load_s": 1.71,
+      "script_start_to_first_action_s": 9.1,
+      "peak_gpu_mb_allocated": 936,
+      "peak_gpu_mb_reserved": 966,
+      "median_ms_warm_calls": 101.94,
+      "recompiled_after_first_call": false,
+      "dynamo_frames": null,
+      "unique_graphs": null,
+      "graph_break_reasons": {},
+      "graph_break_counter": 0
+    },
+    "B_cold": {
+      "source": "bench/results_final_2026-11-07/startup/B_cold.json",
+      "first_call_s": 155.61,
+      "load_s": 3.1,
+      "script_start_to_first_action_s": 165.65,
+      "peak_gpu_mb_allocated": 897,
+      "peak_gpu_mb_reserved": 1090,
+      "median_ms_warm_calls": 17.3,
+      "recompiled_after_first_call": false,
+      "dynamo_frames": {
+        "total": 20,
+        "ok": 18
+      },
+      "unique_graphs": 11,
+      "graph_break_reasons": {
+        "Dynamic shape operator | Explanation: Operator `aten.nonzero.default`'s output shape depends on input Tensor data.": 2,
+        "Reconstruction failure | Explanation: Dynamo has no bytecode reconstruction implemented for sourceless variable DictItemsIterator().": 1,
+        "Reconstruction failure | Explanation: Dynamo has no bytecode reconstruction implemented for sourceless variable DictIterator().": 1
+      },
+      "graph_break_counter": 6
+    },
+    "B_diag": {
+      "source": "bench/results_final_2026-11-07/startup/B_diag.json",
+      "first_call_s": 6.18,
+      "load_s": 3.25,
+      "script_start_to_first_action_s": 16.77,
+      "peak_gpu_mb_allocated": 897,
+      "peak_gpu_mb_reserved": 1054,
+      "median_ms_warm_calls": 14.01,
+      "recompiled_after_first_call": false,
+      "dynamo_frames": {
+        "total": 20,
+        "ok": 18
+      },
+      "unique_graphs": 11,
+      "graph_break_reasons": {
+        "Dynamic shape operator | Explanation: Operator `aten.nonzero.default`'s output shape depends on input Tensor data.": 2,
+        "Reconstruction failure | Explanation: Dynamo has no bytecode reconstruction implemented for sourceless variable DictItemsIterator().": 1,
+        "Reconstruction failure | Explanation: Dynamo has no bytecode reconstruction implemented for sourceless variable DictIterator().": 1
+      },
+      "graph_break_counter": 6
+    },
+    "B_fill": {
+      "source": "bench/results_final_2026-11-07/startup/B_fill.json",
+      "first_call_s": 158.12,
+      "load_s": 2.99,
+      "script_start_to_first_action_s": 167.79,
+      "peak_gpu_mb_allocated": 897,
+      "peak_gpu_mb_reserved": 1090,
+      "median_ms_warm_calls": 18.93,
+      "recompiled_after_first_call": false,
+      "dynamo_frames": {
+        "total": 20,
+        "ok": 18
+      },
+      "unique_graphs": 11,
+      "graph_break_reasons": {
+        "Dynamic shape operator | Explanation: Operator `aten.nonzero.default`'s output shape depends on input Tensor data.": 2,
+        "Reconstruction failure | Explanation: Dynamo has no bytecode reconstruction implemented for sourceless variable DictItemsIterator().": 1,
+        "Reconstruction failure | Explanation: Dynamo has no bytecode reconstruction implemented for sourceless variable DictIterator().": 1
+      },
+      "graph_break_counter": 6
+    },
+    "B_warm": {
+      "source": "bench/results_final_2026-11-07/startup/B_warm.json",
+      "first_call_s": 6.66,
+      "load_s": 3.27,
+      "script_start_to_first_action_s": 17.35,
+      "peak_gpu_mb_allocated": 897,
+      "peak_gpu_mb_reserved": 1054,
+      "median_ms_warm_calls": 14.13,
+      "recompiled_after_first_call": false,
+      "dynamo_frames": {
+        "total": 20,
+        "ok": 18
+      },
+      "unique_graphs": 11,
+      "graph_break_reasons": {
+        "Dynamic shape operator | Explanation: Operator `aten.nonzero.default`'s output shape depends on input Tensor data.": 2,
+        "Reconstruction failure | Explanation: Dynamo has no bytecode reconstruction implemented for sourceless variable DictItemsIterator().": 1,
+        "Reconstruction failure | Explanation: Dynamo has no bytecode reconstruction implemented for sourceless variable DictIterator().": 1
+      },
+      "graph_break_counter": 6
+    },
+    "B_warm2": {
+      "source": "bench/results_final_2026-11-07/startup/B_warm2.json",
+      "first_call_s": 6.54,
+      "load_s": 3.35,
+      "script_start_to_first_action_s": 17.33,
+      "peak_gpu_mb_allocated": 897,
+      "peak_gpu_mb_reserved": 1054,
+      "median_ms_warm_calls": 13.67,
+      "recompiled_after_first_call": false,
+      "dynamo_frames": {
+        "total": 20,
+        "ok": 18
+      },
+      "unique_graphs": 11,
+      "graph_break_reasons": {
+        "Dynamic shape operator | Explanation: Operator `aten.nonzero.default`'s output shape depends on input Tensor data.": 2,
+        "Reconstruction failure | Explanation: Dynamo has no bytecode reconstruction implemented for sourceless variable DictItemsIterator().": 1,
+        "Reconstruction failure | Explanation: Dynamo has no bytecode reconstruction implemented for sourceless variable DictIterator().": 1
+      },
+      "graph_break_counter": 6
+    },
+    "C_eager": {
+      "source": "bench/results_final_2026-11-07/startup/C_eager.json",
+      "first_call_s": 0.43,
+      "load_s": 1.72,
+      "script_start_to_first_action_s": 8.95,
+      "peak_gpu_mb_allocated": 936,
+      "peak_gpu_mb_reserved": 1010,
+      "median_ms_warm_calls": 26.34,
+      "recompiled_after_first_call": false,
+      "dynamo_frames": null,
+      "unique_graphs": null,
+      "graph_break_reasons": {},
+      "graph_break_counter": 0
+    },
+    "B_cold_first_call_s_all_runs": {
+      "session_pass1": 161.3,
+      "session_pass2": 152.05,
+      "startup_cold": 155.61,
+      "startup_fill (caches on, empty cache)": 158.12
+    }
+  },
+  "precision_check": {
+    "results": {
+      "A0_tf32_on": {
+        "calls": 400,
+        "median_ms": 109.54,
+        "p90_ms": 126.8,
+        "p99_ms": 131.52,
+        "mean_ms": 112.73,
+        "min_ms": 106.09,
+        "max_ms": 168.9
+      },
+      "A0_tf32_off": {
+        "calls": 400,
+        "median_ms": 110.46,
+        "p90_ms": 128.48,
+        "p99_ms": 135.44,
+        "mean_ms": 114.14,
+        "min_ms": 106.59,
+        "max_ms": 158.71
+      },
+      "A1_tf32_on": {
+        "calls": 400,
+        "median_ms": 104.83,
+        "p90_ms": 123.07,
+        "p99_ms": 127.6,
+        "mean_ms": 108.47,
+        "min_ms": 100.95,
+        "max_ms": 160.96
+      },
+      "A1_tf32_off": {
+        "calls": 400,
+        "median_ms": 105.24,
+        "p90_ms": 120.99,
+        "p99_ms": 133.19,
+        "mean_ms": 108.46,
+        "min_ms": 101.82,
+        "max_ms": 143.61
+      }
+    },
+    "median_ratio_off_over_on": {
+      "A0": 1.008,
+      "A1": 1.004
+    },
+    "redone_blocks": 0
+  },
+  "colocation_check": {
+    "run1_alone": {
+      "A0_median_ms": 111.44,
+      "A0_again_median_ms": 111.95,
+      "B_median_ms": null,
+      "cpu_pkg_temp_c": [
+        56.0,
+        78.0
+      ],
+      "source": "bench/results_final_2026-11-07/colocation_check/run1_alone.json"
+    },
+    "run2_with_b": {
+      "A0_median_ms": 113.31,
+      "A0_again_median_ms": 112.39,
+      "B_median_ms": 15.26,
+      "cpu_pkg_temp_c": [
+        60.0,
+        86.0
+      ],
+      "source": "bench/results_final_2026-11-07/colocation_check/run2_with_b.json"
+    },
+    "run3_with_b": {
+      "A0_median_ms": 113.09,
+      "A0_again_median_ms": 115.57,
+      "B_median_ms": 16.19,
+      "cpu_pkg_temp_c": [
+        62.0,
+        84.0
+      ],
+      "source": "bench/results_final_2026-11-07/colocation_check/run3_with_b.json"
+    },
+    "run4_alone": {
+      "A0_median_ms": 114.61,
+      "A0_again_median_ms": 115.15,
+      "B_median_ms": null,
+      "cpu_pkg_temp_c": [
+        63.0,
+        90.0
+      ],
+      "source": "bench/results_final_2026-11-07/colocation_check/run4_alone.json"
+    },
+    "run5_alone": {
+      "A0_median_ms": 114.69,
+      "A0_again_median_ms": 106.84,
+      "B_median_ms": null,
+      "cpu_pkg_temp_c": [
+        63.0,
+        95.0
+      ],
+      "source": "bench/results_final_2026-11-07/colocation_check/run5_alone.json"
+    },
+    "run6_with_b": {
+      "A0_median_ms": 113.62,
+      "A0_again_median_ms": 117.51,
+      "B_median_ms": 15.57,
+      "cpu_pkg_temp_c": [
+        61.0,
+        88.0
+      ],
+      "source": "bench/results_final_2026-11-07/colocation_check/run6_with_b.json"
+    }
+  },
+  "parity": {
+    "A0": {
+      "vs_talk_run": "<project>/bench/results_v2/with_blank_slot/pr_eager_steps10_actions.pt",
+      "bit_identical": false,
+      "max_abs_diff": 1.6868391036987305,
+      "mean_abs_diff": 0.010383046232163906,
+      "max_abs_diff_first_10_steps": 0.04369240999221802,
+      "action_scale_max_abs": 1.9967998266220093
+    },
+    "A1": {
+      "vs_talk_run": "<project>/bench/results_v2/no_blank_slot/pr_eager_steps10_actions.pt",
+      "bit_identical": false,
+      "max_abs_diff": 0.0761481523513794,
+      "mean_abs_diff": 0.004445135127753019,
+      "max_abs_diff_first_10_steps": 0.018469929695129395,
+      "action_scale_max_abs": 1.9995478391647339
+    },
+    "C": {
+      "vs_talk_run": "<project>/bench/results_v2/no_blank_slot/batched_eager_steps1_actions.pt",
+      "bit_identical": false,
+      "max_abs_diff": 0.035541534423828125,
+      "mean_abs_diff": 0.00625276006758213,
+      "max_abs_diff_first_10_steps": 0.022292360663414,
+      "action_scale_max_abs": 1.575198769569397
+    },
+    "B": {
+      "vs_talk_run": "<project>/bench/results_v2/no_blank_slot/batched_compile_model_steps1_actions.pt",
+      "bit_identical": false,
+      "max_abs_diff": 0.07133328914642334,
+      "mean_abs_diff": 0.005490217357873917,
+      "max_abs_diff_first_10_steps": 0.020726799964904785,
+      "action_scale_max_abs": 1.5726004838943481
+    },
+    "A0_vs_A1": {
+      "max_abs_diff": 1.8012689352035522,
+      "mean_abs_diff": 0.010198067873716354,
+      "max_abs_diff_first_10_steps": 0.013578325510025024
+    },
+    "C_vs_B": {
+      "max_abs_diff": 0.049776166677474976,
+      "mean_abs_diff": 0.007185745052993298,
+      "max_abs_diff_first_10_steps": 0.029140830039978027
+    }
+  },
+  "libero": {
+    "final_2026-11-07_A1_eager_steps10": {
+      "eval_info": "libero_runs/final_2026-11-07_A1_eager_steps10/eval_info.json",
+      "pc_success": 82.0,
+      "n_success": 328,
+      "n_episodes": 400,
+      "pc_success_ci95_wilson": [
+        77.93624469518832,
+        85.45496846741669
+      ],
+      "per_suite_successes_of_100": {
+        "libero_spatial": 79,
+        "libero_object": 89,
+        "libero_goal": 87,
+        "libero_10": 73
+      },
+      "eval_s": 1637.0,
+      "gpu_energy_whole_run": {
+        "label": "includes simulator rendering (MuJoCo EGL on the same GPU), model loading and compiling",
+        "source": "bench/results_final_2026-11-07/libero_energy_final_2026-11-07_A1_eager_steps10.jsonl",
+        "seconds": 1669.3,
+        "kilojoules": 62.64,
+        "mean_watts": 37.5,
+        "joules_per_episode": 156.6,
+        "idle_watts_20s_before_run": 20.0
+      },
+      "first_rollout_step": {
+        "seconds": 0.65,
+        "source": "logs/final_2026-11-07_libero_final_2026-11-07_A1_eager_steps10.log"
+      }
+    },
+    "final_2026-11-07_B_tuned": {
+      "eval_info": "libero_runs/final_2026-11-07_B_tuned/eval_info.json",
+      "pc_success": 82.0,
+      "n_success": 328,
+      "n_episodes": 400,
+      "pc_success_ci95_wilson": [
+        77.93624469518832,
+        85.45496846741669
+      ],
+      "per_suite_successes_of_100": {
+        "libero_spatial": 80,
+        "libero_object": 89,
+        "libero_goal": 87,
+        "libero_10": 72
+      },
+      "eval_s": 1791.6,
+      "gpu_energy_whole_run": {
+        "label": "includes simulator rendering (MuJoCo EGL on the same GPU), model loading and compiling",
+        "source": "bench/results_final_2026-11-07/libero_energy_final_2026-11-07_B_tuned.jsonl",
+        "seconds": 1823.9,
+        "kilojoules": 62.27,
+        "mean_watts": 34.1,
+        "joules_per_episode": 155.7,
+        "idle_watts_20s_before_run": 9.2
+      },
+      "first_rollout_step": {
+        "seconds": 178.94,
+        "source": "logs/final_2026-11-07_libero_final_2026-11-07_B_tuned.log"
+      }
+    }
+  },
+  "libero_paired": {
+    "B_vs_A1": {
+      "reference": "final_2026-11-07_A1_eager_steps10",
+      "run": "final_2026-11-07_B_tuned",
+      "episodes": 400,
+      "reference_pct": 82.0,
+      "run_pct": 82.0,
+      "only_reference_won": 22,
+      "only_run_won": 22,
+      "mcnemar_p": 1.0,
+      "diff_pp": 0.0,
+      "ci95_pp": [
+        -3.3,
+        3.3
+      ]
+    },
+    "context_vs_talk_baseline": [
+      {
+        "reference": "baseline_eager_n10",
+        "run": "final_2026-11-07_A1_eager_steps10",
+        "episodes": 400,
+        "reference_pct": 83.75,
+        "run_pct": 82.0,
+        "only_reference_won": 27,
+        "only_run_won": 20,
+        "mcnemar_p": 0.382,
+        "diff_pp": -1.75,
+        "ci95_pp": [
+          -5.1,
+          1.6
+        ]
+      },
+      {
+        "reference": "baseline_eager_n10",
+        "run": "final_2026-11-07_B_tuned",
+        "episodes": 400,
+        "reference_pct": 83.75,
+        "run_pct": 82.0,
+        "only_reference_won": 28,
+        "only_run_won": 21,
+        "mcnemar_p": 0.392,
+        "diff_pp": -1.75,
+        "ci95_pp": [
+          -5.2,
+          1.7
+        ]
+      },
+      {
+        "reference": "baseline_eager_n10",
+        "run": "batched_compile_model_steps1_noblank",
+        "episodes": 400,
+        "reference_pct": 83.75,
+        "run_pct": 83.0,
+        "only_reference_won": 28,
+        "only_run_won": 25,
+        "mcnemar_p": 0.784,
+        "diff_pp": -0.75,
+        "ci95_pp": [
+          -4.3,
+          2.8
+        ]
+      }
+    ],
+    "context_talk_B_vs_today_B": {
+      "reference": "batched_compile_model_steps1_noblank",
+      "run": "final_2026-11-07_B_tuned",
+      "episodes": 400,
+      "reference_pct": 83.0,
+      "run_pct": 82.0,
+      "only_reference_won": 25,
+      "only_run_won": 21,
+      "mcnemar_p": 0.659,
+      "diff_pp": -1.0,
+      "ci95_pp": [
+        -4.3,
+        2.3
+      ]
+    }
+  },
+  "talk": {
+    "median_ms": {
+      "A0": 101.3,
+      "B": 13.1
+    },
+    "p99_ms": {
+      "A0": 120.1,
+      "B": 16.3
+    },
+    "speedup_median": 7.7,
+    "energy_same_session_7nov_j_total": {
+      "A0": 10.264,
+      "B": 1.405,
+      "ratio": 7.31
+    },
+    "energy_same_session_7nov_j_above_idle": {
+      "A0": 8.094,
+      "B": 1.123,
+      "ratio": 7.21
+    },
+    "success_pct": {
+      "A0": 83.75,
+      "B": 83.0
+    },
+    "startup_b": "71-89 s cold (two runs), 15 s warm",
+    "sources": {
+      "speed": "bench/results_v2/SUMMARY.md (pr_eager_steps10_stats.json, no_blank_slot/batched_compile_model_steps1_stats.json)",
+      "energy": "bench/results_energy_same_session_2026-11-07/summary.json (pass2)",
+      "success": "libero_runs/baseline_eager_n10, libero_runs/batched_compile_model_steps1_noblank"
+    }
+  }
+}

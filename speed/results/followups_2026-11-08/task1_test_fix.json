@@ -1,0 +1,199 @@
+{
+  "what": "PR #4634's test_smolvla_tuple_kv_parity: fix for today's main (transformers 5.22) and checks on both stacks",
+  "fix_diff": {
+    "file": "bench/results_final_2026-11-07/followups/pr4634_test_fix.diff",
+    "text": "diff --git a/tests/policies/smolvla/test_smolvla_compile_parity.py b/tests/policies/smolvla/test_smolvla_compile_parity.py\nindex ad579036..d25fea8e 100644\n--- a/tests/policies/smolvla/test_smolvla_compile_parity.py\n+++ b/tests/policies/smolvla/test_smolvla_compile_parity.py\n@@ -106,7 +106,8 @@ def test_smolvla_tuple_kv_parity():\n         dt = -1.0 / config.num_steps\n         for step in range(config.num_steps):\n             t = torch.tensor(1.0 + step * dt, dtype=torch.float32, device=\"cpu\").expand(1)\n-            dynamic_kv.crop(prefix_len)\n+            for layer in dynamic_kv.layers:\n+                layer.crop(prefix_len - layer.get_seq_length())\n             v_dyn = policy.model.denoise_step(prefix_pad_masks, dynamic_kv, x_dyn, t)\n             v_tup = policy.model.denoise_step(prefix_pad_masks, tuple_kv, x_tup, t)\n             assert torch.equal(v_dyn, v_tup), (\n"
+  },
+  "why": "transformers 5.22 changed DynamicLayer.crop's argument from a target length (crop(70) kept 70 tokens; a negative value removed that many) to a number of tokens to remove: a positive value now raises ValueError and crop(0) does nothing. Main adapted SmolVLA's denoise_step in #5220 (4598a0bb, 3 Nov 2026) with `layer.crop(prefix_len - layer.get_seq_length())`, but the PR's test still calls `dynamic_kv.crop(prefix_len)`. The fix uses the same per-layer form as #5220.",
+  "transformers_source": {
+    "5.5.4 (PR pin)": {
+      "file": "<project>/lerobot-pr4634/.venv/lib/python3.12/site-packages/transformers/cache_utils.py",
+      "lines": "139-151",
+      "text": [
+        "    def crop(self, max_length: int) -> None:",
+        "        \"\"\"",
+        "        Crop the past key values up to a new `max_length` in terms of tokens. `max_length` can also be negative",
+        "        to remove `max_length` tokens.",
+        "        \"\"\"",
+        "        if max_length < 0:",
+        "            max_length = self.get_seq_length() - abs(max_length)",
+        "",
+        "        if self.get_seq_length() <= max_length:",
+        "            return",
+        "",
+        "        self.keys = self.keys[..., :max_length, :]",
+        "        self.values = self.values[..., :max_length, :]"
+      ]
+    },
+    "5.22.1 (main pin)": {
+      "file": "<project>/lerobot-final-2026-11-07/.venv/lib/python3.12/site-packages/transformers/cache_utils.py",
+      "lines": "163-180",
+      "text": [
+        "    def crop(self, tokens_to_remove: int) -> None:",
+        "        \"\"\"",
+        "        Remove `tokens_to_remove` tokens from the current cache layer.",
+        "        \"\"\"",
+        "        # Legacy path: `tokens_to_remove` represents the final absolute size that the cache should have",
+        "        if tokens_to_remove > 0:",
+        "            raise ValueError(",
+        "                f\"Calling `crop` with a positive value (`{tokens_to_remove}`) is not supported. \"",
+        "                \"Please use a negative integer to remove that number of tokens from the cache instead.\"",
+        "            )",
+        "",
+        "        # Nothing to do in these cases: 0 tokens to crop or the layer is not initialized (can happen with KV sharing)",
+        "        if tokens_to_remove == 0 or not self.is_initialized:",
+        "            return",
+        "",
+        "        # Crop the cache",
+        "        self.keys = self.keys[..., : -abs(tokens_to_remove), :]",
+        "        self.values = self.values[..., : -abs(tokens_to_remove), :]"
+      ]
+    }
+  },
+  "main_adaptation": "4598a0bb Bump transformers version to 5.22 (#5220): modeling_smolvla.py denoise_step `past_key_values.crop(prefix_len)` -> `for layer in past_key_values.layers: layer.crop(prefix_len - layer.get_seq_length())`",
+  "runs": {
+    "today's main + PR + patch, unchanged test (7 Nov, transformers 5.22.1)": {
+      "file": "bench/results_final_2026-11-07/pytest_smolvla.log",
+      "summary": "1 failed, 14 passed (test_smolvla_tuple_kv_parity: ValueError from crop(70))"
+    },
+    "today's main + PR + patch, with the fix: test_smolvla_compile_parity.py": {
+      "file": "bench/results_final_2026-11-07/followups/pytest_new_fixed_compile_parity.txt",
+      "header": [
+        "dir: <scratch>/followups/wt-main-pr4634-testfix | git HEAD d490e472a5d1a207cfe0255caaaf74b6d66e4656 | changes: M  src/lerobot/policies/smolvla/configuration_smolvla.py MM src/lerobot/policies/smolvla/modeling_smolvla.py M  src/lerobot/policies/smolvla/smolvlm_with_expert.py AM tests/policies/smolvla/test_smolvla_compile_parity.py ?? tests/policies/smolvla/test_smolvla_vision_inference.py ",
+        "lerobot code: <scratch>/followups/wt-main-pr4634-testfix/src/lerobot/__init__.py | torch 2.15.0+cu132 | transformers 5.22.1"
+      ],
+      "summary": "2 passed, 1 warning",
+      "results": [
+        [
+          "PASSED",
+          "tests/policies/smolvla/test_smolvla_compile_parity.py::test_smolvla_tuple_kv_parity"
+        ],
+        [
+          "PASSED",
+          "tests/policies/smolvla/test_smolvla_compile_parity.py::test_smolvla_compile_parity"
+        ]
+      ]
+    },
+    "today's main + PR + patch, with the fix: tests/policies/smolvla": {
+      "file": "bench/results_final_2026-11-07/followups/pytest_new_fixed_smolvla_all.txt",
+      "header": [
+        "dir: <scratch>/followups/wt-main-pr4634-testfix | git HEAD d490e472a5d1a207cfe0255caaaf74b6d66e4656 | changes: M  src/lerobot/policies/smolvla/configuration_smolvla.py MM src/lerobot/policies/smolvla/modeling_smolvla.py M  src/lerobot/policies/smolvla/smolvlm_with_expert.py AM tests/policies/smolvla/test_smolvla_compile_parity.py ?? tests/policies/smolvla/test_smolvla_vision_inference.py ",
+        "lerobot code: <scratch>/followups/wt-main-pr4634-testfix/src/lerobot/__init__.py | torch 2.15.0+cu132 | transformers 5.22.1"
+      ],
+      "summary": "15 passed, 1 warning",
+      "results": [
+        [
+          "PASSED",
+          "tests/policies/smolvla/test_modeling_smolvla.py::test_prepare_images_normalizes_uint8_inputs_before_resizing[resize0]"
+        ],
+        [
+          "PASSED",
+          "tests/policies/smolvla/test_modeling_smolvla.py::test_prepare_images_normalizes_uint8_inputs_before_resizing[None]"
+        ],
+        [
+          "PASSED",
+          "tests/policies/smolvla/test_smolvla_compile_parity.py::test_smolvla_tuple_kv_parity"
+        ],
+        [
+          "PASSED",
+          "tests/policies/smolvla/test_smolvla_compile_parity.py::test_smolvla_compile_parity"
+        ],
+        [
+          "PASSED",
+          "tests/policies/smolvla/test_smolvla_rtc.py::test_smolvla_rtc_initialization"
+        ],
+        [
+          "PASSED",
+          "tests/policies/smolvla/test_smolvla_rtc.py::test_smolvla_rtc_initialization_without_rtc_config"
+        ],
+        [
+          "PASSED",
+          "tests/policies/smolvla/test_smolvla_rtc.py::test_smolvla_rtc_inference_with_prev_chunk"
+        ],
+        [
+          "PASSED",
+          "tests/policies/smolvla/test_smolvla_rtc.py::test_smolvla_rtc_inference_without_prev_chunk"
+        ],
+        [
+          "PASSED",
+          "tests/policies/smolvla/test_smolvla_rtc.py::test_smolvla_rtc_validation_rules"
+        ],
+        [
+          "PASSED",
+          "tests/policies/smolvla/test_smolvla_vision_inference.py::test_inference_embeds_all_cameras_in_one_call"
+        ],
+        [
+          "PASSED",
+          "tests/policies/smolvla/test_smolvla_vision_inference.py::test_training_keeps_one_call_per_camera"
+        ],
+        [
+          "PASSED",
+          "tests/policies/smolvla/test_smolvla_vision_inference.py::test_batching_returns_the_same_embeddings_in_the_same_order"
+        ],
+        [
+          "PASSED",
+          "tests/policies/smolvla/test_smolvla_vision_inference.py::test_a_single_camera_is_not_needlessly_reshaped"
+        ],
+        [
+          "PASSED",
+          "tests/policies/smolvla/test_smolvla_vision_inference.py::test_mixed_shapes_fall_back_to_one_call_per_camera"
+        ],
+        [
+          "PASSED",
+          "tests/policies/smolvla/test_smolvla_vision_inference.py::test_batched_and_looped_embeddings_match_on_the_real_vision_encoder"
+        ]
+      ]
+    },
+    "PR's pinned stack (lerobot-pr4634 venv + worktree at a932c505), unchanged": {
+      "file": "bench/results_final_2026-11-07/followups/pytest_old_a932c505_unchanged_compile_parity.txt",
+      "header": [
+        "dir: <project>/lerobot-pr4634 | git HEAD a932c5056c322cfe52d0f8e53acc46fad4c71fa2 | changes: ",
+        "lerobot code: <project>/lerobot-pr4634/src/lerobot/__init__.py | torch 2.11.0+cu128 | transformers 5.5.4"
+      ],
+      "summary": "2 passed, 16 warnings",
+      "results": [
+        [
+          "PASSED",
+          "tests/policies/smolvla/test_smolvla_compile_parity.py::test_smolvla_tuple_kv_parity"
+        ],
+        [
+          "PASSED",
+          "tests/policies/smolvla/test_smolvla_compile_parity.py::test_smolvla_compile_parity"
+        ]
+      ]
+    },
+    "PR's pinned stack, PR head 2d200334, unchanged": {
+      "file": "bench/results_final_2026-11-07/followups/pytest_old_head_unchanged_compile_parity.txt",
+      "header": [
+        "dir: <scratch>/followups/wt-pr4634-head | git HEAD 2d2003349a0347e2b33a533c3b3d7802b9fbd457 | changes: ",
+        "lerobot code: <scratch>/followups/wt-pr4634-head/src/lerobot/__init__.py | torch 2.11.0+cu128 | transformers 5.5.4"
+      ],
+      "summary": "2 passed, 14 warnings",
+      "results": [
+        [
+          "PASSED",
+          "tests/policies/smolvla/test_smolvla_compile_parity.py::test_smolvla_tuple_kv_parity"
+        ],
+        [
+          "PASSED",
+          "tests/policies/smolvla/test_smolvla_compile_parity.py::test_smolvla_compile_parity"
+        ]
+      ]
+    },
+    "PR's pinned stack, PR head 2d200334, with the fix (expected to fail)": {
+      "file": "bench/results_final_2026-11-07/followups/pytest_old_head_fixed_tuple_kv.txt",
+      "header": [
+        "dir: <scratch>/followups/wt-pr4634-head | git HEAD 2d2003349a0347e2b33a533c3b3d7802b9fbd457 | changes:  M tests/policies/smolvla/test_smolvla_compile_parity.py ",
+        "lerobot code: <scratch>/followups/wt-pr4634-head/src/lerobot/__init__.py | torch 2.11.0+cu128 | transformers 5.5.4"
+      ],
+      "summary": "1 failed, 1 deselected",
+      "results": [
+        [
+          "FAILED",
+          "tests/policies/smolvla/test_smolvla_compile_parity.py::test_smolvla_tuple_kv_parity"
+        ]
+      ]
+    }
+  },
+  "conclusion": "The test fails only on current main's transformers (5.22). Unchanged, it passes on the PR's own pinned stack (torch 2.11, transformers 5.5.4) at a932c505 and at the head 2d200334. With the fix, all 15 tests in tests/policies/smolvla pass on today's main. The fix needs transformers >= 5.22 (on 5.5.4, crop(0) empties the cache and the test fails with a shape mismatch), just like main's own denoise_step since #5220, so it belongs in the rebase onto main."
+}

@@ -1,0 +1,37 @@
+=== P_withPR_batched_r1 2026-11-10 19:41:35 cache=P cameras=native PYTHONPATH= ===
+exit 0
+[19:41:39] P_withPR_batched_r1: {"lerobot_file": "<project>/lerobot-final-2026-11-07/src/lerobot/__init__.py", "modeling_file": "<project>/lerobot-final-2026-11-07/src/lerobot/policies/smolvla/modeling_smolvla.py", "has_pr4634_compile_denoise": true, "has_batching_patch__embed_images": true}
+[transformers] `torch_dtype` is deprecated! Use `dtype` instead!
+[19:44:26] P_withPR_batched_r1: first call 164.3 s
+[19:44:31] P_withPR_batched_r1: {"first_call_s": 164.25, "median_ms": 14.5, "p99_ms": 18.58, "recompiled": false, "graphs": 11, "graph_breaks": 6, "frames": {"total": 20, "ok": 18}}
+=== M_plainmain_r1 2026-11-10 19:44:34 cache=M cameras=native PYTHONPATH=<scratch>/upstream_check/lerobot/src ===
+exit 0
+[19:44:37] M_plainmain_r1: {"lerobot_file": "<scratch>/upstream_check/lerobot/src/lerobot/__init__.py", "modeling_file": "<scratch>/upstream_check/lerobot/src/lerobot/policies/smolvla/modeling_smolvla.py", "has_pr4634_compile_denoise": false, "has_batching_patch__embed_images": false}
+[transformers] `torch_dtype` is deprecated! Use `dtype` instead!
+[19:47:17] M_plainmain_r1: first call 156.9 s
+[19:47:22] M_plainmain_r1: {"first_call_s": 156.91, "median_ms": 15.54, "p99_ms": 20.43, "recompiled": false, "graphs": 9, "graph_breaks": 4, "frames": {"total": 18, "ok": 15}}
+=== L_withPR_looped_r1 2026-11-10 19:47:25 cache=L cameras=looped PYTHONPATH= ===
+exit 0
+[19:47:29] L_withPR_looped_r1: {"lerobot_file": "<project>/lerobot-final-2026-11-07/src/lerobot/__init__.py", "modeling_file": "<project>/lerobot-final-2026-11-07/src/lerobot/policies/smolvla/modeling_smolvla.py", "has_pr4634_compile_denoise": true, "has_batching_patch__embed_images": true}
+[transformers] `torch_dtype` is deprecated! Use `dtype` instead!
+[19:50:00] L_withPR_looped_r1: first call 148.4 s
+[19:50:05] L_withPR_looped_r1: {"first_call_s": 148.44, "median_ms": 15.2, "p99_ms": 19.95, "recompiled": false, "graphs": 9, "graph_breaks": 5, "frames": {"total": 19, "ok": 17}}
+=== P_withPR_batched_r2 2026-11-10 19:50:08 cache=P cameras=native PYTHONPATH= ===
+exit 0
+[19:50:11] P_withPR_batched_r2: {"lerobot_file": "<project>/lerobot-final-2026-11-07/src/lerobot/__init__.py", "modeling_file": "<project>/lerobot-final-2026-11-07/src/lerobot/policies/smolvla/modeling_smolvla.py", "has_pr4634_compile_denoise": true, "has_batching_patch__embed_images": true}
+[transformers] `torch_dtype` is deprecated! Use `dtype` instead!
+[19:50:20] P_withPR_batched_r2: first call 6.1 s
+[19:50:25] P_withPR_batched_r2: {"first_call_s": 6.07, "median_ms": 13.76, "p99_ms": 16.61, "recompiled": false, "graphs": 11, "graph_breaks": 6, "frames": {"total": 20, "ok": 18}}
+=== M_plainmain_r2 2026-11-10 19:50:26 cache=M cameras=native PYTHONPATH=<scratch>/upstream_check/lerobot/src ===
+exit 0
+[19:50:30] M_plainmain_r2: {"lerobot_file": "<scratch>/upstream_check/lerobot/src/lerobot/__init__.py", "modeling_file": "<scratch>/upstream_check/lerobot/src/lerobot/policies/smolvla/modeling_smolvla.py", "has_pr4634_compile_denoise": false, "has_batching_patch__embed_images": false}
+[transformers] `torch_dtype` is deprecated! Use `dtype` instead!
+[19:50:38] M_plainmain_r2: first call 5.7 s
+[19:50:43] M_plainmain_r2: {"first_call_s": 5.74, "median_ms": 15.38, "p99_ms": 18.2, "recompiled": false, "graphs": 9, "graph_breaks": 4, "frames": {"total": 18, "ok": 15}}
+=== L_withPR_looped_r2 2026-11-10 19:50:45 cache=L cameras=looped PYTHONPATH= ===
+exit 0
+[19:50:48] L_withPR_looped_r2: {"lerobot_file": "<project>/lerobot-final-2026-11-07/src/lerobot/__init__.py", "modeling_file": "<project>/lerobot-final-2026-11-07/src/lerobot/policies/smolvla/modeling_smolvla.py", "has_pr4634_compile_denoise": true, "has_batching_patch__embed_images": true}
+[transformers] `torch_dtype` is deprecated! Use `dtype` instead!
+[19:50:57] L_withPR_looped_r2: first call 5.9 s
+[19:51:02] L_withPR_looped_r2: {"first_call_s": 5.9, "median_ms": 15.14, "p99_ms": 17.92, "recompiled": false, "graphs": 9, "graph_breaks": 5, "frames": {"total": 19, "ok": 17}}
+=== all done 2026-11-10 19:51:03 ===

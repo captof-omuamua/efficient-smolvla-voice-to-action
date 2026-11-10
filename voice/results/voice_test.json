@@ -1,0 +1,52 @@
+[
+ {
+  "line": "Turn on the stove.",
+  "heard": "Turn on the stove.",
+  "picked": "turn on the stove",
+  "level": "rule",
+  "right": true,
+  "seconds_of_audio": 3.923625,
+  "speech_ms": 73.82381599927612,
+  "router_ms": 0.47411299965460785
+ },
+ {
+  "line": "Put the wine bottle on top of the cabinet.",
+  "heard": "Put the wine bottle on the top of the cabinet.",
+  "picked": "put the wine bottle on top of the cabinet",
+  "level": "rule",
+  "right": true,
+  "seconds_of_audio": 4.179625,
+  "speech_ms": 59.831864999068785,
+  "router_ms": 0.032934000046225265
+ },
+ {
+  "line": "Kindly keep the bowl on the plate.",
+  "heard": "Kindly keep the bowl on the plate.",
+  "picked": "put the bowl on the plate",
+  "level": "rule",
+  "right": true,
+  "seconds_of_audio": 3.667625,
+  "speech_ms": 69.27596599962271,
+  "router_ms": 0.02638400110299699
+ },
+ {
+  "line": "Push the plate to the front of the stove.",
+  "heard": "Push the plate to the front of the stove.",
+  "picked": "push the plate to the front of the stove",
+  "level": "rule",
+  "right": true,
+  "seconds_of_audio": 2.771625,
+  "speech_ms": 57.01103899991722,
+  "router_ms": 0.029053000616841018
+ },
+ {
+  "line": "Close the top drawer.",
+  "heard": "Close the top drawer.",
+  "picked": "refuse",
+  "level": "llm",
+  "right": true,
+  "seconds_of_audio": 3.3263125,
+  "speech_ms": 57.36283199985337,
+  "router_ms": 340.6409809995239
+ }
+]

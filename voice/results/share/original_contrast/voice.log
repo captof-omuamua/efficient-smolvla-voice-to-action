@@ -1,0 +1,19 @@
+Loading weights:   0%|          | 0/587 [00:00<?, ?it/s]Loading weights: 100%|██████████| 587/587 [00:00<00:00, 21270.65it/s]
+Loading weights:   0%|          | 0/723 [00:00<?, ?it/s]Loading weights:   0%|          | 1/723 [00:00<09:17,  1.30it/s]Loading weights:  35%|███▍      | 252/723 [00:00<00:01, 384.92it/s]Loading weights:  53%|█████▎    | 382/723 [00:01<00:00, 376.79it/s]Loading weights:  65%|██████▌   | 470/723 [00:01<00:00, 422.14it/s]Loading weights:  99%|█████████▉| 716/723 [00:01<00:00, 757.29it/s]Loading weights: 100%|██████████| 723/723 [00:01<00:00, 484.96it/s]
+[transformers] Passing `generation_config` together with generation-related arguments=({'begin_suppress_tokens', 'suppress_tokens'}) is deprecated and will be removed in future versions. Please pass either a `generation_config` object OR all generation parameters explicitly, but not both.
+[transformers] `causal_conv1d_fn` is falling back to its reference PyTorch implementation because `causal_conv1d` is not installed. This is correct but much slower; install `causal_conv1d` for the optimized kernel.
+[transformers] `chunk_gated_delta_rule` is falling back to its reference PyTorch implementation because `flash-linear-attention` is not installed. This is correct but much slower; install `flash-linear-attention` for the optimized kernel.
+[transformers] `causal_conv1d_update` is falling back to its reference PyTorch implementation because `causal_conv1d` is not installed. This is correct but much slower; install `causal_conv1d` for the optimized kernel.
+[transformers] `fused_recurrent_gated_delta_rule` is falling back to its reference PyTorch implementation because `flash-linear-attention` is not installed. This is correct but much slower; install `flash-linear-attention` for the optimized kernel.
+round 0 slot 0 user_llm: done, errors 0
+round 0 slot 1 user_router_gate: done, errors 0
+round 0 slot 2 idle: done, errors 0
+round 0 slot 3 llm_flat: done, errors 0
+round 1 slot 0 user_llm: done, errors 0
+round 1 slot 1 llm_flat: done, errors 0
+round 1 slot 2 idle: done, errors 0
+round 1 slot 3 user_router_gate: done, errors 0
+round 2 slot 0 llm_flat: done, errors 0
+round 2 slot 1 user_router_gate: done, errors 0
+round 2 slot 2 user_llm: done, errors 0
+round 2 slot 3 idle: done, errors 0

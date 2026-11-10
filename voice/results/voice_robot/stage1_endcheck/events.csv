@@ -1,0 +1,14 @@
+run_id,recording,recorded_s,trimmed_s,start_s,end_s,heard,event,commands,level,speech_ms,parse_ms,effect_s,speech_end_s,trim_flag,ignored
+line1_cmd7_s0,<project>/voice-robot/data/voice_test/line_1.raw,3.923625,2.0,0.0,2.0,Turn on the stuff.,plan,[7],llm,52.56125899904873,96.23530600038066,2.15,1.9,,False
+line1_cmd7_s1,<project>/voice-robot/data/voice_test/line_1.raw,3.923625,2.0,0.0,2.0,Turn on the stuff.,plan,[7],llm,58.99531599970942,94.73920699929295,2.2,1.9,,False
+line1_cmd7_s2,<project>/voice-robot/data/voice_test/line_1.raw,3.923625,2.0,0.0,2.0,Turn on the stuff.,plan,[7],llm,55.59568300122919,98.106995001217,2.2,1.9,,False
+line2_cmd2_s0,<project>/voice-robot/data/voice_test/line_2.raw,4.179625,3.54,0.0,3.54,Put the wine bottle on the top of the cabinet,plan,[2],rule,69.51418300013756,0.06760799988114741,3.6500000000000004,3.44,,False
+line2_cmd2_s1,<project>/voice-robot/data/voice_test/line_2.raw,4.179625,3.54,0.0,3.54,Put the wine bottle on the top of the cabinet,plan,[2],rule,71.6400600013003,0.06651700095972046,3.6500000000000004,3.44,,False
+line2_cmd2_s2,<project>/voice-robot/data/voice_test/line_2.raw,4.179625,3.54,0.0,3.54,Put the wine bottle on the top of the cabinet,plan,[2],rule,63.41302100008761,0.056983999456861056,3.6500000000000004,3.44,,False
+line3_cmd8_s0,<project>/voice-robot/data/voice_test/line_3.raw,3.667625,2.76,0.0,2.76,Kindly keep the bowl on the plate.,plan,[8],rule,62.122620998707134,0.057187999118468724,2.85,2.66,,False
+line3_cmd8_s1,<project>/voice-robot/data/voice_test/line_3.raw,3.667625,2.76,0.0,2.76,Kindly keep the bowl on the plate.,plan,[8],rule,63.53403200046159,0.06324400055746082,2.85,2.66,,False
+line3_cmd8_s2,<project>/voice-robot/data/voice_test/line_3.raw,3.667625,2.76,0.0,2.76,Kindly keep the bowl on the plate.,plan,[8],rule,62.07258100039326,0.05848799992236309,2.85,2.66,,False
+line4_cmd5_s0,<project>/voice-robot/data/voice_test/line_4.raw,2.771625,2.56,0.0,2.56,Push the plate to the front of the stove.,plan,[5],rule,68.13660100124252,0.06213099914020859,2.6500000000000004,2.46,little trimmed (over 90% kept),False
+line4_cmd5_s1,<project>/voice-robot/data/voice_test/line_4.raw,2.771625,2.56,0.0,2.56,Push the plate to the front of the stove.,plan,[5],rule,63.713208999615745,0.05912300002819393,2.6500000000000004,2.46,little trimmed (over 90% kept),False
+line4_cmd5_s2,<project>/voice-robot/data/voice_test/line_4.raw,2.771625,2.56,0.0,2.56,Push the plate to the front of the stove.,plan,[5],rule,67.58507599988661,0.05779899947810918,2.6500000000000004,2.46,little trimmed (over 90% kept),False
+line5_refuse_s0,<project>/voice-robot/data/voice_test/line_5.raw,3.3263125,3.12,0.0,3.12,close the top drawer,refuse,[],llm,55.277092000324046,100.59430599903862,3.3000000000000003,3.02,little trimmed (over 90% kept),False

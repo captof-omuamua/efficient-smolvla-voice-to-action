@@ -1,0 +1,98 @@
+{
+ "fps": 20,
+ "steps": 251,
+ "success": true,
+ "goals_hold_at_end": false,
+ "expected": [
+  2
+ ],
+ "did_expected": true,
+ "earlier_goals_hold": true,
+ "plan": [
+  2
+ ],
+ "done": [
+  2
+ ],
+ "lines": [
+  {
+   "file": "<project>/voice-robot/results/voice_robot/stage2a_take2/runs/line2_cmd2_stop_s2/line_1_trimmed.raw",
+   "recorded_s": 4.3503125,
+   "trim_flag": "",
+   "speech_end_s": 2.68,
+   "start_s": 0.0,
+   "end_s": 2.78,
+   "heard": "put the wine bottle on top of the cabinet.",
+   "event": "plan",
+   "commands": [
+    2
+   ],
+   "level": "rule",
+   "speech_ms": 72.12175099994056,
+   "parse_ms": 0.08028699994611088,
+   "effect_s": 2.9000000000000004
+  },
+  {
+   "file": "<project>/voice-robot/results/voice_robot/stage2a_take2/runs/line2_cmd2_stop_s2/line_2_trimmed.raw",
+   "recorded_s": 2.1743125,
+   "trim_flag": "",
+   "speech_end_s": 0.36,
+   "start_s": 3.9000000000000004,
+   "end_s": 4.36,
+   "heard": "Stop.",
+   "event": "stop",
+   "commands": [],
+   "level": "rule",
+   "speech_ms": 50.72571099844936,
+   "parse_ms": 0.010956000551232137,
+   "effect_s": 4.45
+  },
+  {
+   "file": "<project>/voice-robot/results/voice_robot/stage2a_take2/runs/line2_cmd2_stop_s2/line_3_trimmed.raw",
+   "recorded_s": 2.1743125,
+   "trim_flag": "",
+   "speech_end_s": 0.88,
+   "start_s": 7.45,
+   "end_s": 8.43,
+   "heard": "Continue",
+   "event": "continue",
+   "commands": [],
+   "level": "rule",
+   "speech_ms": 50.59638999955496,
+   "parse_ms": 0.008359998901141807,
+   "effect_s": 8.5
+  }
+ ],
+ "states": [
+  {
+   "from_step": 0,
+   "state": "WAITING",
+   "command": null
+  },
+  {
+   "from_step": 58,
+   "state": "MOVING",
+   "command": "put the wine bottle on top of the cabinet"
+  },
+  {
+   "from_step": 89,
+   "state": "HOLDING",
+   "command": "put the wine bottle on top of the cabinet"
+  },
+  {
+   "from_step": 170,
+   "state": "MOVING",
+   "command": "put the wine bottle on top of the cabinet"
+  },
+  {
+   "from_step": 231,
+   "state": "DONE",
+   "command": null
+  },
+  {
+   "from_step": 251,
+   "state": "FAILED",
+   "command": null
+  }
+ ]
+}

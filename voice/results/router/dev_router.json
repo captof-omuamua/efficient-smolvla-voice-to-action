@@ -1,0 +1,18 @@
+{
+ "summary": {
+  "split": "dev",
+  "mode": "router",
+  "right_pct": 100.0,
+  "wrong_pct": 0.0,
+  "wrongly_refused_pct": 0.0,
+  "correct_refusal_pct": 93.33333333333333,
+  "no_llm_pct_of_can_do": 83.33333333333334,
+  "levels": {
+   "rule": 25,
+   "llm": 20
+  },
+  "median_ms": 0.015569996321573853,
+  "p99_ms": 115.86503807950066,
+  "peak_gpu_mb": 9334.055424
+ }
+}

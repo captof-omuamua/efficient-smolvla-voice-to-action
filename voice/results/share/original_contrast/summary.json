@@ -1,0 +1,422 @@
+{
+ "mode": "shared",
+ "run_dir": "<project>/voice-robot/results/share/original_contrast",
+ "bad_rows": 0,
+ "cpu_cores": {
+  "policy": [
+   0,
+   1,
+   2,
+   3
+  ],
+  "voice": [
+   4,
+   5,
+   6,
+   7
+  ]
+ },
+ "expected_regimes": [
+  "idle",
+  "llm_flat",
+  "user_llm",
+  "user_router_gate"
+ ],
+ "complete_rounds": [
+  0,
+  1,
+  2
+ ],
+ "rounds_left_out": {},
+ "all_rounds": [
+  0,
+  1,
+  2
+ ],
+ "min_rounds": 3,
+ "decisions": {
+  "total": 3607,
+  "kept_blocks": 2807,
+  "dropped_or_incomplete_blocks": 0,
+  "phases": 720,
+  "unassigned": 80
+ },
+ "dropped_blocks": [],
+ "unexpected_pids": {},
+ "skipped_beats_total": 0,
+ "budgets_ms": {
+  "whisper": 100.0,
+  "llm": 140.0
+ },
+ "phases": {
+  "alone_pre": {
+   "n": 360,
+   "median": 88.88980000000001,
+   "p99": 106.50306600000047,
+   "max": 131.525,
+   "late": 360,
+   "late_share": 1.0,
+   "late_upper": 1.0000000000000002,
+   "throttle": {},
+   "mean_sm_mhz": 2017.2027777777778,
+   "cpu0_7_share": 1.0
+  },
+  "alone_post": {
+   "n": 360,
+   "median": 88.9113,
+   "p99": 111.66477900000004,
+   "max": 128.9742,
+   "late": 360,
+   "late_share": 1.0,
+   "late_upper": 1.0000000000000002,
+   "throttle": {
+    "sw_power_cap": 138
+   },
+   "mean_sm_mhz": 1790.3861111111112,
+   "cpu0_7_share": 1.0
+  }
+ },
+ "policy": {
+  "idle": {
+   "blocks": 3,
+   "n": 708,
+   "median": 88.8415,
+   "p99": 109.71125899999983,
+   "max": 132.7797,
+   "late": 708,
+   "late_share": 1.0,
+   "late_upper": 0.9999999999999998,
+   "ratio": null,
+   "voice_job_running": {
+    "n": 0,
+    "median": null,
+    "p99": null,
+    "max": null,
+    "late": 0,
+    "late_share": null,
+    "late_upper": null
+   },
+   "none_running": {
+    "n": 708,
+    "median": 88.8415,
+    "p99": 109.71125899999983,
+    "max": 132.7797,
+    "late": 708,
+    "late_share": 1.0,
+    "late_upper": 0.9999999999999998
+   },
+   "p99_by_round": {
+    "0": 103.11858000000002,
+    "1": 123.94750500000002,
+    "2": 101.06443500000003
+   },
+   "skipped_beats": 0,
+   "throttle": {},
+   "mean_sm_mhz": 1976.4985875706216,
+   "cpu0_7_share": 1.0
+  },
+  "llm_flat": {
+   "blocks": 3,
+   "n": 708,
+   "median": 145.555,
+   "p99": 155.72642999999997,
+   "max": 160.8793,
+   "late": 708,
+   "late_share": 1.0,
+   "late_upper": 0.9999999999999998,
+   "ratio": {
+    "ratio": 1.4194206813359074,
+    "low": 1.2484309320240587,
+    "high": 1.5155969618760146
+   },
+   "voice_job_running": {
+    "n": 708,
+    "median": 145.555,
+    "p99": 155.72642999999997,
+    "max": 160.8793,
+    "late": 708,
+    "late_share": 1.0,
+    "late_upper": 0.9999999999999998
+   },
+   "none_running": {
+    "n": 0,
+    "median": null,
+    "p99": null,
+    "max": null,
+    "late": 0,
+    "late_share": null,
+    "late_upper": null
+   },
+   "p99_by_round": {
+    "0": 154.971015,
+    "1": 155.62802,
+    "2": 155.305205
+   },
+   "skipped_beats": 0,
+   "throttle": {
+    "sw_power_cap": 708
+   },
+   "mean_sm_mhz": 1807.6398305084747,
+   "cpu0_7_share": 1.0
+  },
+  "user_llm": {
+   "blocks": 3,
+   "n": 695,
+   "median": 89.9311,
+   "p99": 131.3819699999999,
+   "max": 141.0481,
+   "late": 695,
+   "late_share": 1.0,
+   "late_upper": 1.0000000000000002,
+   "ratio": {
+    "ratio": 1.1975249504702168,
+    "low": 1.0632720938614613,
+    "high": 1.2887636599013792
+   },
+   "voice_job_running": {
+    "n": 56,
+    "median": 111.5332,
+    "p99": 138.65736,
+    "max": 141.0481,
+    "late": 56,
+    "late_share": 1.0,
+    "late_upper": 1.0
+   },
+   "none_running": {
+    "n": 639,
+    "median": 89.7125,
+    "p99": 102.66748000000001,
+    "max": 128.5077,
+    "late": 639,
+    "late_share": 1.0,
+    "late_upper": 1.0000000000000002
+   },
+   "p99_by_round": {
+    "0": 131.061472,
+    "1": 126.26855900000001,
+    "2": 132.05810499999998
+   },
+   "skipped_beats": 0,
+   "throttle": {
+    "sw_power_cap": 163
+   },
+   "mean_sm_mhz": 1927.2187050359712,
+   "cpu0_7_share": 1.0
+  },
+  "user_router_gate": {
+   "blocks": 3,
+   "n": 696,
+   "median": 88.41569999999999,
+   "p99": 97.52784,
+   "max": 114.5299,
+   "late": 696,
+   "late_share": 1.0,
+   "late_upper": 0.9999999999999998,
+   "ratio": {
+    "ratio": 0.8889501486807306,
+    "low": 0.7828986836730293,
+    "high": 0.973720813885729
+   },
+   "voice_job_running": {
+    "n": 0,
+    "median": null,
+    "p99": null,
+    "max": null,
+    "late": 0,
+    "late_share": null,
+    "late_upper": null
+   },
+   "none_running": {
+    "n": 696,
+    "median": 88.41569999999999,
+    "p99": 97.52784,
+    "max": 114.5299,
+    "late": 696,
+    "late_share": 1.0,
+    "late_upper": 0.9999999999999998
+   },
+   "p99_by_round": {
+    "0": 97.822144,
+    "1": 94.19686999999999,
+    "2": 103.87118999999997
+   },
+   "skipped_beats": 0,
+   "throttle": {
+    "sw_power_cap": 144
+   },
+   "mean_sm_mhz": 1869.4022988505747,
+   "cpu0_7_share": 1.0
+  }
+ },
+ "voice": {
+  "idle": {
+   "kinds": {},
+   "commands": null
+  },
+  "llm_flat": {
+   "kinds": {
+    "llm": {
+     "n": 3020,
+     "median": 108.39337499999999,
+     "p99": 155.60818025,
+     "max": 167.203726,
+     "wait": {
+      "mean": 0.0,
+      "p99": 0.0,
+      "max": 0.0
+     },
+     "over_budget": 482,
+     "per_s": 8.524782099728252
+    }
+   },
+   "commands": null
+  },
+  "user_llm": {
+   "kinds": {
+    "whisper": {
+     "n": 119,
+     "median": 60.132281,
+     "p99": 90.9609759,
+     "max": 93.985941,
+     "wait": {
+      "mean": 0.0,
+      "p99": 0.0,
+      "max": 0.0
+     },
+     "over_budget": 0
+    },
+    "llm": {
+     "n": 119,
+     "median": 99.145248,
+     "p99": 140.83212863999998,
+     "max": 142.831965,
+     "wait": {
+      "mean": 0.0,
+      "p99": 0.0,
+      "max": 0.0
+     },
+     "over_budget": 2
+    }
+   },
+   "commands": {
+    "commands": 119,
+    "added_wait": {
+     "mean": 0.0,
+     "p99": 0.0,
+     "max": 0.0
+    },
+    "command_time": {
+     "n": 119,
+     "median": 160.402733,
+     "p99": 204.3936039,
+     "max": 207.742488
+    }
+   }
+  },
+  "user_router_gate": {
+   "kinds": {
+    "whisper": {
+     "n": 119,
+     "median": 58.772153,
+     "p99": 65.0461123,
+     "max": 85.373726,
+     "wait": {
+      "mean": 89.36511764705884,
+      "p99": 278.2391,
+      "max": 279.673
+     },
+     "over_budget": 0
+    },
+    "llm": {
+     "n": 29,
+     "median": 96.820386,
+     "p99": 106.59826347999999,
+     "max": 108.06163,
+     "wait": {
+      "mean": 45.11548275862069,
+      "p99": 305.9101999999999,
+      "max": 317.106
+     },
+     "over_budget": 0
+    },
+    "rules": {
+     "n": 119,
+     "median": 0.028373,
+     "p99": 0.08700655999999957,
+     "max": 0.482576,
+     "wait": {
+      "mean": 0.0,
+      "p99": 0.0,
+      "max": 0.0
+     }
+    }
+   },
+   "commands": {
+    "commands": 119,
+    "added_wait": {
+     "mean": 100.35964705882355,
+     "p99": 279.45394,
+     "max": 317.106
+    },
+    "command_time": {
+     "n": 119,
+     "median": 161.940158,
+     "p99": 434.66802093999996,
+     "max": 475.233574
+    }
+   }
+  }
+ },
+ "answers": {
+  "items": 256,
+  "mismatched": []
+ },
+ "gated": {
+  "jobs": 148,
+  "overlapping": 0,
+  "regimes": [
+   "user_router_gate"
+  ],
+  "policy_calls": {
+   "user_router_gate": 708
+  }
+ },
+ "bars": [
+  {
+   "bar": 1,
+   "name": "Timer check, alone",
+   "verdict": "not shown",
+   "numbers": "measured by the calibrate run (--calibration)"
+  },
+  {
+   "bar": 2,
+   "name": "Sharing slows the policy",
+   "verdict": "PASS",
+   "numbers": "llm_flat 1.42x [1.25, 1.52]; user_llm 1.20x [1.06, 1.29]"
+  },
+  {
+   "bar": 3,
+   "name": "Fix, speed",
+   "verdict": "not applicable",
+   "numbers": "needs idle, user_router_gate and flat_gate"
+  },
+  {
+   "bar": 4,
+   "name": "Fix, deadline",
+   "verdict": "not applicable",
+   "numbers": "needs user_router_gate and flat_gate"
+  },
+  {
+   "bar": 5,
+   "name": "Fix, cost",
+   "verdict": "FAIL",
+   "numbers": "119 commands: mean 100.4 ms (max 60 ms), worst 317.1 ms (max 200 ms)"
+  },
+  {
+   "bar": 6,
+   "name": "Turn-taking kept",
+   "verdict": "PASS",
+   "numbers": "0 of 148 GPU jobs overlap a policy call (policy calls: user_router_gate 708)"
+  }
+ ]
+}

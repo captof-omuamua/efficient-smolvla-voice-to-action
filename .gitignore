@@ -1,0 +1,20 @@
+# Python
+__pycache__/
+*.pyc
+.pytest_cache/
+# virtual environments
+.venv/
+venv/
+env/
+# new outputs, logs and compile caches (committed results live in speed/results and voice/results)
+/runs/
+/logs/
+voice/logs/
+.cache/
+# held-back router sentences: never commit (see docs/ROUTER_PREREG.md)
+voice/data/test.json
+voice/data/dev.json
+voice/data/sentences_raw.json
+# re-recording leftovers
+voice/data/**/*_attempt*.raw
+voice/data/**/lines.json

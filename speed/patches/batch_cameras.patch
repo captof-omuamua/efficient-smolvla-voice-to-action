@@ -1,0 +1,182 @@
+diff --git a/src/lerobot/policies/smolvla/modeling_smolvla.py b/src/lerobot/policies/smolvla/modeling_smolvla.py
+index bd30b7f0..763892b2 100644
+--- a/src/lerobot/policies/smolvla/modeling_smolvla.py
++++ b/src/lerobot/policies/smolvla/modeling_smolvla.py
+@@ -601,6 +601,19 @@ class VLAFlowMatching(nn.Module):
+     def sample_time(self, bsize, device):
+         return sample_time_beta(bsize, device, alpha=1.5, beta=1.0, scale=0.999, offset=0.001)
+ 
++    def _embed_images(self, images: list[torch.Tensor]) -> list[torch.Tensor]:
++        """Embed every camera, as a single batched vision-encoder call at inference.
++
++        One 512x512 image underfills the GPU, so a per-camera call spends much of its time on launch and
++        memory latency. Training keeps one call per camera, so peak activation memory doesn't grow with the
++        number of cameras when the vision encoder is trained. Mirrors ``PI0Pytorch._embed_images``.
++        """
++        batchable = not self.training and len(images) >= 2 and len({tuple(img.shape) for img in images}) == 1
++        if not batchable:
++            return [self.vlm_with_expert.embed_image(img) for img in images]
++        batched = self.vlm_with_expert.embed_image(torch.cat(images, dim=0))
++        return list(torch.chunk(batched, len(images), dim=0))
++
+     def embed_prefix(
+         self, images, img_masks, lang_tokens, lang_masks, state: torch.Tensor = None
+     ) -> tuple[torch.Tensor, torch.Tensor, torch.Tensor]:
+@@ -612,8 +625,9 @@ class VLAFlowMatching(nn.Module):
+         att_masks = []
+         for _img_idx, (
+             img,
++            img_emb,
+             img_mask,
+-        ) in enumerate(zip(images, img_masks, strict=False)):
++        ) in enumerate(zip(images, self._embed_images(images), img_masks, strict=False)):
+             if self.add_image_special_tokens:
+                 image_start_token = (
+                     self.vlm_with_expert.embed_language_tokens(
+@@ -629,9 +643,6 @@ class VLAFlowMatching(nn.Module):
+                 embs.append(image_start_token)
+                 pad_masks.append(image_start_mask)
+ 
+-            img_emb = self.vlm_with_expert.embed_image(img)
+-            img_emb = img_emb
+-
+             # Normalize image embeddings
+             img_emb_dim = img_emb.shape[-1]
+             img_emb = img_emb * torch.tensor(img_emb_dim**0.5, dtype=img_emb.dtype, device=img_emb.device)
+diff --git a/tests/policies/smolvla/test_smolvla_vision_inference.py b/tests/policies/smolvla/test_smolvla_vision_inference.py
+new file mode 100644
+index 00000000..458f45fa
+--- /dev/null
++++ b/tests/policies/smolvla/test_smolvla_vision_inference.py
+@@ -0,0 +1,131 @@
++#!/usr/bin/env python
++
++# Copyright 2026 The HuggingFace Inc. team. All rights reserved.
++#
++# Licensed under the Apache License, Version 2.0 (the "License");
++# you may not use this file except in compliance with the License.
++# You may obtain a copy of the License at
++#
++#     http://www.apache.org/licenses/LICENSE-2.0
++#
++# Unless required by applicable law or agreed to in writing, software
++# distributed under the License is distributed on an "AS IS" BASIS,
++# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
++# See the License for the specific language governing permissions and
++# limitations under the License.
++
++"""Tests for SmolVLA's batched camera encoding at inference.
++
++Mirrors ``tests/policies/pi0_pi05/test_pi0_vision_inference.py``: cameras are embedded as one
++batched vision-encoder call at inference and one call each during training.
++"""
++
++import torch
++
++from lerobot.policies.smolvla.configuration_smolvla import SmolVLAConfig
++from tests.utils import require_cuda, skip_if_package_missing
++
++TOKENS_PER_IMAGE = 4
++EMBED_DIM = 8
++
++
++class _RecordingVisionEncoder:
++    """Stands in for ``vlm_with_expert``, recording the batch size of every call."""
++
++    def __init__(self):
++        self.call_batch_sizes: list[int] = []
++
++    def embed_image(self, image: torch.Tensor) -> torch.Tensor:
++        self.call_batch_sizes.append(image.shape[0])
++        # Make the output a recognizable function of the input, so splitting the batched call
++        # back into per-camera chunks in the wrong order would show up.
++        marker = image.flatten(1).mean(dim=1)
++        return marker[:, None, None].expand(image.shape[0], TOKENS_PER_IMAGE, EMBED_DIM).clone()
++
++
++def _harness(training: bool) -> torch.nn.Module:
++    """Exercises ``VLAFlowMatching._embed_images`` without building the VLM."""
++    from lerobot.policies.smolvla.modeling_smolvla import VLAFlowMatching
++
++    class Harness(torch.nn.Module):
++        _embed_images = VLAFlowMatching._embed_images
++
++        def __init__(self):
++            super().__init__()
++            self.vlm_with_expert = _RecordingVisionEncoder()
++
++    return Harness().train(training)
++
++
++def _distinct_images(count: int, batch: int = 1) -> list[torch.Tensor]:
++    return [torch.full((batch, 3, 4, 4), float(i + 1)) for i in range(count)]
++
++
++@skip_if_package_missing("transformers")
++def test_inference_embeds_all_cameras_in_one_call():
++    harness = _harness(training=False)
++
++    harness._embed_images(_distinct_images(3))  # noqa: SLF001
++
++    assert harness.vlm_with_expert.call_batch_sizes == [3]
++
++
++@skip_if_package_missing("transformers")
++def test_training_keeps_one_call_per_camera():
++    # With an unfrozen vision encoder, batching would multiply peak activation memory by the
++    # number of cameras during the backward pass.
++    harness = _harness(training=True)
++
++    harness._embed_images(_distinct_images(3))  # noqa: SLF001
++
++    assert harness.vlm_with_expert.call_batch_sizes == [1, 1, 1]
++
++
++@skip_if_package_missing("transformers")
++def test_batching_returns_the_same_embeddings_in_the_same_order():
++    images = _distinct_images(3, batch=2)
++
++    looped = _harness(training=True)._embed_images(images)  # noqa: SLF001
++    batched = _harness(training=False)._embed_images(images)  # noqa: SLF001
++
++    assert len(batched) == len(looped) == 3
++    for one, many in zip(looped, batched, strict=True):
++        assert one.shape == many.shape == (2, TOKENS_PER_IMAGE, EMBED_DIM)
++        torch.testing.assert_close(one, many)
++
++
++@skip_if_package_missing("transformers")
++def test_a_single_camera_is_not_needlessly_reshaped():
++    harness = _harness(training=False)
++
++    harness._embed_images(_distinct_images(1))  # noqa: SLF001
++
++    assert harness.vlm_with_expert.call_batch_sizes == [1]
++
++
++@skip_if_package_missing("transformers")
++def test_mixed_shapes_fall_back_to_one_call_per_camera():
++    harness = _harness(training=False)
++
++    harness._embed_images([torch.ones(1, 3, 4, 4), torch.ones(1, 3, 8, 8)])  # noqa: SLF001
++
++    assert harness.vlm_with_expert.call_batch_sizes == [1, 1]
++
++
++@skip_if_package_missing("transformers")
++@require_cuda
++def test_batched_and_looped_embeddings_match_on_the_real_vision_encoder():
++    from lerobot.policies.smolvla.modeling_smolvla import VLAFlowMatching
++
++    torch.manual_seed(0)
++    model = VLAFlowMatching(SmolVLAConfig()).to("cuda").eval()
++    images = [torch.rand(1, 3, 512, 512, device="cuda") * 2 - 1 for _ in range(3)]
++
++    with torch.no_grad():
++        batched = model._embed_images(images)  # noqa: SLF001
++        model.train()
++        looped = model._embed_images(images)  # noqa: SLF001
++
++    for one, many in zip(looped, batched, strict=True):
++        # The vision encoder runs in bfloat16, and the two paths use different kernel shapes.
++        torch.testing.assert_close(one, many, rtol=2e-2, atol=2e-2)

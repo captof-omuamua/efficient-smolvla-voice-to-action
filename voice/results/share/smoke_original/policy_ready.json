@@ -1,0 +1,31 @@
+{
+  "pid": 116261,
+  "first_call_ms": 542.95,
+  "warmup": 50,
+  "settings": {
+    "out": "<project>/voice-robot/results/share/smoke_original",
+    "num_steps": 10,
+    "compile": false,
+    "warmup": 50,
+    "max_decisions": 0,
+    "stop_file": null,
+    "model": "lerobot/smolvla_libero",
+    "empty_cameras": 0,
+    "compile_mode": "default",
+    "period_ns": 500000000,
+    "observation": "synthetic, fixed shapes"
+  },
+  "ready_ns": 49032023828729,
+  "cpu_cores": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "torch": "2.11.0+cu128",
+  "driver": "595.99.02",
+  "lerobot_fast": {
+    "commit": "8c4f33e534d6b521b33036f704e1d65e3b2252e9",
+    "dirty": true
+  }
+}

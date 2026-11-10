@@ -1,0 +1,11 @@
+run_id,start,result,success,did_expected,earlier_goals_hold,goals_hold_at_end,end_check_move_mm,steps,moving_steps,plan,done,expected,policy_calls,call_ms_median,max_move_mm,refusal_move_mm,creep_60_mm,creep_100_mm,stop_exercised,stop_delay_ms,stop_delay_clip_ms,overrun_mm,hold_offset_mm
+two_step_1_s0,0,failed: 300 acting steps,False,False,False,False,nan,526,374,"[7, 2]",[7],"[7, 2]",38,12.332739499470335,394.1633476879031,nan,nan,nan,,nan,nan,nan,nan
+two_step_1_s1,1,success,True,True,True,True,2.8508848406459757,342,169,"[7, 2]","[7, 2]","[7, 2]",18,12.35077050023392,386.09239649858836,nan,nan,nan,,nan,nan,nan,nan
+two_step_1_s2,2,failed: 300 acting steps,False,False,False,False,nan,416,300,"[7, 2]",[],"[7, 2]",30,12.26356300048792,387.8220706303292,nan,nan,nan,,nan,nan,nan,nan
+two_step_1_s3,3,success,True,True,True,False,3.0753165908740105,336,164,"[7, 2]","[7, 2]","[7, 2]",17,12.411702000463265,398.04278010867625,nan,nan,nan,,nan,nan,nan,nan
+two_step_1_s4,4,success,True,True,True,True,3.5817447394497903,344,164,"[7, 2]","[7, 2]","[7, 2]",17,12.57422399976349,403.6804086542322,nan,nan,nan,,nan,nan,nan,nan
+two_step_2_s0,0,success,True,True,True,True,6.66883526350189,368,198,"[0, 7]","[0, 7]","[0, 7]",21,12.273551999896881,407.89187019877613,nan,nan,nan,,nan,nan,nan,nan
+two_step_2_s1,1,success,True,True,True,False,4.475825785338493,379,206,"[0, 7]","[0, 7]","[0, 7]",22,12.35445150086889,406.4757049494287,nan,nan,nan,,nan,nan,nan,nan
+two_step_2_s2,2,success,True,True,True,True,5.654802308130591,527,361,"[0, 7]","[0, 7]","[0, 7]",37,12.355156999547035,408.8098287827361,nan,nan,nan,,nan,nan,nan,nan
+two_step_2_s3,3,success,True,True,True,True,3.8067141335466776,371,197,"[0, 7]","[0, 7]","[0, 7]",20,12.434280000888975,377.5076593077142,nan,nan,nan,,nan,nan,nan,nan
+two_step_2_s4,4,success,True,True,True,True,2.252049243977688,379,209,"[0, 7]","[0, 7]","[0, 7]",22,12.443863500266161,375.24965982250586,nan,nan,nan,,nan,nan,nan,nan

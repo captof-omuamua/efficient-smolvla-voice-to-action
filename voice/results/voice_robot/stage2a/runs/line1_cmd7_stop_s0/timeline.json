@@ -1,0 +1,98 @@
+{
+ "fps": 20,
+ "steps": 248,
+ "success": true,
+ "goals_hold_at_end": true,
+ "expected": [
+  7
+ ],
+ "did_expected": true,
+ "earlier_goals_hold": true,
+ "plan": [
+  7
+ ],
+ "done": [
+  7
+ ],
+ "lines": [
+  {
+   "file": "<project>/voice-robot/results/voice_robot/stage2a/runs/line1_cmd7_stop_s0/line_1_trimmed.raw",
+   "recorded_s": 3.923625,
+   "trim_flag": "",
+   "speech_end_s": 1.9,
+   "start_s": 0.0,
+   "end_s": 2.0,
+   "heard": "Turn on the stuff.",
+   "event": "plan",
+   "commands": [
+    7
+   ],
+   "level": "llm",
+   "speech_ms": 58.22593699849676,
+   "parse_ms": 96.86562600109028,
+   "effect_s": 2.2
+  },
+  {
+   "file": "<project>/voice-robot/results/voice_robot/stage2a/runs/line1_cmd7_stop_s0/line_2_trimmed.raw",
+   "recorded_s": 1.619625,
+   "trim_flag": "",
+   "speech_end_s": 0.88,
+   "start_s": 3.2,
+   "end_s": 4.18,
+   "heard": "Stop.",
+   "event": "stop",
+   "commands": [],
+   "level": "rule",
+   "speech_ms": 45.53682500045397,
+   "parse_ms": 0.009691000741440803,
+   "effect_s": 4.25
+  },
+  {
+   "file": "<project>/voice-robot/results/voice_robot/stage2a/runs/line1_cmd7_stop_s0/line_3_trimmed.raw",
+   "recorded_s": 1.875625,
+   "trim_flag": "little trimmed (over 90% kept)",
+   "speech_end_s": 1.86,
+   "start_s": 7.25,
+   "end_s": 9.125625,
+   "heard": "Continue.",
+   "event": "continue",
+   "commands": [],
+   "level": "rule",
+   "speech_ms": 47.04762999972445,
+   "parse_ms": 0.009253000825992785,
+   "effect_s": 9.200000000000001
+  }
+ ],
+ "states": [
+  {
+   "from_step": 0,
+   "state": "WAITING",
+   "command": null
+  },
+  {
+   "from_step": 44,
+   "state": "MOVING",
+   "command": "turn on the stove"
+  },
+  {
+   "from_step": 85,
+   "state": "HOLDING",
+   "command": "turn on the stove"
+  },
+  {
+   "from_step": 184,
+   "state": "MOVING",
+   "command": "turn on the stove"
+  },
+  {
+   "from_step": 228,
+   "state": "DONE",
+   "command": null
+  },
+  {
+   "from_step": 248,
+   "state": "DONE",
+   "command": null
+  }
+ ]
+}

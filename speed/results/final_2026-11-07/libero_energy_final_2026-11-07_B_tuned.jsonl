@@ -1,0 +1,4 @@
+{"mark": "idle_start", "utc": "2026-11-07T19:37:29+00:00", "unix_s": 1794080249.6268058, "energy_mj": 455099645, "compute_pids": []}
+{"mark": "idle_end", "utc": "2026-11-07T19:37:49+00:00", "unix_s": 1794080269.6379328, "energy_mj": 455282863, "compute_pids": []}
+{"mark": "start", "utc": "2026-11-07T19:37:49+00:00", "unix_s": 1794080269.718463, "energy_mj": 455283883, "compute_pids": []}
+{"mark": "end", "utc": "2026-11-07T20:08:13+00:00", "unix_s": 1794082093.5769835, "energy_mj": 517554268, "compute_pids": []}

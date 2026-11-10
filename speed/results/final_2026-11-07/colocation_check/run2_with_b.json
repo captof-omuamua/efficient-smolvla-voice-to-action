@@ -1,0 +1,35 @@
+{
+  "mode": "with_b",
+  "created": "2026-11-07T20:30:45+00:00",
+  "cpu_pkg_temp_c_start": 60.0,
+  "children": 25,
+  "A0": {
+    "calls": 300,
+    "median_ms": 113.31,
+    "p90_ms": 126.88,
+    "p99_ms": 158.3,
+    "mean_ms": 116.56,
+    "min_ms": 108.16,
+    "max_ms": 170.15
+  },
+  "B": {
+    "calls": 300,
+    "median_ms": 15.26,
+    "p90_ms": 15.7,
+    "p99_ms": 16.12,
+    "mean_ms": 15.25,
+    "min_ms": 12.49,
+    "max_ms": 16.51
+  },
+  "A0_again": {
+    "calls": 300,
+    "median_ms": 112.39,
+    "p90_ms": 117.85,
+    "p99_ms": 157.51,
+    "mean_ms": 113.75,
+    "min_ms": 107.1,
+    "max_ms": 167.32
+  },
+  "cpu_pkg_temp_c_end": 86.0,
+  "foreign_gpu_pids_at_end": []
+}

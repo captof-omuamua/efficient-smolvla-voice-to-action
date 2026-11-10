@@ -1,0 +1,15 @@
+Loading weights:   0%|          | 0/587 [00:00<?, ?it/s]Loading weights: 100%|██████████| 587/587 [00:00<00:00, 23594.67it/s]
+Loading weights:   0%|          | 0/723 [00:00<?, ?it/s]Loading weights:   0%|          | 1/723 [00:00<08:51,  1.36it/s]Loading weights:  35%|███▍      | 252/723 [00:00<00:01, 401.40it/s]Loading weights:  53%|█████▎    | 384/723 [00:01<00:00, 377.22it/s]Loading weights:  65%|██████▌   | 472/723 [00:01<00:00, 438.60it/s]Loading weights: 100%|██████████| 723/723 [00:01<00:00, 499.87it/s]
+[transformers] Passing `generation_config` together with generation-related arguments=({'suppress_tokens', 'begin_suppress_tokens'}) is deprecated and will be removed in future versions. Please pass either a `generation_config` object OR all generation parameters explicitly, but not both.
+[transformers] `causal_conv1d_fn` is falling back to its reference PyTorch implementation because `causal_conv1d` is not installed. This is correct but much slower; install `causal_conv1d` for the optimized kernel.
+[transformers] `chunk_gated_delta_rule` is falling back to its reference PyTorch implementation because `flash-linear-attention` is not installed. This is correct but much slower; install `flash-linear-attention` for the optimized kernel.
+[transformers] `causal_conv1d_update` is falling back to its reference PyTorch implementation because `causal_conv1d` is not installed. This is correct but much slower; install `causal_conv1d` for the optimized kernel.
+[transformers] `fused_recurrent_gated_delta_rule` is falling back to its reference PyTorch implementation because `flash-linear-attention` is not installed. This is correct but much slower; install `flash-linear-attention` for the optimized kernel.
+round 0 slot 0 user_router: done, errors 0
+round 0 slot 1 user_llm_gate: done, errors 0
+round 0 slot 2 whisper_flat: done, errors 0
+round 0 slot 3 flat_gate: done, errors 0
+round 0 slot 4 user_llm: done, errors 0
+round 0 slot 5 llm_flat: done, errors 0
+round 0 slot 6 user_router_gate: done, errors 0
+round 0 slot 7 idle: done, errors 0

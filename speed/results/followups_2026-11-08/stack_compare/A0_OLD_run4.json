@@ -1,0 +1,56 @@
+{
+  "stack": "OLD",
+  "setup": "A0",
+  "label": "run4",
+  "created": "2026-11-07T21:56:10+00:00",
+  "lerobot_file": "<scratch>/followups/wt-talk-8c4f33e5/src/lerobot/__init__.py",
+  "torch": "2.11.0+cu128",
+  "transformers": "5.5.4",
+  "float32_matmul_precision": "high",
+  "cuda_matmul_allow_tf32": true,
+  "compile_mode": null,
+  "load_s": 3.11,
+  "first_call_s": 0.51,
+  "latency": {
+    "calls": 200,
+    "median_ms": 106.61,
+    "p90_ms": 111.86,
+    "p99_ms": 128.04,
+    "mean_ms": 107.67,
+    "min_ms": 101.81,
+    "max_ms": 129.95
+  },
+  "parts_ms": {
+    "prep": 0.11,
+    "vision_encoder": 19.71,
+    "embed_prefix": 19.8,
+    "vlm_prefix_pass": 8.69,
+    "images_per_call": 3,
+    "denoise_loop_est": 78.01
+  },
+  "gpu_profile": {
+    "gpu_kernel_ms_per_call": 41.79,
+    "kernels_per_call": 14190,
+    "profiled_calls": 10
+  },
+  "dynamo": null,
+  "temps_start": {
+    "cpu_pkg_c": 60.0,
+    "gpu_c": 44
+  },
+  "gpu_cpu_during_timed_calls": {
+    "samples": 205,
+    "sm_mhz_mean": 2587.2,
+    "gpu_temp_c_mean": 56.6,
+    "gpu_temp_c_max": 60,
+    "power_w_avg_mean": 102.2,
+    "cpu_pkg_temp_c_mean": 79.9,
+    "cpu_pkg_temp_c_max": 94.0,
+    "cpu_mhz_mean": 2149.5
+  },
+  "env": {
+    "PYTHONPATH": "<scratch>/followups/wt-talk-8c4f33e5/src",
+    "TORCHINDUCTOR_CACHE_DIR": "<scratch>/followups/cache_stack_old_BNxr",
+    "TORCHINDUCTOR_FORCE_DISABLE_CACHES": null
+  }
+}

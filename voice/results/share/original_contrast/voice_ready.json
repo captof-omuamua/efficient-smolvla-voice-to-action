@@ -1,0 +1,26 @@
+{
+ "pid": 117237,
+ "ready_ns": 49362336150668,
+ "settings": {
+  "out": "<project>/voice-robot/results/share/original_contrast",
+  "rounds": 3,
+  "block_s": 120.0,
+  "regimes": [
+   "idle",
+   "llm_flat",
+   "user_llm",
+   "user_router_gate"
+  ],
+  "seed": 20261110,
+  "guard_after_ms": 170.0,
+  "whisper_budget_ms": 100.0,
+  "llm_budget_ms": 140.0
+ },
+ "cpu_threads": 1,
+ "cpu_cores": [
+  4,
+  5,
+  6,
+  7
+ ]
+}

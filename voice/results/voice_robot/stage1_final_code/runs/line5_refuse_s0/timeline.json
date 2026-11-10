@@ -1,0 +1,40 @@
+{
+ "fps": 20,
+ "steps": 166,
+ "success": false,
+ "goals_hold_at_end": false,
+ "expected": null,
+ "did_expected": false,
+ "earlier_goals_hold": false,
+ "plan": [],
+ "done": [],
+ "lines": [
+  {
+   "file": "<project>/voice-robot/results/voice_robot/stage1_final_code/runs/line5_refuse_s0/line_1_trimmed.raw",
+   "recorded_s": 3.3263125,
+   "trim_flag": "little trimmed (over 90% kept)",
+   "speech_end_s": 3.02,
+   "start_s": 0.0,
+   "end_s": 3.12,
+   "heard": "close the top drawer",
+   "event": "refuse",
+   "commands": [],
+   "level": "llm",
+   "speech_ms": 54.28120900069189,
+   "parse_ms": 101.31280200039328,
+   "effect_s": 3.3000000000000003
+  }
+ ],
+ "states": [
+  {
+   "from_step": 0,
+   "state": "WAITING",
+   "command": null
+  },
+  {
+   "from_step": 166,
+   "state": "WAITING",
+   "command": null
+  }
+ ]
+}

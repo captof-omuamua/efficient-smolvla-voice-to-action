@@ -1,0 +1,2884 @@
+{
+  "what": "Final speed + energy per decision for four SmolVLA setups, one session, NVML energy counter",
+  "created": "2026-11-07T20:21:37+00:00",
+  "code": {
+    "lerobot_file": "<project>/lerobot-final-2026-11-07/src/lerobot/__init__.py",
+    "worktree": "<project>/lerobot-final-2026-11-07",
+    "head": "d490e472a5d1a207cfe0255caaaf74b6d66e4656",
+    "merge_head": "2d2003349a0347e2b33a533c3b3d7802b9fbd457",
+    "status": "M  src/lerobot/policies/smolvla/configuration_smolvla.py\nMM src/lerobot/policies/smolvla/modeling_smolvla.py\nM  src/lerobot/policies/smolvla/smolvlm_with_expert.py\nA  tests/policies/smolvla/test_smolvla_compile_parity.py\n?? tests/policies/smolvla/test_smolvla_vision_inference.py",
+    "patch": "<project>/bench/results_pr_batch_cameras_2026-11-07/batch_cameras.patch",
+    "patch_sha256": "6ebf9e2f39a19be6a1d0704c6c04c6d8faa53f0c73859c2c9e8a00a1eb1628aa",
+    "modeling_smolvla_sha256": "9e81556d9490ea40f78558f908a1ceeaaa3211da4a4579fc2212ccb02a267eb2",
+    "smolvlm_with_expert_sha256": "528ca8529258a7a1c7c91197e58f84eee8836b3fc2cbd2ca465b512894fa1623",
+    "script_sha256": "b56cc546122e202631f9d8617237f5f3cb5a297ab7696cc80b98fa0ce1d7a3a7"
+  },
+  "environment": {
+    "python": "3.12.13",
+    "torch": "2.15.0+cu132",
+    "cuda_runtime": "13.2",
+    "cudnn": 92600,
+    "transformers": "5.22.1",
+    "triton": "3.9.0",
+    "nvidia_ml_py": "13.615.71",
+    "gpu": "NVIDIA GeForce RTX 5090 Laptop GPU",
+    "driver": "595.99.02",
+    "power_limit_w_enforced_at_end": 110.0,
+    "power_limit_w_default": 95.0,
+    "platform_profile": "balanced",
+    "on_ac_power": "1",
+    "os": "Linux-7.0.0-43-generic-x86_64-with-glibc2.43",
+    "model_snapshot": "~/.cache/huggingface/hub/models--lerobot--smolvla_libero/snapshots/a24f1f380461b665158d52acd140152c79e8b36d/config.json",
+    "python_executable": "<project>/lerobot-final-2026-11-07/.venv/bin/python",
+    "float32_matmul_precision": "high",
+    "cuda_matmul_allow_tf32": true,
+    "cudnn_allow_tf32": true,
+    "cudnn_benchmark": false,
+    "env": {
+      "TORCHINDUCTOR_FORCE_DISABLE_CACHES": "1",
+      "TORCHINDUCTOR_CACHE_DIR": "<scratch>/final/inductor_cold_session_YgSr",
+      "TRITON_CACHE_DIR": "<scratch>/final/inductor_cold_session_YgSr/triton/0",
+      "HF_HUB_OFFLINE": "1",
+      "PYTHONPATH": null,
+      "CUDA_VISIBLE_DEVICES": null,
+      "TORCH_LOGS": null
+    }
+  },
+  "settings": {
+    "model": "lerobot/smolvla_libero",
+    "setups": {
+      "A0": {
+        "name": "talk baseline definition: eager, 10 steps, 1 blank camera slot, cameras one call each",
+        "compile_model": false,
+        "num_steps": 10,
+        "empty_cameras": 1,
+        "batched_cameras": false,
+        "talk_stats": "<project>/bench/results_v2/pr_eager_steps10_stats.json",
+        "talk_actions": "<project>/bench/results_v2/with_blank_slot/pr_eager_steps10_actions.pt",
+        "compile_mode": "max-autotune"
+      },
+      "A1": {
+        "name": "today's default baseline: eager, 10 steps, no blank slot, cameras one call each",
+        "compile_model": false,
+        "num_steps": 10,
+        "empty_cameras": 0,
+        "batched_cameras": false,
+        "talk_stats": "<project>/bench/results_v2/no_blank_slot/pr_eager_steps10_stats.json",
+        "talk_actions": "<project>/bench/results_v2/no_blank_slot/pr_eager_steps10_actions.pt",
+        "compile_mode": "max-autotune"
+      },
+      "C": {
+        "name": "no compiler: eager, 1 step, no blank slot, cameras batched",
+        "compile_model": false,
+        "num_steps": 1,
+        "empty_cameras": 0,
+        "batched_cameras": true,
+        "talk_stats": "<project>/bench/results_v2/no_blank_slot/batched_eager_steps1_stats.json",
+        "talk_actions": "<project>/bench/results_v2/no_blank_slot/batched_eager_steps1_actions.pt",
+        "compile_mode": "max-autotune"
+      },
+      "B": {
+        "name": "tuned: whole-model compile (default mode), 1 step, no blank slot, cameras batched",
+        "compile_model": true,
+        "num_steps": 1,
+        "empty_cameras": 0,
+        "batched_cameras": true,
+        "talk_stats": "<project>/bench/results_v2/no_blank_slot/batched_compile_model_steps1_stats.json",
+        "talk_actions": "<project>/bench/results_v2/no_blank_slot/batched_compile_model_steps1_actions.pt",
+        "compile_mode": "max-autotune"
+      }
+    },
+    "batch_size": 1,
+    "order": [
+      "A0",
+      "A1",
+      "C",
+      "B",
+      "B",
+      "C",
+      "A1",
+      "A0",
+      "A0",
+      "A1",
+      "C",
+      "B",
+      "B",
+      "C",
+      "A1",
+      "A0",
+      "A0",
+      "A1",
+      "C",
+      "B",
+      "B",
+      "C",
+      "A1",
+      "A0"
+    ],
+    "calls_per_block": {
+      "A0": 100,
+      "A1": 110,
+      "C": 435,
+      "B": 773
+    },
+    "window_s_target": 11.74,
+    "warmup_calls": 10,
+    "settle_seconds": 8,
+    "settle_median_ms": {
+      "A0": 117.35,
+      "A1": 107.12,
+      "C": 26.95,
+      "B": 15.17
+    },
+    "inputs_identical_to_A1": {
+      "A0": true,
+      "A1": true,
+      "C": true,
+      "B": true
+    }
+  },
+  "first_call_ms": {
+    "A0": 456.0,
+    "A1": 102.8,
+    "C": 40.0,
+    "B": 152052.3
+  },
+  "load_s": {
+    "A0": 1.71,
+    "A1": 1.35,
+    "C": 1.23,
+    "B": 2.47
+  },
+  "parity": {
+    "A0": {
+      "vs_talk_run": "<project>/bench/results_v2/with_blank_slot/pr_eager_steps10_actions.pt",
+      "bit_identical": false,
+      "max_abs_diff": 1.6868391036987305,
+      "mean_abs_diff": 0.010383046232163906,
+      "max_abs_diff_first_10_steps": 0.04369240999221802,
+      "action_scale_max_abs": 1.9967998266220093
+    },
+    "A1": {
+      "vs_talk_run": "<project>/bench/results_v2/no_blank_slot/pr_eager_steps10_actions.pt",
+      "bit_identical": false,
+      "max_abs_diff": 0.0761481523513794,
+      "mean_abs_diff": 0.004445135127753019,
+      "max_abs_diff_first_10_steps": 0.018469929695129395,
+      "action_scale_max_abs": 1.9995478391647339
+    },
+    "C": {
+      "vs_talk_run": "<project>/bench/results_v2/no_blank_slot/batched_eager_steps1_actions.pt",
+      "bit_identical": false,
+      "max_abs_diff": 0.035541534423828125,
+      "mean_abs_diff": 0.00625276006758213,
+      "max_abs_diff_first_10_steps": 0.022292360663414,
+      "action_scale_max_abs": 1.575198769569397
+    },
+    "B": {
+      "vs_talk_run": "<project>/bench/results_v2/no_blank_slot/batched_compile_model_steps1_actions.pt",
+      "bit_identical": false,
+      "max_abs_diff": 0.07922771573066711,
+      "mean_abs_diff": 0.006313956342637539,
+      "max_abs_diff_first_10_steps": 0.023447751998901367,
+      "action_scale_max_abs": 1.5726004838943481
+    },
+    "A0_vs_A1": {
+      "max_abs_diff": 1.8012689352035522,
+      "mean_abs_diff": 0.010198067873716354,
+      "max_abs_diff_first_10_steps": 0.013578325510025024
+    },
+    "C_vs_B": {
+      "max_abs_diff": 0.04643407464027405,
+      "mean_abs_diff": 0.007619254756718874,
+      "max_abs_diff_first_10_steps": 0.025790929794311523
+    }
+  },
+  "summary": {
+    "A0": {
+      "setup": "talk baseline definition: eager, 10 steps, 1 blank camera slot, cameras one call each",
+      "latency": {
+        "calls": 600,
+        "median_ms": 118.8,
+        "p90_ms": 124.35,
+        "p99_ms": 144.5,
+        "mean_ms": 118.88,
+        "min_ms": 109.05,
+        "max_ms": 171.78
+      },
+      "block_median_ms": {
+        "mean": 118.12,
+        "sd": 2.38,
+        "min": 114.45,
+        "max": 120.81,
+        "per_block": [
+          119.81,
+          117.51,
+          116.6,
+          120.81,
+          114.45,
+          119.54
+        ]
+      },
+      "j_per_call_total": {
+        "mean": 11.36,
+        "sd": 0.364,
+        "min": 10.825,
+        "max": 11.769,
+        "per_block": [
+          11.638,
+          11.271,
+          10.825,
+          11.769,
+          11.082,
+          11.578
+        ]
+      },
+      "j_per_call_above_idle": {
+        "mean": 8.536,
+        "sd": 0.309,
+        "min": 8.057,
+        "max": 8.866,
+        "per_block": [
+          8.807,
+          8.397,
+          8.057,
+          8.866,
+          8.393,
+          8.695
+        ]
+      },
+      "busy_w": {
+        "mean": 95.5,
+        "sd": 1.2,
+        "min": 93.2,
+        "max": 96.5,
+        "per_block": [
+          95.4,
+          96.5,
+          93.2,
+          96.3,
+          95.5,
+          96.3
+        ]
+      },
+      "idle_w": {
+        "mean": 23.8,
+        "sd": 0.5,
+        "min": 23.2,
+        "max": 24.6,
+        "per_block": [
+          23.2,
+          24.6,
+          23.8,
+          23.8,
+          23.2,
+          24.0
+        ]
+      },
+      "first_call_s_in_session": 0.46,
+      "load_s_in_session": 1.71,
+      "talk_run": {
+        "file": "<project>/bench/results_v2/pr_eager_steps10_stats.json",
+        "median_ms": 101.32,
+        "p99_ms": 120.08,
+        "energy_j_per_call": 10.548,
+        "first_call_ms": 541.1,
+        "peak_gpu_mb": 929,
+        "torch": "2.11.0+cu128"
+      }
+    },
+    "A1": {
+      "setup": "today's default baseline: eager, 10 steps, no blank slot, cameras one call each",
+      "latency": {
+        "calls": 660,
+        "median_ms": 112.87,
+        "p90_ms": 118.87,
+        "p99_ms": 137.01,
+        "mean_ms": 113.05,
+        "min_ms": 103.47,
+        "max_ms": 183.48
+      },
+      "block_median_ms": {
+        "mean": 112.17,
+        "sd": 2.73,
+        "min": 108.29,
+        "max": 115.23,
+        "per_block": [
+          115.23,
+          111.53,
+          109.97,
+          114.61,
+          108.29,
+          113.41
+        ]
+      },
+      "j_per_call_total": {
+        "mean": 10.893,
+        "sd": 0.323,
+        "min": 10.417,
+        "max": 11.374,
+        "per_block": [
+          10.958,
+          10.673,
+          10.972,
+          11.374,
+          10.417,
+          10.965
+        ]
+      },
+      "j_per_call_above_idle": {
+        "mean": 8.213,
+        "sd": 0.276,
+        "min": 7.917,
+        "max": 8.677,
+        "per_block": [
+          8.219,
+          7.917,
+          8.35,
+          8.677,
+          7.983,
+          8.13
+        ]
+      },
+      "busy_w": {
+        "mean": 96.4,
+        "sd": 2.1,
+        "min": 93.9,
+        "max": 99.8,
+        "per_block": [
+          93.9,
+          96.1,
+          99.8,
+          97.7,
+          95.0,
+          95.6
+        ]
+      },
+      "idle_w": {
+        "mean": 23.7,
+        "sd": 1.0,
+        "min": 22.2,
+        "max": 24.8,
+        "per_block": [
+          23.5,
+          24.8,
+          23.8,
+          23.2,
+          22.2,
+          24.7
+        ]
+      },
+      "first_call_s_in_session": 0.1,
+      "load_s_in_session": 1.35,
+      "talk_run": {
+        "file": "<project>/bench/results_v2/no_blank_slot/pr_eager_steps10_stats.json",
+        "median_ms": 94.68,
+        "p99_ms": 100.58,
+        "energy_j_per_call": 9.495,
+        "first_call_ms": 472.0,
+        "peak_gpu_mb": 920,
+        "torch": "2.11.0+cu128"
+      }
+    },
+    "C": {
+      "setup": "no compiler: eager, 1 step, no blank slot, cameras batched",
+      "latency": {
+        "calls": 2610,
+        "median_ms": 27.53,
+        "p90_ms": 30.8,
+        "p99_ms": 37.5,
+        "mean_ms": 28.38,
+        "min_ms": 26.06,
+        "max_ms": 50.2
+      },
+      "block_median_ms": {
+        "mean": 27.96,
+        "sd": 1.11,
+        "min": 26.71,
+        "max": 29.57,
+        "per_block": [
+          29.57,
+          28.79,
+          27.14,
+          27.24,
+          26.71,
+          28.27
+        ]
+      },
+      "j_per_call_total": {
+        "mean": 2.82,
+        "sd": 0.096,
+        "min": 2.715,
+        "max": 2.966,
+        "per_block": [
+          2.966,
+          2.881,
+          2.715,
+          2.765,
+          2.743,
+          2.851
+        ]
+      },
+      "j_per_call_above_idle": {
+        "mean": 2.151,
+        "sd": 0.056,
+        "min": 2.056,
+        "max": 2.215,
+        "per_block": [
+          2.215,
+          2.177,
+          2.056,
+          2.122,
+          2.185,
+          2.151
+        ]
+      },
+      "busy_w": {
+        "mean": 99.4,
+        "sd": 1.5,
+        "min": 97.5,
+        "max": 101.7,
+        "per_block": [
+          97.5,
+          99.5,
+          99.6,
+          97.9,
+          101.7,
+          100.2
+        ]
+      },
+      "idle_w": {
+        "mean": 23.5,
+        "sd": 1.6,
+        "min": 20.7,
+        "max": 24.7,
+        "per_block": [
+          24.7,
+          24.3,
+          24.2,
+          22.8,
+          20.7,
+          24.6
+        ]
+      },
+      "first_call_s_in_session": 0.04,
+      "load_s_in_session": 1.23,
+      "talk_run": {
+        "file": "<project>/bench/results_v2/no_blank_slot/batched_eager_steps1_stats.json",
+        "median_ms": 25.46,
+        "p99_ms": 27.76,
+        "energy_j_per_call": 2.423,
+        "first_call_ms": 471.5,
+        "peak_gpu_mb": 945,
+        "torch": "2.11.0+cu128"
+      }
+    },
+    "B": {
+      "setup": "tuned: whole-model compile (default mode), 1 step, no blank slot, cameras batched",
+      "latency": {
+        "calls": 4638,
+        "median_ms": 14.86,
+        "p90_ms": 15.74,
+        "p99_ms": 17.16,
+        "mean_ms": 14.83,
+        "min_ms": 10.89,
+        "max_ms": 18.51
+      },
+      "block_median_ms": {
+        "mean": 14.9,
+        "sd": 0.34,
+        "min": 14.35,
+        "max": 15.27,
+        "per_block": [
+          15.27,
+          15.22,
+          14.79,
+          14.82,
+          14.35,
+          14.96
+        ]
+      },
+      "j_per_call_total": {
+        "mean": 1.469,
+        "sd": 0.04,
+        "min": 1.437,
+        "max": 1.547,
+        "per_block": [
+          1.466,
+          1.547,
+          1.446,
+          1.437,
+          1.45,
+          1.468
+        ]
+      },
+      "j_per_call_above_idle": {
+        "mean": 1.121,
+        "sd": 0.039,
+        "min": 1.084,
+        "max": 1.182,
+        "per_block": [
+          1.093,
+          1.182,
+          1.092,
+          1.084,
+          1.149,
+          1.127
+        ]
+      },
+      "busy_w": {
+        "mean": 99.0,
+        "sd": 2.2,
+        "min": 96.5,
+        "max": 102.3,
+        "per_block": [
+          96.5,
+          102.3,
+          97.9,
+          97.3,
+          101.1,
+          98.9
+        ]
+      },
+      "idle_w": {
+        "mean": 23.4,
+        "sd": 1.3,
+        "min": 21.0,
+        "max": 24.6,
+        "per_block": [
+          24.6,
+          24.1,
+          23.9,
+          23.9,
+          21.0,
+          23.0
+        ]
+      },
+      "first_call_s_in_session": 152.05,
+      "load_s_in_session": 2.47,
+      "talk_run": {
+        "file": "<project>/bench/results_v2/no_blank_slot/batched_compile_model_steps1_stats.json",
+        "median_ms": 13.14,
+        "p99_ms": 16.25,
+        "energy_j_per_call": 1.13,
+        "first_call_ms": 88857.1,
+        "peak_gpu_mb": 897,
+        "torch": "2.11.0+cu128"
+      }
+    }
+  },
+  "ratios": {
+    "A0_over_A1": {
+      "j_per_call_total": {
+        "overall": 1.04,
+        "per_round_min": 0.99,
+        "per_round_max": 1.06,
+        "per_round": [
+          1.06,
+          1.06,
+          0.99,
+          1.03,
+          1.06,
+          1.06
+        ]
+      },
+      "j_per_call_above_idle": {
+        "overall": 1.04,
+        "per_round_min": 0.96,
+        "per_round_max": 1.07,
+        "per_round": [
+          1.07,
+          1.06,
+          0.96,
+          1.02,
+          1.05,
+          1.07
+        ]
+      },
+      "median_ms": 1.05,
+      "p99_ms": 1.05
+    },
+    "A0_over_C": {
+      "j_per_call_total": {
+        "overall": 4.03,
+        "per_round_min": 3.91,
+        "per_round_max": 4.26,
+        "per_round": [
+          3.92,
+          3.91,
+          3.99,
+          4.26,
+          4.04,
+          4.06
+        ]
+      },
+      "j_per_call_above_idle": {
+        "overall": 3.97,
+        "per_round_min": 3.84,
+        "per_round_max": 4.18,
+        "per_round": [
+          3.98,
+          3.86,
+          3.92,
+          4.18,
+          3.84,
+          4.04
+        ]
+      },
+      "median_ms": 4.32,
+      "p99_ms": 3.85
+    },
+    "A0_over_B": {
+      "j_per_call_total": {
+        "overall": 7.73,
+        "per_round_min": 7.28,
+        "per_round_max": 8.19,
+        "per_round": [
+          7.94,
+          7.28,
+          7.49,
+          8.19,
+          7.64,
+          7.89
+        ]
+      },
+      "j_per_call_above_idle": {
+        "overall": 7.61,
+        "per_round_min": 7.1,
+        "per_round_max": 8.18,
+        "per_round": [
+          8.06,
+          7.1,
+          7.38,
+          8.18,
+          7.3,
+          7.72
+        ]
+      },
+      "median_ms": 7.99,
+      "p99_ms": 8.42
+    },
+    "A1_over_A0": {
+      "j_per_call_total": {
+        "overall": 0.96,
+        "per_round_min": 0.94,
+        "per_round_max": 1.01,
+        "per_round": [
+          0.94,
+          0.95,
+          1.01,
+          0.97,
+          0.94,
+          0.95
+        ]
+      },
+      "j_per_call_above_idle": {
+        "overall": 0.96,
+        "per_round_min": 0.93,
+        "per_round_max": 1.04,
+        "per_round": [
+          0.93,
+          0.94,
+          1.04,
+          0.98,
+          0.95,
+          0.94
+        ]
+      },
+      "median_ms": 0.95,
+      "p99_ms": 0.95
+    },
+    "A1_over_C": {
+      "j_per_call_total": {
+        "overall": 3.86,
+        "per_round_min": 3.69,
+        "per_round_max": 4.11,
+        "per_round": [
+          3.69,
+          3.71,
+          4.04,
+          4.11,
+          3.8,
+          3.85
+        ]
+      },
+      "j_per_call_above_idle": {
+        "overall": 3.82,
+        "per_round_min": 3.64,
+        "per_round_max": 4.09,
+        "per_round": [
+          3.71,
+          3.64,
+          4.06,
+          4.09,
+          3.65,
+          3.78
+        ]
+      },
+      "median_ms": 4.1,
+      "p99_ms": 3.65
+    },
+    "A1_over_B": {
+      "j_per_call_total": {
+        "overall": 7.42,
+        "per_round_min": 6.9,
+        "per_round_max": 7.92,
+        "per_round": [
+          7.48,
+          6.9,
+          7.59,
+          7.92,
+          7.18,
+          7.47
+        ]
+      },
+      "j_per_call_above_idle": {
+        "overall": 7.33,
+        "per_round_min": 6.7,
+        "per_round_max": 8.01,
+        "per_round": [
+          7.52,
+          6.7,
+          7.64,
+          8.01,
+          6.95,
+          7.21
+        ]
+      },
+      "median_ms": 7.6,
+      "p99_ms": 7.98
+    }
+  },
+  "dynamo_counters": {
+    "before_first_calls": {},
+    "after_first_calls": {
+      "frames": {
+        "total": 20,
+        "ok": 18
+      },
+      "unimplemented": {
+        "Dynamic shape operator\n  Explanation: Operator `aten.nonzero.default`'s output shape depends on input Tensor data.\n  Hint: Enable tracing of dynamic shape operators with `torch._dynamo.config.capture_dynamic_output_shape_ops = True`\n\n  Developer debug context: aten.nonzero.default\n\n For more details about this graph break, please visit: https://meta-pytorch.github.io/compile-graph-break-site/gb/gb0036.html": 2,
+        "Reconstruction failure\n  Explanation: Dynamo has no bytecode reconstruction implemented for sourceless variable DictItemsIterator().\n  Hint: If Dynamo is attempting to trace a return statement and your code is attempting to return a variable that Dynamo cannot reconstruct, then remove it from the return statement.\n  Hint: This graph break may have been caused by an earlier graph break. Resolving the earlier graph break may resolve this one.\n  Hint: Report an issue to PyTorch if you need reconstrtuction support. Note that objects that don't have reconstruction rules may be fundamentally unreconstructable.\n\n  Developer debug context: DictItemsIterator()\n\n For more details about this graph break, please visit: https://meta-pytorch.github.io/compile-graph-break-site/gb/gb0092.html": 1,
+        "Reconstruction failure\n  Explanation: Dynamo has no bytecode reconstruction implemented for sourceless variable DictIterator().\n  Hint: If Dynamo is attempting to trace a return statement and your code is attempting to return a variable that Dynamo cannot reconstruct, then remove it from the return statement.\n  Hint: This graph break may have been caused by an earlier graph break. Resolving the earlier graph break may resolve this one.\n  Hint: Report an issue to PyTorch if you need reconstrtuction support. Note that objects that don't have reconstruction rules may be fundamentally unreconstructable.\n\n  Developer debug context: DictIterator()\n\n For more details about this graph break, please visit: https://meta-pytorch.github.io/compile-graph-break-site/gb/gb0092.html": 1
+      },
+      "graph_break": {
+        "Dynamic shape operator\n  Explanation: Operator `aten.nonzero.default`'s output shape depends on input Tensor data.\n  Hint: Enable tracing of dynamic shape operators with `torch._dynamo.config.capture_dynamic_output_shape_ops = True`\n\n  Developer debug context: aten.nonzero.default\n\n For more details about this graph break, please visit: https://meta-pytorch.github.io/compile-graph-break-site/gb/gb0036.html": 6
+      },
+      "stats": {
+        "calls_captured": 3919,
+        "unique_graphs": 11
+      },
+      "aot_autograd": {
+        "total": 11,
+        "ok": 11
+      },
+      "inductor": {
+        "async_compile_cache_miss": 794,
+        "benchmarking.InductorBenchmarker.benchmark": 1256,
+        "benchmarking.InductorBenchmarker.benchmark_gpu": 1258,
+        "coordesc_tuning_bench": 525,
+        "pattern_matcher_count": 1666,
+        "pattern_matcher_nodes": 2098,
+        "select_algorithm_precompile": 26,
+        "select_algorithm_num_precompiles": 492,
+        "select_algorithm_autotune": 26,
+        "flop_count": 2415919104,
+        "extern_calls": 116,
+        "async_compile_cache_hit": 192,
+        "cudagraph_partitions": 2,
+        "generated_module_cache_miss": 482,
+        "generated_module_cache_hit": 6734,
+        "removed_pointless_view_pair": 93,
+        "pad_mm_bench": 1,
+        "cudagraph_recorded_non_static_inputs": 8
+      },
+      "resumes": {
+        "torch_dynamo_resume_in_sample_actions_at_807": 1,
+        "torch_dynamo_resume_in_embed_prefix_at_630": 1,
+        "torch_dynamo_resume_in__embed_images_at_614": 1,
+        "torch_dynamo_resume_in_embed_image_at_207": 1,
+        "torch_dynamo_resume_in_forward_at_351": 1,
+        "torch_dynamo_resume_in_forward_at_130": 1
+      },
+      "aten_mm_info": {
+        "aten.addmm_2048_768_768": 48,
+        "aten.addmm_2048_3072_768": 12,
+        "aten.addmm_2048_768_3072": 12,
+        "aten.mm_128_960_12288": 1,
+        "aten.addmm_1_960_32": 1,
+        "aten.mm_177_960_960": 30,
+        "aten.mm_177_320_960": 32,
+        "aten.bmm_15_177_177_64": 15,
+        "aten.bmm_15_177_64_177": 15,
+        "aten.mm_177_2560_960": 30,
+        "aten.mm_177_960_2560": 15,
+        "aten.addmm_50_720_32": 1,
+        "aten.mm_50_720_1440": 1,
+        "aten.mm_50_720_720": 1,
+        "aten.mm_50_960_720": 16,
+        "aten.mm_50_320_720": 16,
+        "aten.bmm_15_50_227_64": 8,
+        "aten.bmm_15_50_64_227": 8,
+        "aten.mm_50_720_960": 16,
+        "aten.mm_50_2048_720": 32,
+        "aten.mm_50_720_2048": 16,
+        "aten.mm_177_320_320": 16,
+        "aten.bmm_15_50_177_64": 8,
+        "aten.bmm_15_50_64_177": 8,
+        "aten.mm_50_32_720": 1
+      }
+    },
+    "before_blocks": {
+      "frames": {
+        "total": 20,
+        "ok": 18
+      },
+      "unimplemented": {
+        "Dynamic shape operator\n  Explanation: Operator `aten.nonzero.default`'s output shape depends on input Tensor data.\n  Hint: Enable tracing of dynamic shape operators with `torch._dynamo.config.capture_dynamic_output_shape_ops = True`\n\n  Developer debug context: aten.nonzero.default\n\n For more details about this graph break, please visit: https://meta-pytorch.github.io/compile-graph-break-site/gb/gb0036.html": 2,
+        "Reconstruction failure\n  Explanation: Dynamo has no bytecode reconstruction implemented for sourceless variable DictItemsIterator().\n  Hint: If Dynamo is attempting to trace a return statement and your code is attempting to return a variable that Dynamo cannot reconstruct, then remove it from the return statement.\n  Hint: This graph break may have been caused by an earlier graph break. Resolving the earlier graph break may resolve this one.\n  Hint: Report an issue to PyTorch if you need reconstrtuction support. Note that objects that don't have reconstruction rules may be fundamentally unreconstructable.\n\n  Developer debug context: DictItemsIterator()\n\n For more details about this graph break, please visit: https://meta-pytorch.github.io/compile-graph-break-site/gb/gb0092.html": 1,
+        "Reconstruction failure\n  Explanation: Dynamo has no bytecode reconstruction implemented for sourceless variable DictIterator().\n  Hint: If Dynamo is attempting to trace a return statement and your code is attempting to return a variable that Dynamo cannot reconstruct, then remove it from the return statement.\n  Hint: This graph break may have been caused by an earlier graph break. Resolving the earlier graph break may resolve this one.\n  Hint: Report an issue to PyTorch if you need reconstrtuction support. Note that objects that don't have reconstruction rules may be fundamentally unreconstructable.\n\n  Developer debug context: DictIterator()\n\n For more details about this graph break, please visit: https://meta-pytorch.github.io/compile-graph-break-site/gb/gb0092.html": 1
+      },
+      "graph_break": {
+        "Dynamic shape operator\n  Explanation: Operator `aten.nonzero.default`'s output shape depends on input Tensor data.\n  Hint: Enable tracing of dynamic shape operators with `torch._dynamo.config.capture_dynamic_output_shape_ops = True`\n\n  Developer debug context: aten.nonzero.default\n\n For more details about this graph break, please visit: https://meta-pytorch.github.io/compile-graph-break-site/gb/gb0036.html": 6
+      },
+      "stats": {
+        "calls_captured": 3919,
+        "unique_graphs": 11
+      },
+      "aot_autograd": {
+        "total": 11,
+        "ok": 11
+      },
+      "inductor": {
+        "async_compile_cache_miss": 794,
+        "benchmarking.InductorBenchmarker.benchmark": 1256,
+        "benchmarking.InductorBenchmarker.benchmark_gpu": 1258,
+        "coordesc_tuning_bench": 525,
+        "pattern_matcher_count": 1666,
+        "pattern_matcher_nodes": 2098,
+        "select_algorithm_precompile": 26,
+        "select_algorithm_num_precompiles": 492,
+        "select_algorithm_autotune": 26,
+        "flop_count": 2415919104,
+        "extern_calls": 116,
+        "async_compile_cache_hit": 192,
+        "cudagraph_partitions": 2,
+        "generated_module_cache_miss": 482,
+        "generated_module_cache_hit": 6734,
+        "removed_pointless_view_pair": 93,
+        "pad_mm_bench": 1,
+        "cudagraph_recorded_non_static_inputs": 8
+      },
+      "resumes": {
+        "torch_dynamo_resume_in_sample_actions_at_807": 1,
+        "torch_dynamo_resume_in_embed_prefix_at_630": 1,
+        "torch_dynamo_resume_in__embed_images_at_614": 1,
+        "torch_dynamo_resume_in_embed_image_at_207": 1,
+        "torch_dynamo_resume_in_forward_at_351": 1,
+        "torch_dynamo_resume_in_forward_at_130": 1
+      },
+      "aten_mm_info": {
+        "aten.addmm_2048_768_768": 48,
+        "aten.addmm_2048_3072_768": 12,
+        "aten.addmm_2048_768_3072": 12,
+        "aten.mm_128_960_12288": 1,
+        "aten.addmm_1_960_32": 1,
+        "aten.mm_177_960_960": 30,
+        "aten.mm_177_320_960": 32,
+        "aten.bmm_15_177_177_64": 15,
+        "aten.bmm_15_177_64_177": 15,
+        "aten.mm_177_2560_960": 30,
+        "aten.mm_177_960_2560": 15,
+        "aten.addmm_50_720_32": 1,
+        "aten.mm_50_720_1440": 1,
+        "aten.mm_50_720_720": 1,
+        "aten.mm_50_960_720": 16,
+        "aten.mm_50_320_720": 16,
+        "aten.bmm_15_50_227_64": 8,
+        "aten.bmm_15_50_64_227": 8,
+        "aten.mm_50_720_960": 16,
+        "aten.mm_50_2048_720": 32,
+        "aten.mm_50_720_2048": 16,
+        "aten.mm_177_320_320": 16,
+        "aten.bmm_15_50_177_64": 8,
+        "aten.bmm_15_50_64_177": 8,
+        "aten.mm_50_32_720": 1
+      }
+    },
+    "after_blocks": {
+      "frames": {
+        "total": 20,
+        "ok": 18
+      },
+      "unimplemented": {
+        "Dynamic shape operator\n  Explanation: Operator `aten.nonzero.default`'s output shape depends on input Tensor data.\n  Hint: Enable tracing of dynamic shape operators with `torch._dynamo.config.capture_dynamic_output_shape_ops = True`\n\n  Developer debug context: aten.nonzero.default\n\n For more details about this graph break, please visit: https://meta-pytorch.github.io/compile-graph-break-site/gb/gb0036.html": 2,
+        "Reconstruction failure\n  Explanation: Dynamo has no bytecode reconstruction implemented for sourceless variable DictItemsIterator().\n  Hint: If Dynamo is attempting to trace a return statement and your code is attempting to return a variable that Dynamo cannot reconstruct, then remove it from the return statement.\n  Hint: This graph break may have been caused by an earlier graph break. Resolving the earlier graph break may resolve this one.\n  Hint: Report an issue to PyTorch if you need reconstrtuction support. Note that objects that don't have reconstruction rules may be fundamentally unreconstructable.\n\n  Developer debug context: DictItemsIterator()\n\n For more details about this graph break, please visit: https://meta-pytorch.github.io/compile-graph-break-site/gb/gb0092.html": 1,
+        "Reconstruction failure\n  Explanation: Dynamo has no bytecode reconstruction implemented for sourceless variable DictIterator().\n  Hint: If Dynamo is attempting to trace a return statement and your code is attempting to return a variable that Dynamo cannot reconstruct, then remove it from the return statement.\n  Hint: This graph break may have been caused by an earlier graph break. Resolving the earlier graph break may resolve this one.\n  Hint: Report an issue to PyTorch if you need reconstrtuction support. Note that objects that don't have reconstruction rules may be fundamentally unreconstructable.\n\n  Developer debug context: DictIterator()\n\n For more details about this graph break, please visit: https://meta-pytorch.github.io/compile-graph-break-site/gb/gb0092.html": 1
+      },
+      "graph_break": {
+        "Dynamic shape operator\n  Explanation: Operator `aten.nonzero.default`'s output shape depends on input Tensor data.\n  Hint: Enable tracing of dynamic shape operators with `torch._dynamo.config.capture_dynamic_output_shape_ops = True`\n\n  Developer debug context: aten.nonzero.default\n\n For more details about this graph break, please visit: https://meta-pytorch.github.io/compile-graph-break-site/gb/gb0036.html": 6
+      },
+      "stats": {
+        "calls_captured": 3919,
+        "unique_graphs": 11
+      },
+      "aot_autograd": {
+        "total": 11,
+        "ok": 11
+      },
+      "inductor": {
+        "async_compile_cache_miss": 794,
+        "benchmarking.InductorBenchmarker.benchmark": 1256,
+        "benchmarking.InductorBenchmarker.benchmark_gpu": 1258,
+        "coordesc_tuning_bench": 525,
+        "pattern_matcher_count": 1666,
+        "pattern_matcher_nodes": 2098,
+        "select_algorithm_precompile": 26,
+        "select_algorithm_num_precompiles": 492,
+        "select_algorithm_autotune": 26,
+        "flop_count": 2415919104,
+        "extern_calls": 116,
+        "async_compile_cache_hit": 192,
+        "cudagraph_partitions": 2,
+        "generated_module_cache_miss": 482,
+        "generated_module_cache_hit": 6734,
+        "removed_pointless_view_pair": 93,
+        "pad_mm_bench": 1,
+        "cudagraph_recorded_non_static_inputs": 8
+      },
+      "resumes": {
+        "torch_dynamo_resume_in_sample_actions_at_807": 1,
+        "torch_dynamo_resume_in_embed_prefix_at_630": 1,
+        "torch_dynamo_resume_in__embed_images_at_614": 1,
+        "torch_dynamo_resume_in_embed_image_at_207": 1,
+        "torch_dynamo_resume_in_forward_at_351": 1,
+        "torch_dynamo_resume_in_forward_at_130": 1
+      },
+      "aten_mm_info": {
+        "aten.addmm_2048_768_768": 48,
+        "aten.addmm_2048_3072_768": 12,
+        "aten.addmm_2048_768_3072": 12,
+        "aten.mm_128_960_12288": 1,
+        "aten.addmm_1_960_32": 1,
+        "aten.mm_177_960_960": 30,
+        "aten.mm_177_320_960": 32,
+        "aten.bmm_15_177_177_64": 15,
+        "aten.bmm_15_177_64_177": 15,
+        "aten.mm_177_2560_960": 30,
+        "aten.mm_177_960_2560": 15,
+        "aten.addmm_50_720_32": 1,
+        "aten.mm_50_720_1440": 1,
+        "aten.mm_50_720_720": 1,
+        "aten.mm_50_960_720": 16,
+        "aten.mm_50_320_720": 16,
+        "aten.bmm_15_50_227_64": 8,
+        "aten.bmm_15_50_64_227": 8,
+        "aten.mm_50_720_960": 16,
+        "aten.mm_50_2048_720": 32,
+        "aten.mm_50_720_2048": 16,
+        "aten.mm_177_320_320": 16,
+        "aten.bmm_15_50_177_64": 8,
+        "aten.bmm_15_50_64_177": 8,
+        "aten.mm_50_32_720": 1
+      }
+    },
+    "recompiled_during_blocks": false
+  },
+  "redone_blocks": [],
+  "idle_windows": [
+    {
+      "name": "idle_0",
+      "seconds": 11.79797627300286,
+      "energy_j": 285.953,
+      "watts": 24.23746186490832,
+      "watts_first_half": 24.825735622311477,
+      "watts_second_half": 23.649386672875274,
+      "gpu": {
+        "samples": 116,
+        "sm_mhz_mean": 1712,
+        "sm_mhz_min": 1687,
+        "sm_mhz_max": 1875,
+        "mem_mhz_mean": 11285,
+        "temp_c_start": 63,
+        "temp_c_end": 52,
+        "temp_c_max": 63,
+        "pstates": [
+          0,
+          2
+        ],
+        "power_limit_w": [
+          105.08,
+          110.0
+        ],
+        "clock_reasons": [
+          "sw_power_cap"
+        ],
+        "other_cpu_cores_mean": 0.8,
+        "other_cpu_cores_max": 2.76
+      }
+    },
+    {
+      "name": "idle_1",
+      "seconds": 11.8019624189983,
+      "energy_j": 261.69,
+      "watts": 22.17343105403746,
+      "watts_first_half": 22.916445775292253,
+      "watts_second_half": 21.4283862781561,
+      "gpu": {
+        "samples": 117,
+        "sm_mhz_mean": 1613,
+        "sm_mhz_min": 1507,
+        "sm_mhz_max": 2632,
+        "mem_mhz_mean": 11206,
+        "temp_c_start": 62,
+        "temp_c_end": 52,
+        "temp_c_max": 62,
+        "pstates": [
+          0,
+          2
+        ],
+        "power_limit_w": [
+          104.941,
+          106.072,
+          110.0
+        ],
+        "clock_reasons": [
+          "sw_power_cap"
+        ],
+        "other_cpu_cores_mean": 0.65,
+        "other_cpu_cores_max": 1.54
+      }
+    },
+    {
+      "name": "idle_2",
+      "seconds": 11.802225554998586,
+      "energy_j": 292.205,
+      "watts": 24.758465989174617,
+      "watts_first_half": 25.289914575386963,
+      "watts_second_half": 24.22704331294824,
+      "gpu": {
+        "samples": 116,
+        "sm_mhz_mean": 1727,
+        "sm_mhz_min": 1687,
+        "sm_mhz_max": 2662,
+        "mem_mhz_mean": 11208,
+        "temp_c_start": 63,
+        "temp_c_end": 53,
+        "temp_c_max": 63,
+        "pstates": [
+          0,
+          2
+        ],
+        "power_limit_w": [
+          104.976,
+          110.0
+        ],
+        "clock_reasons": [],
+        "other_cpu_cores_mean": 0.79,
+        "other_cpu_cores_max": 2.65
+      }
+    },
+    {
+      "name": "idle_3",
+      "seconds": 11.799312996998196,
+      "energy_j": 290.855,
+      "watts": 24.650163960731863,
+      "watts_first_half": 25.035529181386245,
+      "watts_second_half": 24.264835382626572,
+      "gpu": {
+        "samples": 117,
+        "sm_mhz_mean": 1707,
+        "sm_mhz_min": 1545,
+        "sm_mhz_max": 2167,
+        "mem_mhz_mean": 11232,
+        "temp_c_start": 60,
+        "temp_c_end": 54,
+        "temp_c_max": 60,
+        "pstates": [
+          0,
+          2
+        ],
+        "power_limit_w": [
+          105.023,
+          110.0
+        ],
+        "clock_reasons": [],
+        "other_cpu_cores_mean": 0.59,
+        "other_cpu_cores_max": 0.85
+      }
+    },
+    {
+      "name": "idle_4",
+      "seconds": 11.800725410997984,
+      "energy_j": 288.547,
+      "watts": 24.451632416688668,
+      "watts_first_half": 24.6388348822392,
+      "watts_second_half": 24.264507357597193,
+      "gpu": {
+        "samples": 117,
+        "sm_mhz_mean": 1702,
+        "sm_mhz_min": 1567,
+        "sm_mhz_max": 1770,
+        "mem_mhz_mean": 10787,
+        "temp_c_start": 59,
+        "temp_c_end": 54,
+        "temp_c_max": 59,
+        "pstates": [
+          0,
+          2,
+          4
+        ],
+        "power_limit_w": [
+          104.927,
+          109.193,
+          110.0
+        ],
+        "clock_reasons": [],
+        "other_cpu_cores_mean": 0.55,
+        "other_cpu_cores_max": 0.74
+      }
+    },
+    {
+      "name": "idle_5",
+      "seconds": 11.798402133001218,
+      "energy_j": 280.38,
+      "watts": 23.764234922604587,
+      "watts_first_half": 23.31966300473759,
+      "watts_second_half": 24.209192345864558,
+      "gpu": {
+        "samples": 117,
+        "sm_mhz_mean": 1722,
+        "sm_mhz_min": 1590,
+        "sm_mhz_max": 1890,
+        "mem_mhz_mean": 10514,
+        "temp_c_start": 64,
+        "temp_c_end": 54,
+        "temp_c_max": 64,
+        "pstates": [
+          0,
+          2,
+          4
+        ],
+        "power_limit_w": [
+          104.891,
+          109.583,
+          110.0
+        ],
+        "clock_reasons": [
+          "sw_power_cap"
+        ],
+        "other_cpu_cores_mean": 0.6,
+        "other_cpu_cores_max": 2.5
+      }
+    },
+    {
+      "name": "idle_6",
+      "seconds": 11.798436906999996,
+      "energy_j": 293.049,
+      "watts": 24.83795118878285,
+      "watts_first_half": 25.57074828815484,
+      "watts_second_half": 24.105352556734843,
+      "gpu": {
+        "samples": 117,
+        "sm_mhz_mean": 1731,
+        "sm_mhz_min": 1560,
+        "sm_mhz_max": 2407,
+        "mem_mhz_mean": 11129,
+        "temp_c_start": 59,
+        "temp_c_end": 53,
+        "temp_c_max": 59,
+        "pstates": [
+          0,
+          2
+        ],
+        "power_limit_w": [
+          105.379,
+          110.0
+        ],
+        "clock_reasons": [],
+        "other_cpu_cores_mean": 0.52,
+        "other_cpu_cores_max": 0.84
+      }
+    },
+    {
+      "name": "idle_7",
+      "seconds": 11.801927368000179,
+      "energy_j": 292.539,
+      "watts": 24.787391997784372,
+      "watts_first_half": 25.452665926465045,
+      "watts_second_half": 24.121952010724772,
+      "gpu": {
+        "samples": 117,
+        "sm_mhz_mean": 1719,
+        "sm_mhz_min": 1567,
+        "sm_mhz_max": 2685,
+        "mem_mhz_mean": 11155,
+        "temp_c_start": 63,
+        "temp_c_end": 53,
+        "temp_c_max": 63,
+        "pstates": [
+          0,
+          2
+        ],
+        "power_limit_w": [
+          105.357,
+          110.0
+        ],
+        "clock_reasons": [],
+        "other_cpu_cores_mean": 0.5,
+        "other_cpu_cores_max": 0.75
+      }
+    },
+    {
+      "name": "idle_8",
+      "seconds": 11.806310967000172,
+      "energy_j": 288.359,
+      "watts": 24.424140682554647,
+      "watts_first_half": 24.707496938298934,
+      "watts_second_half": 24.141064807599797,
+      "gpu": {
+        "samples": 117,
+        "sm_mhz_mean": 1723,
+        "sm_mhz_min": 1545,
+        "sm_mhz_max": 2587,
+        "mem_mhz_mean": 10864,
+        "temp_c_start": 66,
+        "temp_c_end": 53,
+        "temp_c_max": 66,
+        "pstates": [
+          0,
+          2,
+          4
+        ],
+        "power_limit_w": [
+          105.335,
+          108.983,
+          110.0
+        ],
+        "clock_reasons": [
+          "sw_power_cap"
+        ],
+        "other_cpu_cores_mean": 0.47,
+        "other_cpu_cores_max": 0.65
+      }
+    },
+    {
+      "name": "idle_9",
+      "seconds": 11.806943457999296,
+      "energy_j": 274.278,
+      "watts": 23.230228972950197,
+      "watts_first_half": 22.59368670470725,
+      "watts_second_half": 23.868097515552787,
+      "gpu": {
+        "samples": 117,
+        "sm_mhz_mean": 1731,
+        "sm_mhz_min": 1567,
+        "sm_mhz_max": 2212,
+        "mem_mhz_mean": 10104,
+        "temp_c_start": 59,
+        "temp_c_end": 54,
+        "temp_c_max": 59,
+        "pstates": [
+          0,
+          2,
+          4
+        ],
+        "power_limit_w": [
+          105.048,
+          109.607,
+          110.0
+        ],
+        "clock_reasons": [],
+        "other_cpu_cores_mean": 0.49,
+        "other_cpu_cores_max": 0.96
+      }
+    },
+    {
+      "name": "idle_10",
+      "seconds": 11.795310815999983,
+      "energy_j": 288.436,
+      "watts": 24.453446331295083,
+      "watts_first_half": 25.66431087044951,
+      "watts_second_half": 23.242329956705316,
+      "gpu": {
+        "samples": 117,
+        "sm_mhz_mean": 1726,
+        "sm_mhz_min": 1522,
+        "sm_mhz_max": 2655,
+        "mem_mhz_mean": 11180,
+        "temp_c_start": 67,
+        "temp_c_end": 54,
+        "temp_c_max": 67,
+        "pstates": [
+          0,
+          2
+        ],
+        "power_limit_w": [
+          105.216,
+          106.801,
+          110.0
+        ],
+        "clock_reasons": [],
+        "other_cpu_cores_mean": 0.42,
+        "other_cpu_cores_max": 0.75
+      }
+    },
+    {
+      "name": "idle_11",
+      "seconds": 11.797036066000146,
+      "energy_j": 282.19,
+      "watts": 23.920415129804564,
+      "watts_first_half": 24.68777851319917,
+      "watts_second_half": 23.152591117943164,
+      "gpu": {
+        "samples": 117,
+        "sm_mhz_mean": 1670,
+        "sm_mhz_min": 1515,
+        "sm_mhz_max": 2475,
+        "mem_mhz_mean": 11206,
+        "temp_c_start": 63,
+        "temp_c_end": 54,
+        "temp_c_max": 63,
+        "pstates": [
+          0,
+          2
+        ],
+        "power_limit_w": [
+          105.489,
+          110.0
+        ],
+        "clock_reasons": [
+          "sw_power_cap"
+        ],
+        "other_cpu_cores_mean": 0.37,
+        "other_cpu_cores_max": 0.7
+      }
+    },
+    {
+      "name": "idle_12",
+      "seconds": 11.796728939996683,
+      "energy_j": 282.725,
+      "watts": 23.966389448978855,
+      "watts_first_half": 24.584428461015136,
+      "watts_second_half": 23.34865654521412,
+      "gpu": {
+        "samples": 116,
+        "sm_mhz_mean": 1657,
+        "sm_mhz_min": 1522,
+        "sm_mhz_max": 1830,
+        "mem_mhz_mean": 11182,
+        "temp_c_start": 64,
+        "temp_c_end": 53,
+        "temp_c_max": 64,
+        "pstates": [
+          0,
+          2
+        ],
+        "power_limit_w": [
+          105.051,
+          110.0
+        ],
+        "clock_reasons": [
+          "sw_power_cap"
+        ],
+        "other_cpu_cores_mean": 0.35,
+        "other_cpu_cores_max": 0.44
+      }
+    },
+    {
+      "name": "idle_13",
+      "seconds": 11.802333790001285,
+      "energy_j": 281.498,
+      "watts": 23.85104548038455,
+      "watts_first_half": 24.470223967996635,
+      "watts_second_half": 23.231857350112307,
+      "gpu": {
+        "samples": 116,
+        "sm_mhz_mean": 1684,
+        "sm_mhz_min": 1522,
+        "sm_mhz_max": 1852,
+        "mem_mhz_mean": 11156,
+        "temp_c_start": 64,
+        "temp_c_end": 53,
+        "temp_c_max": 64,
+        "pstates": [
+          0,
+          2
+        ],
+        "power_limit_w": [
+          105.021,
+          110.0
+        ],
+        "clock_reasons": [
+          "sw_power_cap"
+        ],
+        "other_cpu_cores_mean": 0.37,
+        "other_cpu_cores_max": 0.51
+      }
+    },
+    {
+      "name": "idle_14",
+      "seconds": 11.783750005000911,
+      "energy_j": 255.325,
+      "watts": 21.667550643185955,
+      "watts_first_half": 20.831025053060092,
+      "watts_second_half": 22.502036774549794,
+      "gpu": {
+        "samples": 116,
+        "sm_mhz_mean": 1586,
+        "sm_mhz_min": 1507,
+        "sm_mhz_max": 2505,
+        "mem_mhz_mean": 11208,
+        "temp_c_start": 64,
+        "temp_c_end": 53,
+        "temp_c_max": 64,
+        "pstates": [
+          0,
+          2
+        ],
+        "power_limit_w": [
+          106.417,
+          110.0
+        ],
+        "clock_reasons": [
+          "sw_power_cap"
+        ],
+        "other_cpu_cores_mean": 0.37,
+        "other_cpu_cores_max": 0.77
+      }
+    },
+    {
+      "name": "idle_15",
+      "seconds": 11.79888603099971,
+      "energy_j": 291.239,
+      "watts": 24.683601420915117,
+      "watts_first_half": 25.203534078418855,
+      "watts_second_half": 24.16374438097276,
+      "gpu": {
+        "samples": 116,
+        "sm_mhz_mean": 1733,
+        "sm_mhz_min": 1680,
+        "sm_mhz_max": 2685,
+        "mem_mhz_mean": 11208,
+        "temp_c_start": 64,
+        "temp_c_end": 53,
+        "temp_c_max": 64,
+        "pstates": [
+          0,
+          2
+        ],
+        "power_limit_w": [
+          104.999,
+          110.0
+        ],
+        "clock_reasons": [],
+        "other_cpu_cores_mean": 0.64,
+        "other_cpu_cores_max": 0.8
+      }
+    },
+    {
+      "name": "idle_16",
+      "seconds": 11.800116331000027,
+      "energy_j": 269.411,
+      "watts": 22.831215595072713,
+      "watts_first_half": 23.91455082671296,
+      "watts_second_half": 21.747715135208637,
+      "gpu": {
+        "samples": 116,
+        "sm_mhz_mean": 1650,
+        "sm_mhz_min": 1545,
+        "sm_mhz_max": 2512,
+        "mem_mhz_mean": 11104,
+        "temp_c_start": 60,
+        "temp_c_end": 53,
+        "temp_c_max": 60,
+        "pstates": [
+          0,
+          2
+        ],
+        "power_limit_w": [
+          104.987,
+          110.0
+        ],
+        "clock_reasons": [],
+        "other_cpu_cores_mean": 0.52,
+        "other_cpu_cores_max": 1.32
+      }
+    },
+    {
+      "name": "idle_17",
+      "seconds": 11.800255842001206,
+      "energy_j": 277.381,
+      "watts": 23.506354753149054,
+      "watts_first_half": 23.666753360692972,
+      "watts_second_half": 23.345953554849437,
+      "gpu": {
+        "samples": 116,
+        "sm_mhz_mean": 1707,
+        "sm_mhz_min": 1552,
+        "sm_mhz_max": 2587,
+        "mem_mhz_mean": 10510,
+        "temp_c_start": 64,
+        "temp_c_end": 53,
+        "temp_c_max": 64,
+        "pstates": [
+          0,
+          2,
+          4
+        ],
+        "power_limit_w": [
+          105.086,
+          109.287,
+          110.0
+        ],
+        "clock_reasons": [],
+        "other_cpu_cores_mean": 0.47,
+        "other_cpu_cores_max": 0.82
+      }
+    },
+    {
+      "name": "idle_18",
+      "seconds": 11.798266314999637,
+      "energy_j": 246.676,
+      "watts": 20.907817590656546,
+      "watts_first_half": 21.704118485592744,
+      "watts_second_half": 20.111336126905687,
+      "gpu": {
+        "samples": 117,
+        "sm_mhz_mean": 1556,
+        "sm_mhz_min": 1500,
+        "sm_mhz_max": 2617,
+        "mem_mhz_mean": 11257,
+        "temp_c_start": 61,
+        "temp_c_end": 53,
+        "temp_c_max": 61,
+        "pstates": [
+          0,
+          2
+        ],
+        "power_limit_w": [
+          107.529,
+          110.0
+        ],
+        "clock_reasons": [],
+        "other_cpu_cores_mean": 0.17,
+        "other_cpu_cores_max": 0.63
+      }
+    },
+    {
+      "name": "idle_19",
+      "seconds": 11.805613835000258,
+      "energy_j": 242.017,
+      "watts": 20.50016232806879,
+      "watts_first_half": 20.8659917933607,
+      "watts_second_half": 20.13395795847691,
+      "gpu": {
+        "samples": 116,
+        "sm_mhz_mean": 1535,
+        "sm_mhz_min": 1500,
+        "sm_mhz_max": 2490,
+        "mem_mhz_mean": 11130,
+        "temp_c_start": 63,
+        "temp_c_end": 53,
+        "temp_c_max": 63,
+        "pstates": [
+          0,
+          2
+        ],
+        "power_limit_w": [
+          107.699,
+          110.0
+        ],
+        "clock_reasons": [
+          "sw_power_cap"
+        ],
+        "other_cpu_cores_mean": 0.16,
+        "other_cpu_cores_max": 0.27
+      }
+    },
+    {
+      "name": "idle_20",
+      "seconds": 11.79989960000239,
+      "energy_j": 252.912,
+      "watts": 21.433402704540704,
+      "watts_first_half": 22.494113808133772,
+      "watts_second_half": 20.372805763167044,
+      "gpu": {
+        "samples": 116,
+        "sm_mhz_mean": 1534,
+        "sm_mhz_min": 1507,
+        "sm_mhz_max": 1837,
+        "mem_mhz_mean": 11208,
+        "temp_c_start": 64,
+        "temp_c_end": 53,
+        "temp_c_max": 64,
+        "pstates": [
+          0,
+          2
+        ],
+        "power_limit_w": [
+          106.297,
+          110.0
+        ],
+        "clock_reasons": [
+          "sw_power_cap"
+        ],
+        "other_cpu_cores_mean": 0.11,
+        "other_cpu_cores_max": 0.19
+      }
+    },
+    {
+      "name": "idle_21",
+      "seconds": 11.798595595999359,
+      "energy_j": 289.134,
+      "watts": 24.50579796955147,
+      "watts_first_half": 24.783391219024143,
+      "watts_second_half": 24.227952483026918,
+      "gpu": {
+        "samples": 117,
+        "sm_mhz_mean": 1713,
+        "sm_mhz_min": 1680,
+        "sm_mhz_max": 1905,
+        "mem_mhz_mean": 10839,
+        "temp_c_start": 63,
+        "temp_c_end": 54,
+        "temp_c_max": 63,
+        "pstates": [
+          0,
+          2,
+          4
+        ],
+        "power_limit_w": [
+          104.962,
+          108.143,
+          110.0
+        ],
+        "clock_reasons": [
+          "sw_power_cap"
+        ],
+        "other_cpu_cores_mean": 0.9,
+        "other_cpu_cores_max": 2.96
+      }
+    },
+    {
+      "name": "idle_22",
+      "seconds": 11.802499196001008,
+      "energy_j": 291.566,
+      "watts": 24.703750888522837,
+      "watts_first_half": 25.244381356412852,
+      "watts_second_half": 24.163580353344365,
+      "gpu": {
+        "samples": 117,
+        "sm_mhz_mean": 1723,
+        "sm_mhz_min": 1687,
+        "sm_mhz_max": 2557,
+        "mem_mhz_mean": 11180,
+        "temp_c_start": 65,
+        "temp_c_end": 54,
+        "temp_c_max": 65,
+        "pstates": [
+          0,
+          2
+        ],
+        "power_limit_w": [
+          105.022,
+          106.185,
+          110.0
+        ],
+        "clock_reasons": [
+          "sw_power_cap"
+        ],
+        "other_cpu_cores_mean": 0.69,
+        "other_cpu_cores_max": 2.29
+      }
+    },
+    {
+      "name": "idle_23",
+      "seconds": 11.796960013998614,
+      "energy_j": 292.0,
+      "watts": 24.75213950488129,
+      "watts_first_half": 25.510177159669954,
+      "watts_second_half": 23.994809525451036,
+      "gpu": {
+        "samples": 116,
+        "sm_mhz_mean": 1732,
+        "sm_mhz_min": 1680,
+        "sm_mhz_max": 2700,
+        "mem_mhz_mean": 11104,
+        "temp_c_start": 61,
+        "temp_c_end": 54,
+        "temp_c_max": 61,
+        "pstates": [
+          0,
+          2
+        ],
+        "power_limit_w": [
+          104.914,
+          110.0
+        ],
+        "clock_reasons": [],
+        "other_cpu_cores_mean": 0.66,
+        "other_cpu_cores_max": 2.28
+      }
+    },
+    {
+      "name": "idle_24",
+      "seconds": 11.79987040099877,
+      "energy_j": 273.831,
+      "watts": 23.20627182285174,
+      "watts_first_half": 22.41573189350954,
+      "watts_second_half": 23.99699868477234,
+      "gpu": {
+        "samples": 117,
+        "sm_mhz_mean": 1655,
+        "sm_mhz_min": 1500,
+        "sm_mhz_max": 2677,
+        "mem_mhz_mean": 11206,
+        "temp_c_start": 64,
+        "temp_c_end": 54,
+        "temp_c_max": 64,
+        "pstates": [
+          0,
+          2
+        ],
+        "power_limit_w": [
+          105.042,
+          108.012,
+          110.0
+        ],
+        "clock_reasons": [],
+        "other_cpu_cores_mean": 0.57,
+        "other_cpu_cores_max": 1.64
+      }
+    }
+  ],
+  "blocks": [
+    {
+      "name": "block_0_A0",
+      "setup": "A0",
+      "calls": 100,
+      "work_s": 12.197307146001549,
+      "window_s": 12.399844708001183,
+      "energy_j": 1168.478,
+      "round": 0,
+      "idle_w": 23.20527214698296,
+      "busy_w": 95.41270436362792,
+      "j_per_call_above_idle": 8.807362289705061,
+      "j_per_call_total": 11.63778060753812,
+      "wall_ms_per_call": 121.97307146001549,
+      "gpu": {
+        "samples": 123,
+        "sm_mhz_mean": 2593,
+        "sm_mhz_min": 1710,
+        "sm_mhz_max": 2707,
+        "mem_mhz_mean": 13806,
+        "temp_c_start": 52,
+        "temp_c_end": 62,
+        "temp_c_max": 63,
+        "pstates": [
+          0,
+          2
+        ],
+        "power_limit_w": [
+          104.941,
+          110.0
+        ],
+        "clock_reasons": [
+          "sw_power_cap"
+        ],
+        "other_cpu_cores_mean": 0.85,
+        "other_cpu_cores_max": 2.5
+      },
+      "latency": {
+        "calls": 100,
+        "median_ms": 119.81,
+        "p90_ms": 127.88,
+        "p99_ms": 157.56,
+        "mean_ms": 121.96,
+        "min_ms": 114.44,
+        "max_ms": 157.56
+      }
+    },
+    {
+      "name": "block_1_A1",
+      "setup": "A1",
+      "calls": 110,
+      "work_s": 12.838913390001835,
+      "window_s": 13.000732528002118,
+      "energy_j": 1209.193,
+      "round": 0,
+      "idle_w": 23.46596293039981,
+      "busy_w": 93.88611960299889,
+      "j_per_call_above_idle": 8.219257203907812,
+      "j_per_call_total": 10.95814325551142,
+      "wall_ms_per_call": 116.71739445456214,
+      "gpu": {
+        "samples": 128,
+        "sm_mhz_mean": 2669,
+        "sm_mhz_min": 1710,
+        "sm_mhz_max": 2745,
+        "mem_mhz_mean": 13790,
+        "temp_c_start": 52,
+        "temp_c_end": 63,
+        "temp_c_max": 64,
+        "pstates": [
+          0,
+          2
+        ],
+        "power_limit_w": [
+          104.976,
+          110.0
+        ],
+        "clock_reasons": [
+          "sw_power_cap"
+        ],
+        "other_cpu_cores_mean": 0.9,
+        "other_cpu_cores_max": 2.75
+      },
+      "latency": {
+        "calls": 110,
+        "median_ms": 115.23,
+        "p90_ms": 121.19,
+        "p99_ms": 143.2,
+        "mean_ms": 116.71,
+        "min_ms": 108.42,
+        "max_ms": 183.48
+      }
+    },
+    {
+      "name": "block_2_C",
+      "setup": "C",
+      "calls": 435,
+      "work_s": 13.227428418002091,
+      "window_s": 13.412639360001776,
+      "energy_j": 1294.689,
+      "round": 0,
+      "idle_w": 24.704321657482403,
+      "busy_w": 97.53320513596981,
+      "j_per_call_above_idle": 2.214572052815419,
+      "j_per_call_total": 2.9657781363548383,
+      "wall_ms_per_call": 30.407881420694462,
+      "gpu": {
+        "samples": 132,
+        "sm_mhz_mean": 2525,
+        "sm_mhz_min": 1710,
+        "sm_mhz_max": 2647,
+        "mem_mhz_mean": 13887,
+        "temp_c_start": 53,
+        "temp_c_end": 63,
+        "temp_c_max": 64,
+        "pstates": [
+          0,
+          2
+        ],
+        "power_limit_w": [
+          105.023,
+          110.0
+        ],
+        "clock_reasons": [
+          "sw_power_cap"
+        ],
+        "other_cpu_cores_mean": 1.2,
+        "other_cpu_cores_max": 4.78
+      },
+      "latency": {
+        "calls": 435,
+        "median_ms": 29.57,
+        "p90_ms": 34.37,
+        "p99_ms": 41.02,
+        "mean_ms": 30.4,
+        "min_ms": 26.83,
+        "max_ms": 49.77
+      }
+    },
+    {
+      "name": "block_3_B",
+      "setup": "B",
+      "calls": 773,
+      "work_s": 11.73991580999791,
+      "window_s": 11.8985794049986,
+      "energy_j": 1136.928,
+      "round": 0,
+      "idle_w": 24.550892247856964,
+      "busy_w": 96.5111407537157,
+      "j_per_call_above_idle": 1.092894255013337,
+      "j_per_call_total": 1.4657602421416307,
+      "wall_ms_per_call": 15.187471940488887,
+      "gpu": {
+        "samples": 119,
+        "sm_mhz_mean": 1884,
+        "sm_mhz_min": 1672,
+        "sm_mhz_max": 2047,
+        "mem_mhz_mean": 13850,
+        "temp_c_start": 54,
+        "temp_c_end": 64,
+        "temp_c_max": 64,
+        "pstates": [
+          0,
+          2
+        ],
+        "power_limit_w": [
+          104.927,
+          110.0
+        ],
+        "clock_reasons": [
+          "sw_power_cap"
+        ],
+        "other_cpu_cores_mean": 0.64,
+        "other_cpu_cores_max": 1.03
+      },
+      "latency": {
+        "calls": 773,
+        "median_ms": 15.27,
+        "p90_ms": 16.04,
+        "p99_ms": 17.52,
+        "mean_ms": 15.18,
+        "min_ms": 10.96,
+        "max_ms": 18.48
+      }
+    },
+    {
+      "name": "block_4_B",
+      "setup": "B",
+      "calls": 773,
+      "work_s": 11.694837167000514,
+      "window_s": 11.89951294599814,
+      "energy_j": 1200.928,
+      "round": 1,
+      "idle_w": 24.107967505971086,
+      "busy_w": 102.2668093528842,
+      "j_per_call_above_idle": 1.1824772685135767,
+      "j_per_call_total": 1.5472104566244065,
+      "wall_ms_per_call": 15.129155455369359,
+      "gpu": {
+        "samples": 118,
+        "sm_mhz_mean": 1877,
+        "sm_mhz_min": 1665,
+        "sm_mhz_max": 2047,
+        "mem_mhz_mean": 13848,
+        "temp_c_start": 54,
+        "temp_c_end": 64,
+        "temp_c_max": 64,
+        "pstates": [
+          0,
+          2
+        ],
+        "power_limit_w": [
+          104.891,
+          110.0
+        ],
+        "clock_reasons": [
+          "sw_power_cap"
+        ],
+        "other_cpu_cores_mean": 0.57,
+        "other_cpu_cores_max": 0.72
+      },
+      "latency": {
+        "calls": 773,
+        "median_ms": 15.22,
+        "p90_ms": 15.97,
+        "p99_ms": 17.32,
+        "mean_ms": 15.12,
+        "min_ms": 11.18,
+        "max_ms": 18.51
+      }
+    },
+    {
+      "name": "block_5_C",
+      "setup": "C",
+      "calls": 435,
+      "work_s": 12.58988853199844,
+      "window_s": 12.724134823998611,
+      "energy_j": 1256.344,
+      "round": 1,
+      "idle_w": 24.301093846846467,
+      "busy_w": 99.53079926598893,
+      "j_per_call_above_idle": 2.1773186333840977,
+      "j_per_call_total": 2.8806475132402594,
+      "wall_ms_per_call": 28.942272487352735,
+      "gpu": {
+        "samples": 126,
+        "sm_mhz_mean": 2486,
+        "sm_mhz_min": 1740,
+        "sm_mhz_max": 2625,
+        "mem_mhz_mean": 13731,
+        "temp_c_start": 54,
+        "temp_c_end": 63,
+        "temp_c_max": 64,
+        "pstates": [
+          0,
+          2,
+          4
+        ],
+        "power_limit_w": [
+          103.311,
+          104.992,
+          105.379,
+          110.0
+        ],
+        "clock_reasons": [
+          "sw_power_cap"
+        ],
+        "other_cpu_cores_mean": 0.64,
+        "other_cpu_cores_max": 1.84
+      },
+      "latency": {
+        "calls": 435,
+        "median_ms": 28.79,
+        "p90_ms": 31.47,
+        "p99_ms": 34.29,
+        "mean_ms": 28.93,
+        "min_ms": 26.52,
+        "max_ms": 39.05
+      }
+    },
+    {
+      "name": "block_6_A1",
+      "setup": "A1",
+      "calls": 110,
+      "work_s": 12.217474216002302,
+      "window_s": 12.409704343001067,
+      "energy_j": 1178.82,
+      "round": 1,
+      "idle_w": 24.81266785446665,
+      "busy_w": 96.09598816827464,
+      "j_per_call_above_idle": 7.917292072408928,
+      "j_per_call_total": 10.67318416097416,
+      "wall_ms_per_call": 111.06794741820273,
+      "gpu": {
+        "samples": 123,
+        "sm_mhz_mean": 2639,
+        "sm_mhz_min": 1582,
+        "sm_mhz_max": 2737,
+        "mem_mhz_mean": 13855,
+        "temp_c_start": 53,
+        "temp_c_end": 63,
+        "temp_c_max": 65,
+        "pstates": [
+          0,
+          2
+        ],
+        "power_limit_w": [
+          105.057,
+          105.357,
+          110.0
+        ],
+        "clock_reasons": [
+          "sw_power_cap"
+        ],
+        "other_cpu_cores_mean": 0.51,
+        "other_cpu_cores_max": 0.76
+      },
+      "latency": {
+        "calls": 110,
+        "median_ms": 111.53,
+        "p90_ms": 116.13,
+        "p99_ms": 123.72,
+        "mean_ms": 111.06,
+        "min_ms": 103.89,
+        "max_ms": 124.66
+      }
+    },
+    {
+      "name": "block_7_A0",
+      "setup": "A0",
+      "calls": 100,
+      "work_s": 11.678532596000878,
+      "window_s": 11.813107674999628,
+      "energy_j": 1130.375,
+      "round": 1,
+      "idle_w": 24.605732615753485,
+      "busy_w": 96.50730280749119,
+      "j_per_call_above_idle": 8.397048311878539,
+      "j_per_call_total": 11.270636815894129,
+      "wall_ms_per_call": 116.78532596000878,
+      "gpu": {
+        "samples": 117,
+        "sm_mhz_mean": 2588,
+        "sm_mhz_min": 1597,
+        "sm_mhz_max": 2707,
+        "mem_mhz_mean": 13822,
+        "temp_c_start": 53,
+        "temp_c_end": 66,
+        "temp_c_max": 66,
+        "pstates": [
+          0,
+          2
+        ],
+        "power_limit_w": [
+          105.012,
+          105.335,
+          110.0
+        ],
+        "clock_reasons": [
+          "sw_power_cap"
+        ],
+        "other_cpu_cores_mean": 0.52,
+        "other_cpu_cores_max": 0.68
+      },
+      "latency": {
+        "calls": 100,
+        "median_ms": 117.51,
+        "p90_ms": 121.7,
+        "p99_ms": 124.7,
+        "mean_ms": 116.77,
+        "min_ms": 109.05,
+        "max_ms": 124.7
+      }
+    },
+    {
+      "name": "block_8_A0",
+      "setup": "A0",
+      "calls": 100,
+      "work_s": 11.615745609000442,
+      "window_s": 11.802036535998923,
+      "energy_j": 1086.899,
+      "round": 2,
+      "idle_w": 23.827168838037565,
+      "busy_w": 93.18904279297146,
+      "j_per_call_above_idle": 8.056898828240655,
+      "j_per_call_total": 10.824602146294126,
+      "wall_ms_per_call": 116.15745609000442,
+      "gpu": {
+        "samples": 117,
+        "sm_mhz_mean": 2605,
+        "sm_mhz_min": 1537,
+        "sm_mhz_max": 2722,
+        "mem_mhz_mean": 13685,
+        "temp_c_start": 53,
+        "temp_c_end": 64,
+        "temp_c_max": 65,
+        "pstates": [
+          0,
+          2,
+          4
+        ],
+        "power_limit_w": [
+          105.048,
+          105.598,
+          107.431,
+          110.0
+        ],
+        "clock_reasons": [
+          "sw_power_cap"
+        ],
+        "other_cpu_cores_mean": 0.5,
+        "other_cpu_cores_max": 0.83
+      },
+      "latency": {
+        "calls": 100,
+        "median_ms": 116.6,
+        "p90_ms": 120.96,
+        "p99_ms": 127.14,
+        "mean_ms": 116.15,
+        "min_ms": 109.18,
+        "max_ms": 127.14
+      }
+    },
+    {
+      "name": "block_9_A1",
+      "setup": "A1",
+      "calls": 110,
+      "work_s": 12.096562193000864,
+      "window_s": 12.327206573001604,
+      "energy_j": 1212.423,
+      "round": 2,
+      "idle_w": 23.841536213763153,
+      "busy_w": 99.77413949560349,
+      "j_per_call_above_idle": 8.350213255229482,
+      "j_per_call_total": 10.972037124197376,
+      "wall_ms_per_call": 109.96874720909877,
+      "gpu": {
+        "samples": 122,
+        "sm_mhz_mean": 2620,
+        "sm_mhz_min": 1590,
+        "sm_mhz_max": 2730,
+        "mem_mhz_mean": 13829,
+        "temp_c_start": 54,
+        "temp_c_end": 67,
+        "temp_c_max": 67,
+        "pstates": [
+          0,
+          2
+        ],
+        "power_limit_w": [
+          105.216,
+          106.393,
+          110.0
+        ],
+        "clock_reasons": [
+          "sw_power_cap"
+        ],
+        "other_cpu_cores_mean": 0.51,
+        "other_cpu_cores_max": 0.85
+      },
+      "latency": {
+        "calls": 110,
+        "median_ms": 109.97,
+        "p90_ms": 114.83,
+        "p99_ms": 117.99,
+        "mean_ms": 109.96,
+        "min_ms": 103.84,
+        "max_ms": 120.72
+      }
+    },
+    {
+      "name": "block_10_C",
+      "setup": "C",
+      "calls": 435,
+      "work_s": 11.86415665900131,
+      "window_s": 12.002092943999742,
+      "energy_j": 1184.535,
+      "round": 2,
+      "idle_w": 24.186911240922846,
+      "busy_w": 99.5602790209001,
+      "j_per_call_above_idle": 2.0557274557659126,
+      "j_per_call_total": 2.7153994191214728,
+      "wall_ms_per_call": 27.273923354026,
+      "gpu": {
+        "samples": 119,
+        "sm_mhz_mean": 2441,
+        "sm_mhz_min": 1522,
+        "sm_mhz_max": 2587,
+        "mem_mhz_mean": 13690,
+        "temp_c_start": 54,
+        "temp_c_end": 63,
+        "temp_c_max": 65,
+        "pstates": [
+          0,
+          2,
+          4
+        ],
+        "power_limit_w": [
+          105.489,
+          108.374,
+          110.0
+        ],
+        "clock_reasons": [
+          "sw_power_cap"
+        ],
+        "other_cpu_cores_mean": 0.37,
+        "other_cpu_cores_max": 0.47
+      },
+      "latency": {
+        "calls": 435,
+        "median_ms": 27.14,
+        "p90_ms": 27.74,
+        "p99_ms": 30.99,
+        "mean_ms": 27.27,
+        "min_ms": 26.3,
+        "max_ms": 31.54
+      }
+    },
+    {
+      "name": "block_11_B",
+      "setup": "B",
+      "calls": 773,
+      "work_s": 11.419981396000367,
+      "window_s": 11.599400897997839,
+      "energy_j": 1122.154,
+      "round": 2,
+      "idle_w": 23.94340199016204,
+      "busy_w": 97.88615655103506,
+      "j_per_call_above_idle": 1.092399587909691,
+      "j_per_call_total": 1.446129478316688,
+      "wall_ms_per_call": 14.773585247089738,
+      "gpu": {
+        "samples": 115,
+        "sm_mhz_mean": 1855,
+        "sm_mhz_min": 1552,
+        "sm_mhz_max": 2047,
+        "mem_mhz_mean": 13897,
+        "temp_c_start": 54,
+        "temp_c_end": 64,
+        "temp_c_max": 64,
+        "pstates": [
+          0,
+          2
+        ],
+        "power_limit_w": [
+          105.051,
+          110.0
+        ],
+        "clock_reasons": [
+          "sw_power_cap"
+        ],
+        "other_cpu_cores_mean": 0.36,
+        "other_cpu_cores_max": 0.71
+      },
+      "latency": {
+        "calls": 773,
+        "median_ms": 14.79,
+        "p90_ms": 15.45,
+        "p99_ms": 17.24,
+        "mean_ms": 14.77,
+        "min_ms": 12.13,
+        "max_ms": 18.2
+      }
+    },
+    {
+      "name": "block_12_B",
+      "setup": "B",
+      "calls": 773,
+      "work_s": 11.411695188999147,
+      "window_s": 11.61663952500021,
+      "energy_j": 1115.51,
+      "round": 3,
+      "idle_w": 23.908703767407992,
+      "busy_w": 97.32209178285522,
+      "j_per_call_above_idle": 1.083791988129375,
+      "j_per_call_total": 1.436752970998373,
+      "wall_ms_per_call": 14.762865703750514,
+      "gpu": {
+        "samples": 115,
+        "sm_mhz_mean": 1842,
+        "sm_mhz_min": 1545,
+        "sm_mhz_max": 2047,
+        "mem_mhz_mean": 13679,
+        "temp_c_start": 53,
+        "temp_c_end": 64,
+        "temp_c_max": 64,
+        "pstates": [
+          0,
+          2,
+          4
+        ],
+        "power_limit_w": [
+          105.021,
+          110.0
+        ],
+        "clock_reasons": [
+          "sw_power_cap"
+        ],
+        "other_cpu_cores_mean": 0.33,
+        "other_cpu_cores_max": 0.43
+      },
+      "latency": {
+        "calls": 773,
+        "median_ms": 14.82,
+        "p90_ms": 15.42,
+        "p99_ms": 17.27,
+        "mean_ms": 14.76,
+        "min_ms": 10.89,
+        "max_ms": 17.46
+      }
+    },
+    {
+      "name": "block_13_C",
+      "setup": "C",
+      "calls": 435,
+      "work_s": 12.27934063900102,
+      "window_s": 12.405683819000842,
+      "energy_j": 1205.504,
+      "round": 3,
+      "idle_w": 22.760158263906057,
+      "busy_w": 97.93916828139055,
+      "j_per_call_above_idle": 2.1221808572587637,
+      "j_per_call_total": 2.7646630097187095,
+      "wall_ms_per_call": 28.228369285059816,
+      "gpu": {
+        "samples": 122,
+        "sm_mhz_mean": 2473,
+        "sm_mhz_min": 1702,
+        "sm_mhz_max": 2625,
+        "mem_mhz_mean": 13722,
+        "temp_c_start": 53,
+        "temp_c_end": 64,
+        "temp_c_max": 64,
+        "pstates": [
+          0,
+          2,
+          4
+        ],
+        "power_limit_w": [
+          105.0,
+          106.417,
+          110.0
+        ],
+        "clock_reasons": [
+          "sw_power_cap"
+        ],
+        "other_cpu_cores_mean": 0.61,
+        "other_cpu_cores_max": 4.15
+      },
+      "latency": {
+        "calls": 435,
+        "median_ms": 27.24,
+        "p90_ms": 31.5,
+        "p99_ms": 39.72,
+        "mean_ms": 28.22,
+        "min_ms": 26.34,
+        "max_ms": 50.2
+      }
+    },
+    {
+      "name": "block_14_A1",
+      "setup": "A1",
+      "calls": 110,
+      "work_s": 12.801548196999647,
+      "window_s": 12.999402482000733,
+      "energy_j": 1255.706,
+      "round": 3,
+      "idle_w": 23.176543926880353,
+      "busy_w": 97.7319619642397,
+      "j_per_call_above_idle": 8.676588885024659,
+      "j_per_call_total": 11.373822013386825,
+      "wall_ms_per_call": 116.37771088181498,
+      "gpu": {
+        "samples": 128,
+        "sm_mhz_mean": 2671,
+        "sm_mhz_min": 1702,
+        "sm_mhz_max": 2745,
+        "mem_mhz_mean": 13790,
+        "temp_c_start": 53,
+        "temp_c_end": 64,
+        "temp_c_max": 66,
+        "pstates": [
+          0,
+          2
+        ],
+        "power_limit_w": [
+          104.999,
+          105.046,
+          110.0
+        ],
+        "clock_reasons": [
+          "sw_power_cap"
+        ],
+        "other_cpu_cores_mean": 0.81,
+        "other_cpu_cores_max": 2.44
+      },
+      "latency": {
+        "calls": 110,
+        "median_ms": 114.61,
+        "p90_ms": 120.99,
+        "p99_ms": 139.87,
+        "mean_ms": 116.37,
+        "min_ms": 110.79,
+        "max_ms": 156.69
+      }
+    },
+    {
+      "name": "block_15_A0",
+      "setup": "A0",
+      "calls": 100,
+      "work_s": 12.21680187200036,
+      "window_s": 12.402010074001737,
+      "energy_j": 1181.281,
+      "round": 3,
+      "idle_w": 23.757360222260324,
+      "busy_w": 96.33298095193184,
+      "j_per_call_above_idle": 8.866419791918393,
+      "j_per_call_total": 11.76880942028936,
+      "wall_ms_per_call": 122.1680187200036,
+      "gpu": {
+        "samples": 122,
+        "sm_mhz_mean": 2635,
+        "sm_mhz_min": 1702,
+        "sm_mhz_max": 2707,
+        "mem_mhz_mean": 13780,
+        "temp_c_start": 53,
+        "temp_c_end": 60,
+        "temp_c_max": 65,
+        "pstates": [
+          0,
+          2
+        ],
+        "power_limit_w": [
+          104.987,
+          110.0
+        ],
+        "clock_reasons": [
+          "sw_power_cap"
+        ],
+        "other_cpu_cores_mean": 0.83,
+        "other_cpu_cores_max": 2.54
+      },
+      "latency": {
+        "calls": 100,
+        "median_ms": 120.81,
+        "p90_ms": 126.15,
+        "p99_ms": 162.82,
+        "mean_ms": 122.16,
+        "min_ms": 116.34,
+        "max_ms": 162.82
+      }
+    },
+    {
+      "name": "block_16_A0",
+      "setup": "A0",
+      "calls": 100,
+      "work_s": 11.603678108000167,
+      "window_s": 11.810126063999633,
+      "energy_j": 1112.961,
+      "round": 4,
+      "idle_w": 23.168787169616273,
+      "busy_w": 95.50229168127404,
+      "j_per_call_above_idle": 8.393347027768545,
+      "j_per_call_total": 11.081778512458461,
+      "wall_ms_per_call": 116.03678108000167,
+      "gpu": {
+        "samples": 116,
+        "sm_mhz_mean": 2564,
+        "sm_mhz_min": 1665,
+        "sm_mhz_max": 2685,
+        "mem_mhz_mean": 13630,
+        "temp_c_start": 53,
+        "temp_c_end": 64,
+        "temp_c_max": 66,
+        "pstates": [
+          0,
+          2,
+          4
+        ],
+        "power_limit_w": [
+          105.086,
+          110.0
+        ],
+        "clock_reasons": [
+          "sw_power_cap"
+        ],
+        "other_cpu_cores_mean": 0.65,
+        "other_cpu_cores_max": 1.6
+      },
+      "latency": {
+        "calls": 100,
+        "median_ms": 114.45,
+        "p90_ms": 121.8,
+        "p99_ms": 171.78,
+        "mean_ms": 116.03,
+        "min_ms": 110.16,
+        "max_ms": 171.78
+      }
+    },
+    {
+      "name": "block_17_A1",
+      "setup": "A1",
+      "calls": 110,
+      "work_s": 12.057124007998937,
+      "window_s": 12.203843016999599,
+      "energy_j": 1149.141,
+      "round": 4,
+      "idle_w": 22.20719570969112,
+      "busy_w": 95.03782008815608,
+      "j_per_call_above_idle": 7.982980633737661,
+      "j_per_call_total": 10.417116202298097,
+      "wall_ms_per_call": 109.61021825453578,
+      "gpu": {
+        "samples": 120,
+        "sm_mhz_mean": 2622,
+        "sm_mhz_min": 1710,
+        "sm_mhz_max": 2752,
+        "mem_mhz_mean": 13801,
+        "temp_c_start": 53,
+        "temp_c_end": 62,
+        "temp_c_max": 65,
+        "pstates": [
+          0,
+          2
+        ],
+        "power_limit_w": [
+          105.101,
+          106.359,
+          107.529,
+          110.0
+        ],
+        "clock_reasons": [
+          "sw_power_cap"
+        ],
+        "other_cpu_cores_mean": 0.53,
+        "other_cpu_cores_max": 2.4
+      },
+      "latency": {
+        "calls": 110,
+        "median_ms": 108.29,
+        "p90_ms": 116.92,
+        "p99_ms": 124.38,
+        "mean_ms": 109.6,
+        "min_ms": 103.47,
+        "max_ms": 155.25
+      }
+    },
+    {
+      "name": "block_18_C",
+      "setup": "C",
+      "calls": 435,
+      "work_s": 11.737565573999746,
+      "window_s": 11.897418341999582,
+      "energy_j": 1196.629,
+      "round": 4,
+      "idle_w": 20.703926510997903,
+      "busy_w": 101.66668825110648,
+      "j_per_call_above_idle": 2.184610862015269,
+      "j_per_call_total": 2.7432630345718434,
+      "wall_ms_per_call": 26.982909365516658,
+      "gpu": {
+        "samples": 117,
+        "sm_mhz_mean": 2472,
+        "sm_mhz_min": 1515,
+        "sm_mhz_max": 2595,
+        "mem_mhz_mean": 13873,
+        "temp_c_start": 53,
+        "temp_c_end": 63,
+        "temp_c_max": 65,
+        "pstates": [
+          0,
+          2
+        ],
+        "power_limit_w": [
+          107.699,
+          110.0
+        ],
+        "clock_reasons": [
+          "sw_power_cap"
+        ],
+        "other_cpu_cores_mean": 0.15,
+        "other_cpu_cores_max": 0.36
+      },
+      "latency": {
+        "calls": 435,
+        "median_ms": 26.71,
+        "p90_ms": 27.45,
+        "p99_ms": 31.77,
+        "mean_ms": 26.97,
+        "min_ms": 26.06,
+        "max_ms": 38.84
+      }
+    },
+    {
+      "name": "block_19_B",
+      "setup": "B",
+      "calls": 773,
+      "work_s": 11.091724805999547,
+      "window_s": 11.2975876720011,
+      "energy_j": 1125.4,
+      "round": 4,
+      "idle_w": 20.96666956059981,
+      "busy_w": 101.07388714759222,
+      "j_per_call_above_idle": 1.149453056208599,
+      "j_per_call_total": 1.4503023820358958,
+      "wall_ms_per_call": 14.348932478654007,
+      "gpu": {
+        "samples": 112,
+        "sm_mhz_mean": 1839,
+        "sm_mhz_min": 1515,
+        "sm_mhz_max": 2137,
+        "mem_mhz_mean": 13814,
+        "temp_c_start": 53,
+        "temp_c_end": 64,
+        "temp_c_max": 64,
+        "pstates": [
+          0,
+          2
+        ],
+        "power_limit_w": [
+          104.97,
+          106.297,
+          110.0
+        ],
+        "clock_reasons": [
+          "sw_power_cap"
+        ],
+        "other_cpu_cores_mean": 0.2,
+        "other_cpu_cores_max": 1.09
+      },
+      "latency": {
+        "calls": 773,
+        "median_ms": 14.35,
+        "p90_ms": 15.03,
+        "p99_ms": 16.56,
+        "mean_ms": 14.34,
+        "min_ms": 12.01,
+        "max_ms": 16.82
+      }
+    },
+    {
+      "name": "block_20_B",
+      "setup": "B",
+      "calls": 773,
+      "work_s": 11.468448873998568,
+      "window_s": 11.598481295997772,
+      "energy_j": 1137.463,
+      "round": 5,
+      "idle_w": 22.969515449944364,
+      "busy_w": 98.92150462003595,
+      "j_per_call_above_idle": 1.1268454135519903,
+      "j_per_call_total": 1.4676277079869282,
+      "wall_ms_per_call": 14.836285736091291,
+      "gpu": {
+        "samples": 115,
+        "sm_mhz_mean": 1882,
+        "sm_mhz_min": 1507,
+        "sm_mhz_max": 2010,
+        "mem_mhz_mean": 13679,
+        "temp_c_start": 53,
+        "temp_c_end": 63,
+        "temp_c_max": 63,
+        "pstates": [
+          0,
+          2
+        ],
+        "power_limit_w": [
+          104.962,
+          105.713,
+          107.366,
+          110.0
+        ],
+        "clock_reasons": [
+          "sw_power_cap"
+        ],
+        "other_cpu_cores_mean": 0.77,
+        "other_cpu_cores_max": 2.46
+      },
+      "latency": {
+        "calls": 773,
+        "median_ms": 14.96,
+        "p90_ms": 15.63,
+        "p99_ms": 17.29,
+        "mean_ms": 14.83,
+        "min_ms": 11.87,
+        "max_ms": 17.75
+      }
+    },
+    {
+      "name": "block_21_C",
+      "setup": "C",
+      "calls": 435,
+      "work_s": 12.384095577999688,
+      "window_s": 12.49714295299782,
+      "energy_j": 1243.055,
+      "round": 5,
+      "idle_w": 24.604790799655163,
+      "busy_w": 100.15051040070001,
+      "j_per_call_above_idle": 2.1507250851680553,
+      "j_per_call_total": 2.85120343215568,
+      "wall_ms_per_call": 28.46918523678089,
+      "gpu": {
+        "samples": 124,
+        "sm_mhz_mean": 2474,
+        "sm_mhz_min": 1702,
+        "sm_mhz_max": 2625,
+        "mem_mhz_mean": 13727,
+        "temp_c_start": 54,
+        "temp_c_end": 65,
+        "temp_c_max": 65,
+        "pstates": [
+          0,
+          2,
+          4
+        ],
+        "power_limit_w": [
+          106.185,
+          110.0
+        ],
+        "clock_reasons": [
+          "sw_power_cap"
+        ],
+        "other_cpu_cores_mean": 0.52,
+        "other_cpu_cores_max": 1.11
+      },
+      "latency": {
+        "calls": 435,
+        "median_ms": 28.27,
+        "p90_ms": 30.18,
+        "p99_ms": 34.22,
+        "mean_ms": 28.46,
+        "min_ms": 26.45,
+        "max_ms": 35.08
+      }
+    },
+    {
+      "name": "block_22_A1",
+      "setup": "A1",
+      "calls": 110,
+      "work_s": 12.61027076100072,
+      "window_s": 12.8096493310004,
+      "energy_j": 1211.043,
+      "round": 5,
+      "idle_w": 24.727939517899205,
+      "busy_w": 95.64527214673132,
+      "j_per_call_above_idle": 8.129879691795672,
+      "j_per_call_total": 10.96466162527166,
+      "wall_ms_per_call": 114.63882510000654,
+      "gpu": {
+        "samples": 126,
+        "sm_mhz_mean": 2632,
+        "sm_mhz_min": 1717,
+        "sm_mhz_max": 2752,
+        "mem_mhz_mean": 13930,
+        "temp_c_start": 54,
+        "temp_c_end": 61,
+        "temp_c_max": 67,
+        "pstates": [
+          0,
+          2,
+          4
+        ],
+        "power_limit_w": [
+          104.914,
+          110.0
+        ],
+        "clock_reasons": [
+          "sw_power_cap"
+        ],
+        "other_cpu_cores_mean": 0.7,
+        "other_cpu_cores_max": 2.26
+      },
+      "latency": {
+        "calls": 110,
+        "median_ms": 113.41,
+        "p90_ms": 118.75,
+        "p99_ms": 122.62,
+        "mean_ms": 114.63,
+        "min_ms": 109.28,
+        "max_ms": 163.82
+      }
+    },
+    {
+      "name": "block_23_A0",
+      "setup": "A0",
+      "calls": 100,
+      "work_s": 12.023587012001371,
+      "window_s": 12.201922346001083,
+      "energy_j": 1162.086,
+      "round": 5,
+      "idle_w": 23.9791103317154,
+      "busy_w": 96.29486410289269,
+      "j_per_call_above_idle": 8.694947578062164,
+      "j_per_call_total": 11.578096773499777,
+      "wall_ms_per_call": 120.23587012001371,
+      "gpu": {
+        "samples": 120,
+        "sm_mhz_mean": 2611,
+        "sm_mhz_min": 1702,
+        "sm_mhz_max": 2707,
+        "mem_mhz_mean": 13851,
+        "temp_c_start": 54,
+        "temp_c_end": 64,
+        "temp_c_max": 66,
+        "pstates": [
+          0,
+          2
+        ],
+        "power_limit_w": [
+          105.042,
+          110.0
+        ],
+        "clock_reasons": [
+          "sw_power_cap"
+        ],
+        "other_cpu_cores_mean": 0.72,
+        "other_cpu_cores_max": 2.39
+      },
+      "latency": {
+        "calls": 100,
+        "median_ms": 119.54,
+        "p90_ms": 125.69,
+        "p99_ms": 141.79,
+        "mean_ms": 120.22,
+        "min_ms": 111.86,
+        "max_ms": 141.79
+      }
+    }
+  ]
+}

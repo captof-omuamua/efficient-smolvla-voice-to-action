@@ -1,0 +1,401 @@
+{
+  "what": "B with compile_mode max-autotune / default / reduce-overhead on today's stack, fresh process per run",
+  "reference_actions": "max-autotune cold1 (last call)",
+  "parity_reference_eager_C_vs_max_autotune_cold1": {
+    "mean_abs_diff_first_10_steps": 0.00762,
+    "max_abs_diff_first_10_steps": 0.03188,
+    "bit_identical": false
+  },
+  "modes": {
+    "max-autotune": {
+      "cold_first_call_s (caches off)": [
+        158.88,
+        155.46
+      ],
+      "fill_first_call_s (empty cache, caches on)": 158.53,
+      "warm_first_call_s": 5.85,
+      "median_ms_range_over_runs": [
+        13.46,
+        14.59
+      ],
+      "median_ms_mean_over_runs": 14.02,
+      "p99_ms_range_over_runs": [
+        16.59,
+        18.74
+      ],
+      "j_per_decision_total_mean": 1.447,
+      "j_per_decision_above_idle_mean": 1.155,
+      "any_recompile": false,
+      "graph_break_count": [
+        6
+      ],
+      "unique_graphs": [
+        11
+      ],
+      "parity_vs_max_autotune_cold1": {
+        "cold1": {
+          "mean_abs_diff_first_10_steps": 0.0,
+          "max_abs_diff_first_10_steps": 0.0,
+          "bit_identical": true
+        },
+        "cold2": {
+          "mean_abs_diff_first_10_steps": 0.00471,
+          "max_abs_diff_first_10_steps": 0.01784,
+          "bit_identical": false
+        },
+        "fill": {
+          "mean_abs_diff_first_10_steps": 0.00756,
+          "max_abs_diff_first_10_steps": 0.02104,
+          "bit_identical": false
+        },
+        "warm": {
+          "mean_abs_diff_first_10_steps": 0.00756,
+          "max_abs_diff_first_10_steps": 0.02104,
+          "bit_identical": false
+        }
+      },
+      "runs": {
+        "cold1": {
+          "first_call_s": 158.88,
+          "median_ms": 14.07,
+          "p99_ms": 17.9,
+          "j_per_decision_total": 1.4398,
+          "j_per_decision_above_idle": 1.1693,
+          "busy_w": 101.8,
+          "idle_w": 19.1,
+          "recompiled_after_first_call": false,
+          "unique_graphs": 11,
+          "graph_break_count": 6,
+          "frames": {
+            "total": 20,
+            "ok": 18
+          },
+          "first_and_last_call_actions_identical": true,
+          "cpu_pkg_temp_c_mean_during_calls": 89.1,
+          "gpu_temp_c_mean_during_calls": 53.8,
+          "source": "bench/results_final_2026-11-07/followups/compile_modes/max-autotune_cold1.json"
+        },
+        "cold2": {
+          "first_call_s": 155.46,
+          "median_ms": 14.59,
+          "p99_ms": 18.74,
+          "j_per_decision_total": 1.4627,
+          "j_per_decision_above_idle": 1.1235,
+          "busy_w": 101.0,
+          "idle_w": 23.4,
+          "recompiled_after_first_call": false,
+          "unique_graphs": 11,
+          "graph_break_count": 6,
+          "frames": {
+            "total": 20,
+            "ok": 18
+          },
+          "first_and_last_call_actions_identical": true,
+          "cpu_pkg_temp_c_mean_during_calls": 88.4,
+          "gpu_temp_c_mean_during_calls": 53.9,
+          "source": "bench/results_final_2026-11-07/followups/compile_modes/max-autotune_cold2.json"
+        },
+        "fill": {
+          "first_call_s": 158.53,
+          "median_ms": 13.95,
+          "p99_ms": 18.68,
+          "j_per_decision_total": 1.4363,
+          "j_per_decision_above_idle": 1.1654,
+          "busy_w": 103.6,
+          "idle_w": 19.5,
+          "recompiled_after_first_call": false,
+          "unique_graphs": 11,
+          "graph_break_count": 6,
+          "frames": {
+            "total": 20,
+            "ok": 18
+          },
+          "first_and_last_call_actions_identical": true,
+          "cpu_pkg_temp_c_mean_during_calls": 81.3,
+          "gpu_temp_c_mean_during_calls": 54.5,
+          "source": "bench/results_final_2026-11-07/followups/compile_modes/max-autotune_fill.json"
+        },
+        "warm": {
+          "first_call_s": 5.85,
+          "median_ms": 13.46,
+          "p99_ms": 16.59,
+          "j_per_decision_total": 1.4475,
+          "j_per_decision_above_idle": 1.1621,
+          "busy_w": 104.9,
+          "idle_w": 20.7,
+          "recompiled_after_first_call": false,
+          "unique_graphs": 11,
+          "graph_break_count": 6,
+          "frames": {
+            "total": 20,
+            "ok": 18
+          },
+          "first_and_last_call_actions_identical": true,
+          "cpu_pkg_temp_c_mean_during_calls": 79.0,
+          "gpu_temp_c_mean_during_calls": 50.3,
+          "source": "bench/results_final_2026-11-07/followups/compile_modes/max-autotune_warm.json"
+        }
+      }
+    },
+    "default": {
+      "cold_first_call_s (caches off)": [
+        31.04,
+        30.08
+      ],
+      "fill_first_call_s (empty cache, caches on)": 31.96,
+      "warm_first_call_s": 5.64,
+      "median_ms_range_over_runs": [
+        14.86,
+        16.04
+      ],
+      "median_ms_mean_over_runs": 15.43,
+      "p99_ms_range_over_runs": [
+        16.48,
+        20.69
+      ],
+      "j_per_decision_total_mean": 1.532,
+      "j_per_decision_above_idle_mean": 1.186,
+      "any_recompile": false,
+      "graph_break_count": [
+        6
+      ],
+      "unique_graphs": [
+        11
+      ],
+      "parity_vs_max_autotune_cold1": {
+        "cold1": {
+          "mean_abs_diff_first_10_steps": 0.00549,
+          "max_abs_diff_first_10_steps": 0.01551,
+          "bit_identical": false
+        },
+        "cold2": {
+          "mean_abs_diff_first_10_steps": 0.00549,
+          "max_abs_diff_first_10_steps": 0.01551,
+          "bit_identical": false
+        },
+        "fill": {
+          "mean_abs_diff_first_10_steps": 0.00618,
+          "max_abs_diff_first_10_steps": 0.02353,
+          "bit_identical": false
+        },
+        "warm": {
+          "mean_abs_diff_first_10_steps": 0.00618,
+          "max_abs_diff_first_10_steps": 0.02353,
+          "bit_identical": false
+        }
+      },
+      "runs": {
+        "cold1": {
+          "first_call_s": 31.04,
+          "median_ms": 16.04,
+          "p99_ms": 20.69,
+          "j_per_decision_total": 1.5618,
+          "j_per_decision_above_idle": 1.2291,
+          "busy_w": 101.8,
+          "idle_w": 21.7,
+          "recompiled_after_first_call": false,
+          "unique_graphs": 11,
+          "graph_break_count": 6,
+          "frames": {
+            "total": 20,
+            "ok": 18
+          },
+          "first_and_last_call_actions_identical": true,
+          "cpu_pkg_temp_c_mean_during_calls": 74.8,
+          "gpu_temp_c_mean_during_calls": 52.5,
+          "source": "bench/results_final_2026-11-07/followups/compile_modes/default_cold1.json"
+        },
+        "cold2": {
+          "first_call_s": 30.08,
+          "median_ms": 14.86,
+          "p99_ms": 16.48,
+          "j_per_decision_total": 1.465,
+          "j_per_decision_above_idle": 1.1453,
+          "busy_w": 98.5,
+          "idle_w": 21.5,
+          "recompiled_after_first_call": false,
+          "unique_graphs": 11,
+          "graph_break_count": 6,
+          "frames": {
+            "total": 20,
+            "ok": 18
+          },
+          "first_and_last_call_actions_identical": true,
+          "cpu_pkg_temp_c_mean_during_calls": 79.2,
+          "gpu_temp_c_mean_during_calls": 53.3,
+          "source": "bench/results_final_2026-11-07/followups/compile_modes/default_cold2.json"
+        },
+        "fill": {
+          "first_call_s": 31.96,
+          "median_ms": 15.47,
+          "p99_ms": 20.35,
+          "j_per_decision_total": 1.6068,
+          "j_per_decision_above_idle": 1.2324,
+          "busy_w": 102.2,
+          "idle_w": 23.8,
+          "recompiled_after_first_call": false,
+          "unique_graphs": 11,
+          "graph_break_count": 6,
+          "frames": {
+            "total": 20,
+            "ok": 18
+          },
+          "first_and_last_call_actions_identical": true,
+          "cpu_pkg_temp_c_mean_during_calls": 80.5,
+          "gpu_temp_c_mean_during_calls": 53.4,
+          "source": "bench/results_final_2026-11-07/followups/compile_modes/default_fill.json"
+        },
+        "warm": {
+          "first_call_s": 5.64,
+          "median_ms": 15.33,
+          "p99_ms": 19.2,
+          "j_per_decision_total": 1.494,
+          "j_per_decision_above_idle": 1.1357,
+          "busy_w": 98.7,
+          "idle_w": 23.7,
+          "recompiled_after_first_call": false,
+          "unique_graphs": 11,
+          "graph_break_count": 6,
+          "frames": {
+            "total": 20,
+            "ok": 18
+          },
+          "first_and_last_call_actions_identical": true,
+          "cpu_pkg_temp_c_mean_during_calls": 82.3,
+          "gpu_temp_c_mean_during_calls": 53.3,
+          "source": "bench/results_final_2026-11-07/followups/compile_modes/default_warm.json"
+        }
+      }
+    },
+    "reduce-overhead": {
+      "cold_first_call_s (caches off)": [
+        28.11,
+        27.7
+      ],
+      "fill_first_call_s (empty cache, caches on)": 30.06,
+      "warm_first_call_s": 5.64,
+      "median_ms_range_over_runs": [
+        14.37,
+        15.35
+      ],
+      "median_ms_mean_over_runs": 14.84,
+      "p99_ms_range_over_runs": [
+        16.36,
+        18.35
+      ],
+      "j_per_decision_total_mean": 1.535,
+      "j_per_decision_above_idle_mean": 1.2,
+      "any_recompile": false,
+      "graph_break_count": [
+        6
+      ],
+      "unique_graphs": [
+        11
+      ],
+      "parity_vs_max_autotune_cold1": {
+        "cold1": {
+          "mean_abs_diff_first_10_steps": 0.00549,
+          "max_abs_diff_first_10_steps": 0.01551,
+          "bit_identical": false
+        },
+        "cold2": {
+          "mean_abs_diff_first_10_steps": 0.00552,
+          "max_abs_diff_first_10_steps": 0.01434,
+          "bit_identical": false
+        },
+        "fill": {
+          "mean_abs_diff_first_10_steps": 0.00552,
+          "max_abs_diff_first_10_steps": 0.01434,
+          "bit_identical": false
+        },
+        "warm": {
+          "mean_abs_diff_first_10_steps": 0.00552,
+          "max_abs_diff_first_10_steps": 0.01434,
+          "bit_identical": false
+        }
+      },
+      "runs": {
+        "cold1": {
+          "first_call_s": 28.11,
+          "median_ms": 14.37,
+          "p99_ms": 18.35,
+          "j_per_decision_total": 1.527,
+          "j_per_decision_above_idle": 1.2329,
+          "busy_w": 104.1,
+          "idle_w": 20.0,
+          "recompiled_after_first_call": false,
+          "unique_graphs": 11,
+          "graph_break_count": 6,
+          "frames": {
+            "total": 20,
+            "ok": 18
+          },
+          "first_and_last_call_actions_identical": true,
+          "cpu_pkg_temp_c_mean_during_calls": 81.4,
+          "gpu_temp_c_mean_during_calls": 52.2,
+          "source": "bench/results_final_2026-11-07/followups/compile_modes/reduce-overhead_cold1.json"
+        },
+        "cold2": {
+          "first_call_s": 27.7,
+          "median_ms": 14.61,
+          "p99_ms": 16.36,
+          "j_per_decision_total": 1.4882,
+          "j_per_decision_above_idle": 1.1906,
+          "busy_w": 101.4,
+          "idle_w": 20.3,
+          "recompiled_after_first_call": false,
+          "unique_graphs": 11,
+          "graph_break_count": 6,
+          "frames": {
+            "total": 20,
+            "ok": 18
+          },
+          "first_and_last_call_actions_identical": true,
+          "cpu_pkg_temp_c_mean_during_calls": 81.6,
+          "gpu_temp_c_mean_during_calls": 53.9,
+          "source": "bench/results_final_2026-11-07/followups/compile_modes/reduce-overhead_cold2.json"
+        },
+        "fill": {
+          "first_call_s": 30.06,
+          "median_ms": 15.35,
+          "p99_ms": 17.97,
+          "j_per_decision_total": 1.5554,
+          "j_per_decision_above_idle": 1.181,
+          "busy_w": 102.1,
+          "idle_w": 24.6,
+          "recompiled_after_first_call": false,
+          "unique_graphs": 11,
+          "graph_break_count": 6,
+          "frames": {
+            "total": 20,
+            "ok": 18
+          },
+          "first_and_last_call_actions_identical": true,
+          "cpu_pkg_temp_c_mean_during_calls": 80.5,
+          "gpu_temp_c_mean_during_calls": 55.0,
+          "source": "bench/results_final_2026-11-07/followups/compile_modes/reduce-overhead_fill.json"
+        },
+        "warm": {
+          "first_call_s": 5.64,
+          "median_ms": 15.02,
+          "p99_ms": 18.31,
+          "j_per_decision_total": 1.5707,
+          "j_per_decision_above_idle": 1.1956,
+          "busy_w": 103.0,
+          "idle_w": 24.6,
+          "recompiled_after_first_call": false,
+          "unique_graphs": 11,
+          "graph_break_count": 6,
+          "frames": {
+            "total": 20,
+            "ok": 18
+          },
+          "first_and_last_call_actions_identical": true,
+          "cpu_pkg_temp_c_mean_during_calls": 87.2,
+          "gpu_temp_c_mean_during_calls": 53.0,
+          "source": "bench/results_final_2026-11-07/followups/compile_modes/reduce-overhead_warm.json"
+        }
+      }
+    }
+  }
+}

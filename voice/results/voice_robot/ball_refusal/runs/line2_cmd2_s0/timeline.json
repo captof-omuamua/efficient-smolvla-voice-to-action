@@ -1,0 +1,58 @@
+{
+ "fps": 20,
+ "steps": 162,
+ "success": true,
+ "goals_hold_at_end": true,
+ "expected": [
+  2
+ ],
+ "did_expected": true,
+ "earlier_goals_hold": true,
+ "plan": [
+  2
+ ],
+ "done": [
+  2
+ ],
+ "lines": [
+  {
+   "file": "<project>/voice-robot/results/voice_robot/ball_refusal/runs/line2_cmd2_s0/line_1_trimmed.raw",
+   "recorded_s": 4.3503125,
+   "trim_flag": "",
+   "speech_end_s": 2.68,
+   "start_s": 0.0,
+   "end_s": 2.78,
+   "heard": "put the wine bottle on top of the cabinet.",
+   "event": "plan",
+   "commands": [
+    2
+   ],
+   "level": "rule",
+   "speech_ms": 66.39742399966053,
+   "parse_ms": 0.0676869985909434,
+   "effect_s": 2.85
+  }
+ ],
+ "states": [
+  {
+   "from_step": 0,
+   "state": "WAITING",
+   "command": null
+  },
+  {
+   "from_step": 57,
+   "state": "MOVING",
+   "command": "put the wine bottle on top of the cabinet"
+  },
+  {
+   "from_step": 142,
+   "state": "DONE",
+   "command": null
+  },
+  {
+   "from_step": 162,
+   "state": "DONE",
+   "command": null
+  }
+ ]
+}

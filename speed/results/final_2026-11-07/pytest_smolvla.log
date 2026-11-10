@@ -1,0 +1,79 @@
+
+Testing with DEVICE='cuda'
+..F............                                                          [100%]
+=================================== FAILURES ===================================
+_________________________ test_smolvla_tuple_kv_parity _________________________
+
+    @skip_if_package_missing("transformers")
+    def test_smolvla_tuple_kv_parity():
+        from lerobot.policies.smolvla.modeling_smolvla import make_att_2d_masks
+    
+        policy, batch, noise = _build_tiny_smolvla_policy_and_batch(device="cpu")
+        config = policy.config
+    
+        with torch.no_grad():
+            images, img_masks = policy.prepare_images(batch)
+            state = policy.prepare_state(batch)
+            lang_tokens = batch["observation.language.tokens"]
+            lang_masks = batch["observation.language.attention_mask"]
+    
+            prefix_embs, prefix_pad_masks, prefix_att_masks = policy.model.embed_prefix(
+                images, img_masks, lang_tokens, lang_masks, state=state
+            )
+            prefix_att_2d_masks = make_att_2d_masks(prefix_pad_masks, prefix_att_masks)
+            prefix_position_ids = torch.cumsum(prefix_pad_masks, dim=1) - 1
+    
+            _, dynamic_kv = policy.model.vlm_with_expert.forward(
+                attention_mask=prefix_att_2d_masks,
+                position_ids=prefix_position_ids,
+                past_key_values=None,
+                inputs_embeds=[prefix_embs, None],
+                use_cache=True,
+            )
+            tuple_kv = tuple((layer.keys.clone(), layer.values.clone()) for layer in dynamic_kv.layers)
+            tuple_kv_snapshot = tuple((k.clone(), v.clone()) for k, v in tuple_kv)
+    
+            prefix_len = prefix_pad_masks.shape[1]
+            x_dyn = noise.clone()
+            x_tup = noise.clone()
+            dt = -1.0 / config.num_steps
+            for step in range(config.num_steps):
+                t = torch.tensor(1.0 + step * dt, dtype=torch.float32, device="cpu").expand(1)
+>               dynamic_kv.crop(prefix_len)
+
+tests/policies/smolvla/test_smolvla_compile_parity.py:109: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+.venv/lib/python3.12/site-packages/transformers/cache_utils.py:1797: in crop
+    self.layers[layer_idx].crop(tokens_to_remove)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = DynamicLayer, tokens_to_remove = 70
+
+    def crop(self, tokens_to_remove: int) -> None:
+        """
+        Remove `tokens_to_remove` tokens from the current cache layer.
+        """
+        # Legacy path: `tokens_to_remove` represents the final absolute size that the cache should have
+        if tokens_to_remove > 0:
+>           raise ValueError(
+                f"Calling `crop` with a positive value (`{tokens_to_remove}`) is not supported. "
+                "Please use a negative integer to remove that number of tokens from the cache instead."
+            )
+E           ValueError: Calling `crop` with a positive value (`70`) is not supported. Please use a negative integer to remove that number of tokens from the cache instead.
+
+.venv/lib/python3.12/site-packages/transformers/cache_utils.py:169: ValueError
+----------------------------- Captured stdout call -----------------------------
+Reducing the number of VLM layers to 2 ...
+=============================== warnings summary ===============================
+tests/policies/smolvla/test_smolvla_compile_parity.py::test_smolvla_compile_parity
+  <project>/lerobot-final-2026-11-07/.venv/lib/python3.12/site-packages/triton/knobs.py:504: UserWarning: TRITON_DEFAULT_FP_FUSION is unset: defaulting to FP fusion ENABLED for backward compatibility in Triton 3.9. The default will change to DISABLED in Triton 3.10; set TRITON_DEFAULT_FP_FUSION=1 to keep fusion enabled or =0 to adopt the new default early and silence this warning.
+    warn_once(FP_FUSION_DEFAULT_WARNING)
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED tests/policies/smolvla/test_smolvla_compile_parity.py::test_smolvla_tuple_kv_parity
+1 failed, 14 passed, 1 warning in 82.81s (0:01:22)
+
+real	1m32.285s
+user	5m58.725s
+sys	0m15.190s

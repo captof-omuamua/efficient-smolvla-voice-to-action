@@ -1,0 +1,72 @@
+{
+ "fps": 20,
+ "steps": 489,
+ "success": true,
+ "goals_hold_at_end": true,
+ "expected": [
+  0,
+  7
+ ],
+ "did_expected": true,
+ "earlier_goals_hold": true,
+ "plan": [
+  0,
+  7
+ ],
+ "done": [
+  0,
+  7
+ ],
+ "lines": [
+  {
+   "file": "<project>/voice-robot/results/voice_robot/stage2b_take2/runs/two_step_2_s2/line_1_trimmed.raw",
+   "recorded_s": 4.4783125,
+   "trim_flag": "",
+   "speech_end_s": 3.08,
+   "start_s": 0.0,
+   "end_s": 3.18,
+   "heard": "Open the middle drawer, then turn on the stove.",
+   "event": "plan",
+   "commands": [
+    0,
+    7
+   ],
+   "level": "rule",
+   "speech_ms": 62.79654200079676,
+   "parse_ms": 0.06511799983854871,
+   "effect_s": 3.25
+  }
+ ],
+ "states": [
+  {
+   "from_step": 0,
+   "state": "WAITING",
+   "command": null
+  },
+  {
+   "from_step": 65,
+   "state": "MOVING",
+   "command": "open the middle drawer of the cabinet"
+  },
+  {
+   "from_step": 355,
+   "state": "RETURNING",
+   "command": "turn on the stove"
+  },
+  {
+   "from_step": 398,
+   "state": "MOVING",
+   "command": "turn on the stove"
+  },
+  {
+   "from_step": 469,
+   "state": "DONE",
+   "command": null
+  },
+  {
+   "from_step": 489,
+   "state": "DONE",
+   "command": null
+  }
+ ]
+}

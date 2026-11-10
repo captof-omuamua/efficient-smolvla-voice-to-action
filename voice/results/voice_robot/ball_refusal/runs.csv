@@ -1,0 +1,6 @@
+run_id,start,result,success,did_expected,earlier_goals_hold,goals_hold_at_end,end_check_move_mm,steps,moving_steps,plan,done,expected,policy_calls,call_ms_median,max_move_mm,refusal_move_mm,creep_60_mm,creep_100_mm,stop_exercised,stop_delay_ms,stop_delay_clip_ms,overrun_mm,hold_offset_mm
+line1_cmd7_s0,0,success,True,True,True,True,2.4075962980127414,124,78,[7],[7],[7],8,13.746749500569422,404.50311501118534,nan,nan,nan,,nan,nan,nan,nan
+line2_cmd2_s0,0,success,True,True,True,True,4.228940873605428,162,85,[2],[2],[2],9,12.996501000088756,292.9184389762011,nan,nan,nan,,nan,nan,nan,nan
+line3_cmd8_s0,0,success,True,True,True,True,3.7460605028936724,315,238,[8],[8],[8],24,12.85003599969059,359.6668690579345,nan,nan,nan,,nan,nan,nan,nan
+line4_cmd5_s0,0,success,True,True,True,True,4.164373578304766,207,135,[5],[5],[5],14,13.366967999900226,457.0879889026851,nan,nan,nan,,nan,nan,nan,nan
+line5_refuse_s0,0,ended: idle,False,False,False,False,nan,144,0,[],[],,0,nan,0.35946835711016545,0.3460016036215756,0.3460016036215756,0.35946835711016545,,nan,nan,nan,nan

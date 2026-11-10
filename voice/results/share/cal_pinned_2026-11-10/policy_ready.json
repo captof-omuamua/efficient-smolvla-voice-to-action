@@ -1,0 +1,31 @@
+{
+  "pid": 103697,
+  "first_call_ms": 5260.74,
+  "warmup": 300,
+  "settings": {
+    "out": "<project>/voice-robot/results/share/cal_pinned_2026-11-10",
+    "num_steps": 1,
+    "compile": true,
+    "warmup": 300,
+    "max_decisions": 600,
+    "stop_file": null,
+    "model": "lerobot/smolvla_libero",
+    "empty_cameras": 0,
+    "compile_mode": "default",
+    "period_ns": 500000000,
+    "observation": "synthetic, fixed shapes"
+  },
+  "ready_ns": 42823393191203,
+  "cpu_cores": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "torch": "2.11.0+cu128",
+  "driver": "595.99.02",
+  "lerobot_fast": {
+    "commit": "8c4f33e534d6b521b33036f704e1d65e3b2252e9",
+    "dirty": true
+  }
+}

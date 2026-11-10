@@ -1,0 +1,61 @@
+{
+  "stack": "NEW",
+  "setup": "B",
+  "label": "run3",
+  "created": "2026-11-07T22:03:24+00:00",
+  "lerobot_file": "<project>/lerobot-final-2026-11-07/src/lerobot/__init__.py",
+  "torch": "2.15.0+cu132",
+  "transformers": "5.22.1",
+  "float32_matmul_precision": "high",
+  "cuda_matmul_allow_tf32": true,
+  "compile_mode": "max-autotune",
+  "load_s": 2.92,
+  "first_call_s": 5.72,
+  "latency": {
+    "calls": 200,
+    "median_ms": 13.53,
+    "p90_ms": 15.02,
+    "p99_ms": 16.5,
+    "mean_ms": 13.76,
+    "min_ms": 11.29,
+    "max_ms": 16.5
+  },
+  "parts_ms": null,
+  "gpu_profile": {
+    "gpu_kernel_ms_per_call": 12.14,
+    "kernels_per_call": 949,
+    "profiled_calls": 10
+  },
+  "dynamo": {
+    "frames": {
+      "total": 20,
+      "ok": 18
+    },
+    "unique_graphs": 11,
+    "graph_break_count": 6,
+    "unimplemented_reasons": {
+      "Dynamic shape operator | Explanation: Operator `aten.nonzero.default`'s output shape depends on input Tensor data.": 2,
+      "Reconstruction failure | Explanation: Dynamo has no bytecode reconstruction implemented for sourceless variable DictItemsIterator().": 1,
+      "Reconstruction failure | Explanation: Dynamo has no bytecode reconstruction implemented for sourceless variable DictIterator().": 1
+    }
+  },
+  "temps_start": {
+    "cpu_pkg_c": 60.0,
+    "gpu_c": 42
+  },
+  "gpu_cpu_during_timed_calls": {
+    "samples": 26,
+    "sm_mhz_mean": 1962.6,
+    "gpu_temp_c_mean": 51.0,
+    "gpu_temp_c_max": 52,
+    "power_w_avg_mean": 92.2,
+    "cpu_pkg_temp_c_mean": 87.5,
+    "cpu_pkg_temp_c_max": 94.0,
+    "cpu_mhz_mean": 1362.8
+  },
+  "env": {
+    "PYTHONPATH": null,
+    "TORCHINDUCTOR_CACHE_DIR": "<scratch>/followups/cache_stack_new_3LS5",
+    "TORCHINDUCTOR_FORCE_DISABLE_CACHES": null
+  }
+}

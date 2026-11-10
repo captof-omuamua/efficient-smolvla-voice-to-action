@@ -1,0 +1,54 @@
+{
+  "what": "Eager A0 and A1 with TF32 on (today's lerobot-eval/rollout default) vs off (the talk's speed runs)",
+  "created": "2026-11-07T19:01:44+00:00",
+  "torch": "2.15.0+cu132",
+  "rounds": 4,
+  "calls_per_block": 100,
+  "redone_blocks": 0,
+  "results": {
+    "A0_tf32_on": {
+      "calls": 400,
+      "median_ms": 109.54,
+      "p90_ms": 126.8,
+      "p99_ms": 131.52,
+      "mean_ms": 112.73,
+      "min_ms": 106.09,
+      "max_ms": 168.9
+    },
+    "A0_tf32_off": {
+      "calls": 400,
+      "median_ms": 110.46,
+      "p90_ms": 128.48,
+      "p99_ms": 135.44,
+      "mean_ms": 114.14,
+      "min_ms": 106.59,
+      "max_ms": 158.71
+    },
+    "A1_tf32_on": {
+      "calls": 400,
+      "median_ms": 104.83,
+      "p90_ms": 123.07,
+      "p99_ms": 127.6,
+      "mean_ms": 108.47,
+      "min_ms": 100.95,
+      "max_ms": 160.96
+    },
+    "A1_tf32_off": {
+      "calls": 400,
+      "median_ms": 105.24,
+      "p90_ms": 120.99,
+      "p99_ms": 133.19,
+      "mean_ms": 108.46,
+      "min_ms": 101.82,
+      "max_ms": 143.61
+    }
+  },
+  "median_ratio_off_over_on": {
+    "A0": 1.008,
+    "A1": 1.004
+  },
+  "actions_max_abs_diff_on_vs_off": {
+    "A0": 1.4326878786087036,
+    "A1": 0.005536794662475586
+  }
+}

@@ -1,0 +1,5 @@
+run | Spatial | Object | Goal | Long | overall | only ref won | only run won | McNemar p | diff [95% CI]
+baseline_eager_n10 | 86 | 90 | 86 | 73 | 83.75 | 0 | 0 | 1.00 | +0.00 [+0.0, +0.0]
+final_2026-11-07_A1_eager_steps10 | 79 | 89 | 87 | 73 | 82.00 | 27 | 20 | 0.38 | -1.75 [-5.1, +1.6]
+final_2026-11-07_B_tuned | 80 | 89 | 87 | 72 | 82.00 | 28 | 21 | 0.39 | -1.75 [-5.2, +1.7]
+batched_compile_model_steps1_noblank | 84 | 88 | 87 | 73 | 83.00 | 28 | 25 | 0.78 | -0.75 [-4.3, +2.8]

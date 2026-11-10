@@ -1,0 +1,14 @@
+run_id,start,result,success,did_expected,earlier_goals_hold,goals_hold_at_end,end_check_move_mm,steps,moving_steps,plan,done,expected,policy_calls,call_ms_median,max_move_mm,refusal_move_mm,creep_60_mm,creep_100_mm,stop_exercised,stop_delay_ms,stop_delay_clip_ms,overrun_mm,hold_offset_mm
+line1_cmd7_s0,0,success,True,True,True,True,2.4075962980127414,142,78,[7],[7],[7],8,13.950238000688842,404.50311501118534,nan,nan,nan,,nan,nan,nan,nan
+line1_cmd7_s1,1,success,True,True,True,True,5.999919681187401,137,73,[7],[7],[7],8,12.566295000397076,399.6120946769531,nan,nan,nan,,nan,nan,nan,nan
+line1_cmd7_s2,2,success,True,True,True,True,1.0100228134121345,137,73,[7],[7],[7],8,13.88033999955951,399.58249758523743,nan,nan,nan,,nan,nan,nan,nan
+line2_cmd2_s0,0,success,True,True,True,True,4.228940873605428,178,85,[2],[2],[2],9,12.652284000068903,292.9184389762011,nan,nan,nan,,nan,nan,nan,nan
+line2_cmd2_s1,1,failed: 300 acting steps,False,False,False,False,nan,373,300,[2],[],[2],30,12.648466500650102,403.0247807558133,nan,nan,nan,,nan,nan,nan,nan
+line2_cmd2_s2,2,success,True,True,True,True,3.5866451010625156,188,95,[2],[2],[2],10,13.392468000347435,291.03004294790384,nan,nan,nan,,nan,nan,nan,nan
+line3_cmd8_s0,0,success,True,True,True,True,3.7460605028936724,315,238,[8],[8],[8],24,12.756219500261068,359.6668690579345,nan,nan,nan,,nan,nan,nan,nan
+line3_cmd8_s1,1,success,True,True,True,True,1.4738629506186653,156,79,[8],[8],[8],8,14.050541499273095,356.1491788109091,nan,nan,nan,,nan,nan,nan,nan
+line3_cmd8_s2,2,success,True,True,True,True,3.463700162725437,157,80,[8],[8],[8],8,12.802396500774194,345.73623118064364,nan,nan,nan,,nan,nan,nan,nan
+line4_cmd5_s0,0,success,True,True,True,True,4.164373578304766,208,135,[5],[5],[5],14,12.936776499373082,457.0879889026851,nan,nan,nan,,nan,nan,nan,nan
+line4_cmd5_s1,1,success,True,True,True,True,2.966084406899677,205,132,[5],[5],[5],14,12.767594000251847,458.516603969702,nan,nan,nan,,nan,nan,nan,nan
+line4_cmd5_s2,2,success,True,True,True,True,3.9562142152842936,198,125,[5],[5],[5],13,13.022557999647688,438.59159199060485,nan,nan,nan,,nan,nan,nan,nan
+line5_refuse_s0,0,ended: idle,False,False,False,False,nan,166,0,[],[],,0,nan,0.35946835711016545,0.3460016036215756,0.3460016036215756,0.35946835711016545,,nan,nan,nan,nan

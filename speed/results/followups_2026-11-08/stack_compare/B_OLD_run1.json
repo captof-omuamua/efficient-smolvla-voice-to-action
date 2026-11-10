@@ -1,0 +1,59 @@
+{
+  "stack": "OLD",
+  "setup": "B",
+  "label": "run1",
+  "created": "2026-11-07T22:01:15+00:00",
+  "lerobot_file": "<scratch>/followups/wt-talk-8c4f33e5/src/lerobot/__init__.py",
+  "torch": "2.11.0+cu128",
+  "transformers": "5.5.4",
+  "float32_matmul_precision": "high",
+  "cuda_matmul_allow_tf32": true,
+  "compile_mode": "max-autotune",
+  "load_s": 3.77,
+  "first_call_s": 16.28,
+  "latency": {
+    "calls": 200,
+    "median_ms": 13.49,
+    "p90_ms": 14.6,
+    "p99_ms": 15.89,
+    "mean_ms": 13.7,
+    "min_ms": 11.63,
+    "max_ms": 15.9
+  },
+  "parts_ms": null,
+  "gpu_profile": {
+    "gpu_kernel_ms_per_call": 12.01,
+    "kernels_per_call": 793,
+    "profiled_calls": 10
+  },
+  "dynamo": {
+    "frames": {
+      "total": 19,
+      "ok": 17
+    },
+    "unique_graphs": 10,
+    "graph_break_count": 6,
+    "unimplemented_reasons": {
+      "Dynamic shape operator | Explanation: Operator `aten.nonzero.default`'s output shape depends on input Tensor data.": 3
+    }
+  },
+  "temps_start": {
+    "cpu_pkg_c": 60.0,
+    "gpu_c": 44
+  },
+  "gpu_cpu_during_timed_calls": {
+    "samples": 26,
+    "sm_mhz_mean": 1973.0,
+    "gpu_temp_c_mean": 56.5,
+    "gpu_temp_c_max": 57,
+    "power_w_avg_mean": 101.8,
+    "cpu_pkg_temp_c_mean": 83.7,
+    "cpu_pkg_temp_c_max": 92.0,
+    "cpu_mhz_mean": 1446.5
+  },
+  "env": {
+    "PYTHONPATH": "<scratch>/followups/wt-talk-8c4f33e5/src",
+    "TORCHINDUCTOR_CACHE_DIR": "<scratch>/followups/cache_stack_old_BNxr",
+    "TORCHINDUCTOR_FORCE_DISABLE_CACHES": null
+  }
+}

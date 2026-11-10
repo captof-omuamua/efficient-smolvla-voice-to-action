@@ -1,0 +1,30 @@
+{
+ "pid": 105551,
+ "ready_ns": 43476198713907,
+ "settings": {
+  "out": "<project>/voice-robot/results/share/smoke_1",
+  "rounds": 1,
+  "block_s": 30.0,
+  "regimes": [
+   "idle",
+   "whisper_flat",
+   "llm_flat",
+   "user_llm",
+   "user_router",
+   "user_llm_gate",
+   "user_router_gate",
+   "flat_gate"
+  ],
+  "seed": 20261110,
+  "guard_after_ms": 25.0,
+  "whisper_budget_ms": 100.0,
+  "llm_budget_ms": 140.0
+ },
+ "cpu_threads": 1,
+ "cpu_cores": [
+  4,
+  5,
+  6,
+  7
+ ]
+}

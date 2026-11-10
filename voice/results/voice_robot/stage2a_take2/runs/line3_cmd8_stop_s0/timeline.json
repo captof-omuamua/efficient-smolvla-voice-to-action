@@ -1,0 +1,91 @@
+{
+ "fps": 20,
+ "steps": 438,
+ "success": false,
+ "goals_hold_at_end": false,
+ "expected": [
+  8
+ ],
+ "did_expected": false,
+ "earlier_goals_hold": false,
+ "plan": [
+  8
+ ],
+ "done": [],
+ "lines": [
+  {
+   "file": "<project>/voice-robot/results/voice_robot/stage2a_take2/runs/line3_cmd8_stop_s0/line_1_trimmed.raw",
+   "recorded_s": 3.667625,
+   "trim_flag": "",
+   "speech_end_s": 2.66,
+   "start_s": 0.0,
+   "end_s": 2.76,
+   "heard": "Kindly keep the bowl on the plate.",
+   "event": "plan",
+   "commands": [
+    8
+   ],
+   "level": "rule",
+   "speech_ms": 70.52973699865106,
+   "parse_ms": 0.07246099994517863,
+   "effect_s": 2.85
+  },
+  {
+   "file": "<project>/voice-robot/results/voice_robot/stage2a_take2/runs/line3_cmd8_stop_s0/line_2_trimmed.raw",
+   "recorded_s": 2.1743125,
+   "trim_flag": "",
+   "speech_end_s": 0.36,
+   "start_s": 3.85,
+   "end_s": 4.3100000000000005,
+   "heard": "Stop.",
+   "event": "stop",
+   "commands": [],
+   "level": "rule",
+   "speech_ms": 52.020195000295644,
+   "parse_ms": 0.01154300116468221,
+   "effect_s": 4.4
+  },
+  {
+   "file": "<project>/voice-robot/results/voice_robot/stage2a_take2/runs/line3_cmd8_stop_s0/line_3_trimmed.raw",
+   "recorded_s": 2.1743125,
+   "trim_flag": "",
+   "speech_end_s": 0.88,
+   "start_s": 7.4,
+   "end_s": 8.38,
+   "heard": "Continue",
+   "event": "continue",
+   "commands": [],
+   "level": "rule",
+   "speech_ms": 52.28227699990384,
+   "parse_ms": 0.009900999430101365,
+   "effect_s": 8.450000000000001
+  }
+ ],
+ "states": [
+  {
+   "from_step": 0,
+   "state": "WAITING",
+   "command": null
+  },
+  {
+   "from_step": 57,
+   "state": "MOVING",
+   "command": "put the bowl on the plate"
+  },
+  {
+   "from_step": 88,
+   "state": "HOLDING",
+   "command": "put the bowl on the plate"
+  },
+  {
+   "from_step": 169,
+   "state": "MOVING",
+   "command": "put the bowl on the plate"
+  },
+  {
+   "from_step": 438,
+   "state": "FAILED",
+   "command": null
+  }
+ ]
+}

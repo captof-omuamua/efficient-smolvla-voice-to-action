@@ -1,0 +1,82 @@
+{
+  "mode": "max-autotune",
+  "label": "cold2",
+  "created": "2026-11-07T21:28:59+00:00",
+  "torch": "2.15.0+cu132",
+  "compile_mode_in_config": "max-autotune",
+  "load_s": 3.02,
+  "first_call_s": 155.46,
+  "latency_200_warm_calls": {
+    "calls": 200,
+    "median_ms": 14.59,
+    "p90_ms": 18.21,
+    "p99_ms": 18.74,
+    "mean_ms": 15.35,
+    "min_ms": 13.25,
+    "max_ms": 19.51
+  },
+  "energy": {
+    "calls": 411,
+    "work_s": 5.95,
+    "idle_w": 23.4,
+    "busy_w": 101.0,
+    "j_per_call_total": 1.4627,
+    "j_per_call_above_idle": 1.1235
+  },
+  "dynamo_after_first_call": {
+    "frames": {
+      "total": 20,
+      "ok": 18
+    },
+    "unique_graphs": 11,
+    "graph_break_count": 6,
+    "unimplemented_reasons": {
+      "Dynamic shape operator | Explanation: Operator `aten.nonzero.default`'s output shape depends on input Tensor data.": 2,
+      "Reconstruction failure | Explanation: Dynamo has no bytecode reconstruction implemented for sourceless variable DictItemsIterator().": 1,
+      "Reconstruction failure | Explanation: Dynamo has no bytecode reconstruction implemented for sourceless variable DictIterator().": 1
+    }
+  },
+  "dynamo_after_all_calls": {
+    "frames": {
+      "total": 20,
+      "ok": 18
+    },
+    "unique_graphs": 11,
+    "graph_break_count": 6,
+    "unimplemented_reasons": {
+      "Dynamic shape operator | Explanation: Operator `aten.nonzero.default`'s output shape depends on input Tensor data.": 2,
+      "Reconstruction failure | Explanation: Dynamo has no bytecode reconstruction implemented for sourceless variable DictItemsIterator().": 1,
+      "Reconstruction failure | Explanation: Dynamo has no bytecode reconstruction implemented for sourceless variable DictIterator().": 1
+    }
+  },
+  "recompiled_after_first_call": false,
+  "first_and_last_call_actions_identical": true,
+  "temps_start": {
+    "cpu_pkg_c": 64.0,
+    "gpu_c": 43
+  },
+  "gpu_cpu_during_timed_calls": {
+    "samples": 29,
+    "sm_mhz_mean": 1766.1,
+    "gpu_temp_c_mean": 53.9,
+    "gpu_temp_c_max": 57,
+    "power_w_avg_mean": 78.9,
+    "cpu_pkg_temp_c_mean": 88.4,
+    "cpu_pkg_temp_c_max": 100.0,
+    "cpu_mhz_mean": 1687.1
+  },
+  "gpu_cpu_during_energy_block": {
+    "samples": 59,
+    "sm_mhz_mean": 1877.8,
+    "gpu_temp_c_mean": 55.3,
+    "gpu_temp_c_max": 57,
+    "power_w_avg_mean": 94.6,
+    "cpu_pkg_temp_c_mean": 93.5,
+    "cpu_pkg_temp_c_max": 100.0,
+    "cpu_mhz_mean": 1688.5
+  },
+  "env": {
+    "TORCHINDUCTOR_FORCE_DISABLE_CACHES": "1",
+    "TORCHINDUCTOR_CACHE_DIR": "<scratch>/followups/cache_cold_b7Oy"
+  }
+}

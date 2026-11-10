@@ -1,0 +1,20 @@
+[
+ [
+  "user_llm",
+  "user_router_gate",
+  "idle",
+  "llm_flat"
+ ],
+ [
+  "user_llm",
+  "llm_flat",
+  "idle",
+  "user_router_gate"
+ ],
+ [
+  "llm_flat",
+  "user_router_gate",
+  "user_llm",
+  "idle"
+ ]
+]

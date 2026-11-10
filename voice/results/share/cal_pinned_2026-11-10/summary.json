@@ -1,0 +1,38 @@
+{
+ "mode": "calibration",
+ "run_dir": "<project>/voice-robot/results/share/cal_pinned_2026-11-10",
+ "bad_rows": 0,
+ "cpu_cores": {
+  "policy": [
+   0,
+   1,
+   2,
+   3
+  ]
+ },
+ "alone": {
+  "n": 600,
+  "median": 13.695450000000001,
+  "p99": 14.870968000000001,
+  "max": 15.1725,
+  "late": 0,
+  "late_share": 0.0,
+  "late_upper": 0.006361933328210577,
+  "skipped_beats": 0,
+  "throttle": {
+   "sw_power_cap": 1
+  },
+  "mean_sm_mhz": 1710.9816666666666,
+  "cpu0_7_share": 1.0
+ },
+ "first_call_ms": 5260.74,
+ "unexpected_pids": {},
+ "bars": [
+  {
+   "bar": 1,
+   "name": "Timer check, alone",
+   "verdict": "PASS",
+   "numbers": "median 13.70 ms (allowed 12.57 to 15.37 ms), p99 14.87 ms (allowed 13.61 to 18.41 ms)"
+  }
+ ]
+}

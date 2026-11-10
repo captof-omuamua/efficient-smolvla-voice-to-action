@@ -1,0 +1,58 @@
+{
+ "fps": 20,
+ "steps": 163,
+ "success": true,
+ "goals_hold_at_end": true,
+ "expected": [
+  2
+ ],
+ "did_expected": true,
+ "earlier_goals_hold": true,
+ "plan": [
+  2
+ ],
+ "done": [
+  2
+ ],
+ "lines": [
+  {
+   "file": "<project>/voice-robot/results/voice_robot/stage1_take2/runs/line2_cmd2_s0/line_1_trimmed.raw",
+   "recorded_s": 4.3503125,
+   "trim_flag": "",
+   "speech_end_s": 2.68,
+   "start_s": 0.0,
+   "end_s": 2.78,
+   "heard": "put the wine bottle on top of the cabinet.",
+   "event": "plan",
+   "commands": [
+    2
+   ],
+   "level": "rule",
+   "speech_ms": 70.96011099929456,
+   "parse_ms": 0.06169700100144837,
+   "effect_s": 2.9000000000000004
+  }
+ ],
+ "states": [
+  {
+   "from_step": 0,
+   "state": "WAITING",
+   "command": null
+  },
+  {
+   "from_step": 58,
+   "state": "MOVING",
+   "command": "put the wine bottle on top of the cabinet"
+  },
+  {
+   "from_step": 143,
+   "state": "DONE",
+   "command": null
+  },
+  {
+   "from_step": 163,
+   "state": "DONE",
+   "command": null
+  }
+ ]
+}

@@ -1,0 +1,98 @@
+{
+ "fps": 20,
+ "steps": 291,
+ "success": true,
+ "goals_hold_at_end": true,
+ "expected": [
+  5
+ ],
+ "did_expected": true,
+ "earlier_goals_hold": true,
+ "plan": [
+  5
+ ],
+ "done": [
+  5
+ ],
+ "lines": [
+  {
+   "file": "<project>/voice-robot/results/voice_robot/stage2a/runs/line4_cmd5_stop_s2/line_1_trimmed.raw",
+   "recorded_s": 2.771625,
+   "trim_flag": "little trimmed (over 90% kept)",
+   "speech_end_s": 2.46,
+   "start_s": 0.0,
+   "end_s": 2.56,
+   "heard": "Push the plate to the front of the stove.",
+   "event": "plan",
+   "commands": [
+    5
+   ],
+   "level": "rule",
+   "speech_ms": 64.59703300060937,
+   "parse_ms": 0.057266999647254124,
+   "effect_s": 2.6500000000000004
+  },
+  {
+   "file": "<project>/voice-robot/results/voice_robot/stage2a/runs/line4_cmd5_stop_s2/line_2_trimmed.raw",
+   "recorded_s": 1.619625,
+   "trim_flag": "",
+   "speech_end_s": 0.88,
+   "start_s": 3.6500000000000004,
+   "end_s": 4.630000000000001,
+   "heard": "Stop.",
+   "event": "stop",
+   "commands": [],
+   "level": "rule",
+   "speech_ms": 48.68887600059679,
+   "parse_ms": 0.008492999768350273,
+   "effect_s": 4.7
+  },
+  {
+   "file": "<project>/voice-robot/results/voice_robot/stage2a/runs/line4_cmd5_stop_s2/line_3_trimmed.raw",
+   "recorded_s": 1.875625,
+   "trim_flag": "little trimmed (over 90% kept)",
+   "speech_end_s": 1.86,
+   "start_s": 7.7,
+   "end_s": 9.575625,
+   "heard": "Continue.",
+   "event": "continue",
+   "commands": [],
+   "level": "rule",
+   "speech_ms": 45.63577999942936,
+   "parse_ms": 0.008574001185479574,
+   "effect_s": 9.65
+  }
+ ],
+ "states": [
+  {
+   "from_step": 0,
+   "state": "WAITING",
+   "command": null
+  },
+  {
+   "from_step": 53,
+   "state": "MOVING",
+   "command": "push the plate to the front of the stove"
+  },
+  {
+   "from_step": 94,
+   "state": "HOLDING",
+   "command": "push the plate to the front of the stove"
+  },
+  {
+   "from_step": 193,
+   "state": "MOVING",
+   "command": "push the plate to the front of the stove"
+  },
+  {
+   "from_step": 271,
+   "state": "DONE",
+   "command": null
+  },
+  {
+   "from_step": 291,
+   "state": "DONE",
+   "command": null
+  }
+ ]
+}

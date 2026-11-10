@@ -1,0 +1,14 @@
+run_id,start,result,success,did_expected,goals_hold_at_end,steps,moving_steps,plan,done,expected,policy_calls,call_ms_median,max_move_mm,refusal_move_mm,creep_60_mm,creep_100_mm,stop_exercised,stop_delay_ms,stop_delay_clip_ms,overrun_mm,hold_offset_mm
+line1_cmd7_s0,0,success,True,True,True,142,78,[7],[7],[7],8,12.975332499991055,404.50311501118534,nan,nan,nan,,nan,nan,nan,nan
+line1_cmd7_s1,1,success,True,True,True,137,73,[7],[7],[7],8,13.736015500398935,399.6120946769531,nan,nan,nan,,nan,nan,nan,nan
+line1_cmd7_s2,2,success,True,True,True,137,73,[7],[7],[7],8,13.453920000756625,399.58249758523743,nan,nan,nan,,nan,nan,nan,nan
+line2_cmd2_s0,0,success,True,True,False,178,85,[2],[2],[2],9,13.74393100013549,292.9184389762011,nan,nan,nan,,nan,nan,nan,nan
+line2_cmd2_s1,1,failed: 300 acting steps,False,False,False,373,300,[2],[],[2],30,12.731760499264055,420.7921714219987,nan,nan,nan,,nan,nan,nan,nan
+line2_cmd2_s2,2,success,True,True,False,188,95,[2],[2],[2],10,13.15784650068963,291.0172552097354,nan,nan,nan,,nan,nan,nan,nan
+line3_cmd8_s0,0,success,True,True,True,315,238,[8],[8],[8],24,12.824440000258619,359.6668690579345,nan,nan,nan,,nan,nan,nan,nan
+line3_cmd8_s1,1,success,True,True,True,156,79,[8],[8],[8],8,13.765993999186321,356.1491788109091,nan,nan,nan,,nan,nan,nan,nan
+line3_cmd8_s2,2,success,True,True,True,157,80,[8],[8],[8],8,12.957525000274472,346.17817280803985,nan,nan,nan,,nan,nan,nan,nan
+line4_cmd5_s0,0,success,True,True,True,208,135,[5],[5],[5],14,11.988377499619673,457.0879889026851,nan,nan,nan,,nan,nan,nan,nan
+line4_cmd5_s1,1,success,True,True,True,205,132,[5],[5],[5],14,11.821586500445846,458.516603969702,nan,nan,nan,,nan,nan,nan,nan
+line4_cmd5_s2,2,success,True,True,True,198,125,[5],[5],[5],13,12.74097599889501,438.59159199060485,nan,nan,nan,,nan,nan,nan,nan
+line5_refuse_s0,0,ended: idle,False,False,False,166,0,[],[],,0,nan,0.35946835711016545,0.3460016036215756,0.3460016036215756,0.35946835711016545,,nan,nan,nan,nan

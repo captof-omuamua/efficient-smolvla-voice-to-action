@@ -1,0 +1,140 @@
+dir: <scratch>/followups/wt-pr4634-head | git HEAD 2d2003349a0347e2b33a533c3b3d7802b9fbd457 | changes:  M tests/policies/smolvla/test_smolvla_compile_parity.py 
+lerobot code: <scratch>/followups/wt-pr4634-head/src/lerobot/__init__.py | torch 2.11.0+cu128 | transformers 5.5.4
+command: <project>/lerobot-pr4634/.venv/bin/python -m pytest tests/policies/smolvla/test_smolvla_compile_parity.py -v -k tuple_kv
+============================= test session starts ==============================
+platform linux -- Python 3.12.13, pytest-9.1.1, pluggy-1.6.0 -- <project>/lerobot-pr4634/.venv/bin/python
+rootdir: <scratch>/followups/wt-pr4634-head
+configfile: pyproject.toml
+plugins: cov-7.1.0, mock-serial-0.0.1, hydra-core-1.3.7, anyio-4.15.1, timeout-2.4.0
+collecting ... collected 2 items / 1 deselected / 1 selected
+
+Testing with DEVICE='cuda'
+
+tests/policies/smolvla/test_smolvla_compile_parity.py::test_smolvla_tuple_kv_parity FAILED [100%]
+
+=================================== FAILURES ===================================
+_________________________ test_smolvla_tuple_kv_parity _________________________
+
+    @skip_if_package_missing("transformers")
+    def test_smolvla_tuple_kv_parity():
+        from lerobot.policies.smolvla.modeling_smolvla import make_att_2d_masks
+    
+        policy, batch, noise = _build_tiny_smolvla_policy_and_batch(device="cpu")
+        config = policy.config
+    
+        with torch.no_grad():
+            images, img_masks = policy.prepare_images(batch)
+            state = policy.prepare_state(batch)
+            lang_tokens = batch["observation.language.tokens"]
+            lang_masks = batch["observation.language.attention_mask"]
+    
+            prefix_embs, prefix_pad_masks, prefix_att_masks = policy.model.embed_prefix(
+                images, img_masks, lang_tokens, lang_masks, state=state
+            )
+            prefix_att_2d_masks = make_att_2d_masks(prefix_pad_masks, prefix_att_masks)
+            prefix_position_ids = torch.cumsum(prefix_pad_masks, dim=1) - 1
+    
+            _, dynamic_kv = policy.model.vlm_with_expert.forward(
+                attention_mask=prefix_att_2d_masks,
+                position_ids=prefix_position_ids,
+                past_key_values=None,
+                inputs_embeds=[prefix_embs, None],
+                use_cache=True,
+            )
+            tuple_kv = tuple((layer.keys.clone(), layer.values.clone()) for layer in dynamic_kv.layers)
+            tuple_kv_snapshot = tuple((k.clone(), v.clone()) for k, v in tuple_kv)
+    
+            prefix_len = prefix_pad_masks.shape[1]
+            x_dyn = noise.clone()
+            x_tup = noise.clone()
+            dt = -1.0 / config.num_steps
+            for step in range(config.num_steps):
+                t = torch.tensor(1.0 + step * dt, dtype=torch.float32, device="cpu").expand(1)
+                for layer in dynamic_kv.layers:
+                    layer.crop(prefix_len - layer.get_seq_length())
+>               v_dyn = policy.model.denoise_step(prefix_pad_masks, dynamic_kv, x_dyn, t)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/policies/smolvla/test_smolvla_compile_parity.py:111: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/lerobot/policies/smolvla/modeling_smolvla.py:859: in denoise_step
+    outputs_embeds, _ = self.vlm_with_expert.forward(
+src/lerobot/policies/smolvla/smolvlm_with_expert.py:461: in forward
+    att_outputs, past_key_values = self.forward_attn_layer(
+src/lerobot/policies/smolvla/smolvlm_with_expert.py:295: in forward_attn_layer
+    att_output = attention_interface(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = SmolVLMWithExpertModel(
+  (vlm): SmolVLMForConditionalGeneration(
+    (model): SmolVLMModel(
+      (vision_model): Smo...,), eps=1e-05)
+      )
+    )
+    (norm): LlamaRMSNorm((720,), eps=1e-05)
+    (rotary_emb): LlamaRotaryEmbedding()
+  )
+)
+attention_mask = tensor([[[ True,  True,  True,  True,  True,  True,  True,  True,  True,  True,
+           True,  True,  True,  True, ...,  True,  True,  True,  True,  True,
+           True,  True,  True,  True,  True,  True,  True,  True,  True,  True]]])
+batch_size = 1, head_dim = 64
+query_states = tensor([[[[-7.2656e-01, -5.8984e-01,  1.0156e-01,  ..., -2.2949e-01,
+            1.9434e-01, -2.6611e-02],
+          [...312e+00],
+          [-5.5859e-01,  6.0547e-01, -3.4570e-01,  ...,  3.5742e-01,
+           -2.2266e-01, -7.8516e-01]]]])
+key_states = tensor([[[[ 0.4414,  0.4551,  0.1196,  ...,  0.4902, -1.1406, -0.3262],
+          [ 0.3359,  0.2080, -0.3223,  ..., -0...,  0.3496,  ...,  0.7188, -0.1357, -0.9219],
+          [-0.6094, -0.0173, -0.0142,  ...,  0.4395, -0.4395, -1.1953]]]])
+value_states = tensor([[[[-0.2969, -0.6719, -0.3887,  ...,  0.3008, -0.0630,  0.3398],
+          [-0.2969, -0.6719, -0.3887,  ...,  0...4727, -0.0986],
+          [ 0.3281, -0.0537, -0.1094,  ..., -0.0136, -0.4727, -0.0986]]]],
+       dtype=torch.bfloat16)
+
+    def eager_attention_forward(
+        self, attention_mask, batch_size, head_dim, query_states, key_states, value_states
+    ):
+        num_att_heads = self.num_attention_heads
+        num_key_value_heads = self.num_key_value_heads
+        num_key_value_groups = num_att_heads // num_key_value_heads
+    
+        sequence_length = key_states.shape[1]
+    
+        key_states = key_states[:, :, :, None, :].expand(
+            batch_size, sequence_length, num_key_value_heads, num_key_value_groups, head_dim
+        )
+        key_states = key_states.reshape(
+            batch_size, sequence_length, num_key_value_heads * num_key_value_groups, head_dim
+        )
+    
+        value_states = value_states[:, :, :, None, :].expand(
+            batch_size, sequence_length, num_key_value_heads, num_key_value_groups, head_dim
+        )
+        value_states = value_states.reshape(
+            batch_size, sequence_length, num_key_value_heads * num_key_value_groups, head_dim
+        )
+    
+        # Attention here is upcasted to float32 to match the original eager implementation.
+        query_states = query_states.to(dtype=torch.float32)
+        key_states = key_states.to(dtype=torch.float32)
+    
+        query_states = query_states.transpose(1, 2)
+        key_states = key_states.transpose(1, 2)
+    
+        att_weights = torch.matmul(query_states, key_states.transpose(2, 3))
+        att_weights *= head_dim**-0.5
+    
+        att_weights = att_weights.to(dtype=torch.float32)
+        big_neg = torch.finfo(att_weights.dtype).min  # -2.3819763e38  # See gemma/modules.py
+>       masked_att_weights = torch.where(attention_mask[:, None, :, :], att_weights, big_neg)
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       RuntimeError: The size of tensor a (80) must match the size of tensor b (10) at non-singleton dimension 3
+
+src/lerobot/policies/smolvla/smolvlm_with_expert.py:567: RuntimeError
+----------------------------- Captured stdout call -----------------------------
+Reducing the number of VLM layers to 2 ...
+=========================== short test summary info ============================
+FAILED tests/policies/smolvla/test_smolvla_compile_parity.py::test_smolvla_tuple_kv_parity
+======================= 1 failed, 1 deselected in 8.55s ========================
+pytest exit code: 1

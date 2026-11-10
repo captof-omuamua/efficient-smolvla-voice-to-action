@@ -1,0 +1,412 @@
+{
+ "mode": "shared",
+ "run_dir": "<project>/voice-robot/results/share/smoke_original",
+ "bad_rows": 0,
+ "cpu_cores": {
+  "policy": [
+   0,
+   1,
+   2,
+   3
+  ],
+  "voice": [
+   4,
+   5,
+   6,
+   7
+  ]
+ },
+ "expected_regimes": [
+  "idle",
+  "llm_flat",
+  "user_llm",
+  "user_router_gate"
+ ],
+ "complete_rounds": [
+  0
+ ],
+ "rounds_left_out": {},
+ "all_rounds": [
+  0
+ ],
+ "min_rounds": 1,
+ "decisions": {
+  "total": 224,
+  "kept_blocks": 140,
+  "dropped_or_incomplete_blocks": 0,
+  "phases": 39,
+  "unassigned": 45
+ },
+ "dropped_blocks": [],
+ "unexpected_pids": {},
+ "skipped_beats_total": 0,
+ "budgets_ms": {
+  "whisper": 100.0,
+  "llm": 140.0
+ },
+ "phases": {
+  "alone_pre": {
+   "n": 20,
+   "median": 87.08064999999999,
+   "p99": 98.471043,
+   "max": 99.3527,
+   "late": 20,
+   "late_share": 1.0,
+   "late_upper": 0.9999999999999998,
+   "throttle": {
+    "sw_power_cap": 16
+   },
+   "mean_sm_mhz": 1729.2,
+   "cpu0_7_share": 1.0
+  },
+  "alone_post": {
+   "n": 19,
+   "median": 85.2555,
+   "p99": 89.149622,
+   "max": 89.7431,
+   "late": 19,
+   "late_share": 1.0,
+   "late_upper": 1.0000000000000002,
+   "throttle": {},
+   "mean_sm_mhz": 1658.7894736842106,
+   "cpu0_7_share": 1.0
+  }
+ },
+ "policy": {
+  "idle": {
+   "blocks": 1,
+   "n": 36,
+   "median": 84.9699,
+   "p99": 86.19484,
+   "max": 86.2318,
+   "late": 36,
+   "late_share": 1.0,
+   "late_upper": 1.0,
+   "ratio": null,
+   "voice_job_running": {
+    "n": 0,
+    "median": null,
+    "p99": null,
+    "max": null,
+    "late": 0,
+    "late_share": null,
+    "late_upper": null
+   },
+   "none_running": {
+    "n": 36,
+    "median": 84.9699,
+    "p99": 86.19484,
+    "max": 86.2318,
+    "late": 36,
+    "late_share": 1.0,
+    "late_upper": 1.0
+   },
+   "p99_by_round": {
+    "0": 86.19484
+   },
+   "skipped_beats": 0,
+   "throttle": {
+    "sw_power_cap": 29
+   },
+   "mean_sm_mhz": 1659.5277777777778,
+   "cpu0_7_share": 1.0
+  },
+  "llm_flat": {
+   "blocks": 1,
+   "n": 36,
+   "median": 128.3347,
+   "p99": 135.886055,
+   "max": 137.3668,
+   "late": 36,
+   "late_share": 1.0,
+   "late_upper": 1.0,
+   "ratio": {
+    "ratio": 1.576498720805097,
+    "low": 1.5283906683308979,
+    "high": 1.5780116522397523
+   },
+   "voice_job_running": {
+    "n": 36,
+    "median": 128.3347,
+    "p99": 135.886055,
+    "max": 137.3668,
+    "late": 36,
+    "late_share": 1.0,
+    "late_upper": 1.0
+   },
+   "none_running": {
+    "n": 0,
+    "median": null,
+    "p99": null,
+    "max": null,
+    "late": 0,
+    "late_share": null,
+    "late_upper": null
+   },
+   "p99_by_round": {
+    "0": 135.886055
+   },
+   "skipped_beats": 0,
+   "throttle": {
+    "sw_power_cap": 36
+   },
+   "mean_sm_mhz": 1746.388888888889,
+   "cpu0_7_share": 1.0
+  },
+  "user_llm": {
+   "blocks": 1,
+   "n": 34,
+   "median": 87.7536,
+   "p99": 105.14766000000002,
+   "max": 107.5989,
+   "late": 34,
+   "late_share": 1.0,
+   "late_upper": 1.0,
+   "ratio": {
+    "ratio": 1.2198834640217444,
+    "low": 1.12127133398631,
+    "high": 1.221054159573208
+   },
+   "voice_job_running": {
+    "n": 2,
+    "median": 103.8849,
+    "p99": 107.52462,
+    "max": 107.5989,
+    "late": 2,
+    "late_share": 1.0,
+    "late_upper": 1.0
+   },
+   "none_running": {
+    "n": 32,
+    "median": 87.45255,
+    "p99": 89.766206,
+    "max": 89.8956,
+    "late": 32,
+    "late_share": 1.0,
+    "late_upper": 1.0
+   },
+   "p99_by_round": {
+    "0": 105.14766000000002
+   },
+   "skipped_beats": 0,
+   "throttle": {
+    "sw_power_cap": 23
+   },
+   "mean_sm_mhz": 1748.735294117647,
+   "cpu0_7_share": 1.0
+  },
+  "user_router_gate": {
+   "blocks": 1,
+   "n": 34,
+   "median": 85.2752,
+   "p99": 89.694218,
+   "max": 91.1348,
+   "late": 34,
+   "late_share": 1.0,
+   "late_upper": 1.0,
+   "ratio": {
+    "ratio": 1.040598462738605,
+    "low": 0.9993312444584599,
+    "high": 1.0587501005631827
+   },
+   "voice_job_running": {
+    "n": 0,
+    "median": null,
+    "p99": null,
+    "max": null,
+    "late": 0,
+    "late_share": null,
+    "late_upper": null
+   },
+   "none_running": {
+    "n": 34,
+    "median": 85.2752,
+    "p99": 89.694218,
+    "max": 91.1348,
+    "late": 34,
+    "late_share": 1.0,
+    "late_upper": 1.0
+   },
+   "p99_by_round": {
+    "0": 89.694218
+   },
+   "skipped_beats": 0,
+   "throttle": {
+    "sw_power_cap": 24
+   },
+   "mean_sm_mhz": 1671.3823529411766,
+   "cpu0_7_share": 1.0
+  }
+ },
+ "voice": {
+  "idle": {
+   "kinds": {},
+   "commands": null
+  },
+  "llm_flat": {
+   "kinds": {
+    "llm": {
+     "n": 158,
+     "median": 106.115802,
+     "p99": 152.81119578000002,
+     "max": 157.551451,
+     "wait": {
+      "mean": 0.0,
+      "p99": 0.0,
+      "max": 0.0
+     },
+     "over_budget": 22,
+     "per_s": 8.743172856261367
+    }
+   },
+   "commands": null
+  },
+  "user_llm": {
+   "kinds": {
+    "whisper": {
+     "n": 7,
+     "median": 59.33407,
+     "p99": 98.19025005999998,
+     "max": 99.370798,
+     "wait": {
+      "mean": 0.0,
+      "p99": 0.0,
+      "max": 0.0
+     },
+     "over_budget": 0
+    },
+    "llm": {
+     "n": 7,
+     "median": 97.61148,
+     "p99": 129.89025836,
+     "max": 131.947778,
+     "wait": {
+      "mean": 0.0,
+      "p99": 0.0,
+      "max": 0.0
+     },
+     "over_budget": 0
+    }
+   },
+   "commands": {
+    "commands": 7,
+    "added_wait": {
+     "mean": 0.0,
+     "p99": 0.0,
+     "max": 0.0
+    },
+    "command_time": {
+     "n": 7,
+     "median": 157.438177,
+     "p99": 194.55340046,
+     "max": 194.74895
+    }
+   }
+  },
+  "user_router_gate": {
+   "kinds": {
+    "whisper": {
+     "n": 7,
+     "median": 55.33622,
+     "p99": 57.710546179999994,
+     "max": 57.740258,
+     "wait": {
+      "mean": 116.37257142857142,
+      "p99": 269.23805999999996,
+      "max": 269.991
+     },
+     "over_budget": 0
+    },
+    "llm": {
+     "n": 2,
+     "median": 94.7452815,
+     "p99": 95.16121163000001,
+     "max": 95.1697,
+     "wait": {
+      "mean": 0.0,
+      "p99": 0.0,
+      "max": 0.0
+     },
+     "over_budget": 0
+    },
+    "rules": {
+     "n": 7,
+     "median": 0.02861,
+     "p99": 0.4467903399999998,
+     "max": 0.469219,
+     "wait": {
+      "mean": 0.0,
+      "p99": 0.0,
+      "max": 0.0
+     }
+    }
+   },
+   "commands": {
+    "commands": 7,
+    "added_wait": {
+     "mean": 116.37257142857142,
+     "p99": 269.23805999999996,
+     "max": 269.991
+    },
+    "command_time": {
+     "n": 7,
+     "median": 226.882539,
+     "p99": 402.34858821999995,
+     "max": 407.27731
+    }
+   }
+  }
+ },
+ "answers": {
+  "items": 142,
+  "mismatched": []
+ },
+ "gated": {
+  "jobs": 9,
+  "overlapping": 0,
+  "regimes": [
+   "user_router_gate"
+  ],
+  "policy_calls": {
+   "user_router_gate": 38
+  }
+ },
+ "bars": [
+  {
+   "bar": 1,
+   "name": "Timer check, alone",
+   "verdict": "not shown",
+   "numbers": "measured by the calibrate run (--calibration)"
+  },
+  {
+   "bar": 2,
+   "name": "Sharing slows the policy",
+   "verdict": "PASS",
+   "numbers": "llm_flat 1.58x [1.53, 1.58]; user_llm 1.22x [1.12, 1.22]"
+  },
+  {
+   "bar": 3,
+   "name": "Fix, speed",
+   "verdict": "not applicable",
+   "numbers": "needs idle, user_router_gate and flat_gate"
+  },
+  {
+   "bar": 4,
+   "name": "Fix, deadline",
+   "verdict": "not applicable",
+   "numbers": "needs user_router_gate and flat_gate"
+  },
+  {
+   "bar": 5,
+   "name": "Fix, cost",
+   "verdict": "FAIL",
+   "numbers": "7 commands: mean 116.4 ms (max 60 ms), worst 270.0 ms (max 200 ms)"
+  },
+  {
+   "bar": 6,
+   "name": "Turn-taking kept",
+   "verdict": "PASS",
+   "numbers": "0 of 9 GPU jobs overlap a policy call (policy calls: user_router_gate 38)"
+  }
+ ]
+}

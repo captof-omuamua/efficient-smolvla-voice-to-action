@@ -1,0 +1,55 @@
+Follow-up checks, 8 Nov 2026, 02:35-03:37 IST, laptop RTX 5090. Nothing committed, pushed or posted.
+The kept worktree, talk/ and earlier results were not edited. Fixes and old code ran in scratch worktrees.
+
+1. PR #4634 test fix (pr4634_test_fix.diff, task1_test_fix.json)
+- Change in test_smolvla_tuple_kv_parity:
+  dynamic_kv.crop(prefix_len)
+  ->
+  for layer in dynamic_kv.layers:
+      layer.crop(prefix_len - layer.get_seq_length())
+  This is the same form main uses in denoise_step since #5220 (4598a0bb).
+- Why: transformers 5.22 changed DynamicLayer.crop's argument from a target length to a number of tokens to
+  remove. A positive value now raises ValueError ("Calling `crop` with a positive value ... is not supported"),
+  and crop(0) does nothing. Source: cache_utils.py lines 163-180 in 5.22.1, and 139-151 in 5.5.4.
+- Results:
+  - Today's main + PR + patch, with the fix: 2/2 in test_smolvla_compile_parity.py, and 15/15 in
+    tests/policies/smolvla.
+  - The PR's own stack (torch 2.11, transformers 5.5.4), unchanged: passes at a932c505 (lerobot-pr4634) and at
+    the head 2d200334. So the test fails only on current main's transformers.
+  - The fix needs transformers 5.22 or newer. On 5.5.4, crop(0) empties the cache and the test fails with a
+    shape mismatch. Apply it with the rebase onto main.
+
+2. Faster-startup compile modes for B, today's stack (compile_modes_summary.json)
+mode             cold first call (caches off)  warm   median ms (4 runs)   p99 ms     J/decision (above idle)
+max-autotune     158.9, 155.5 s (fill 158.5)   5.9 s  14.02 (13.46-14.59)  16.6-18.7  1.45 (1.16)
+default          31.0, 30.1 s (fill 32.0)      5.6 s  15.43 (14.86-16.04)  16.5-20.7  1.53 (1.19)
+reduce-overhead  28.1, 27.7 s (fill 30.1)      5.6 s  14.84 (14.37-15.35)  16.4-18.4  1.54 (1.20)
+- Every mode: 11 graphs, 6 graph breaks, no recompiles.
+- Parity against max-autotune, first 10 steps (mean / max abs difference):
+  - default: 0.0055-0.0062 / up to 0.024;
+  - reduce-overhead: 0.0055 / up to 0.016.
+  - For scale: max-autotune against itself in another process gives 0.005-0.008 / 0.018-0.021, and eager C
+    gives 0.0076 / 0.032.
+- reduce-overhead starts cold about 5.6x faster (28 s vs 157 s). It costs about 6% in median time and in
+  energy per decision. Warm starts are about 5.6-5.9 s in every mode.
+- Closed-loop success was not run for the other modes.
+
+3. Talk's stack (OLD) vs today's (NEW), same conditions (stack_compare_summary.json)
+- Setup: alternating fresh processes, mirrored order OLD NEW NEW OLD OLD NEW, 200 calls each, TF32 on for both.
+  Cool-down between processes: at least 45 s, and until the CPU package is at most 62 C.
+setup  OLD median (3 runs)        NEW median (3 runs)        NEW/OLD by pair     p99 mean OLD -> NEW
+A0     107.0 (107.0,106.6,107.4)  111.0 (110.3,109.4,113.2)  1.030,1.027,1.054   152 -> 156 ms
+B      13.50 (13.49,13.38,13.64)  13.58 (13.54,13.53,13.66)  1.004,1.011,1.001   15.9 -> 16.7 ms
+- Where A0's extra time is:
+  - GPU kernel time fell (41.8 -> 37.0 ms per call). The vision encoder got faster (19.6 -> 16.5 ms).
+  - CPU-side time grew (wall minus kernel time 65.2 -> 74.0 ms). Most of it is in the 10-step denoise loop
+    (78.5 -> 85.3 ms). The VLM pass changed little (8.7 -> 9.2 ms). Kernel launches per call: 14,190 -> 14,403.
+  - So the newer software adds CPU overhead to the eager path, not slower kernels.
+- Temperature does not explain the OLD/NEW gap. Both stacks ran at about the same CPU package temperature
+  (76-81 C mean during the calls) and GPU temperature (56-58 C).
+- Cold compile of B (fresh empty cache): OLD 96 s, NEW 168 s. The startup regression comes from the stack.
+- Meaning for the final numbers:
+  - The stack explains about +4% of A0's +17% and about +0.5% of B's +10%.
+  - The rest comes from measurement conditions. The old stack itself ran 107.0 ms today vs 101.3 ms on 31 Oct.
+    Today's four-setup session added about 7% more for eager (118.9 vs 111.0 ms in fresh processes).
+  - The A0/B speed-up is stable: 8.2x in fresh processes on today's stack, and 8.0-8.25x in the sessions.

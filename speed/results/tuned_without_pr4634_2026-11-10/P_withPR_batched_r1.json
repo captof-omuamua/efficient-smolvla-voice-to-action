@@ -1,0 +1,67 @@
+{
+  "label": "P_withPR_batched_r1",
+  "cameras": "native",
+  "lerobot_file": "<project>/lerobot-final-2026-11-07/src/lerobot/__init__.py",
+  "modeling_file": "<project>/lerobot-final-2026-11-07/src/lerobot/policies/smolvla/modeling_smolvla.py",
+  "has_pr4634_compile_denoise": true,
+  "has_batching_patch__embed_images": true,
+  "torch": "2.15.0+cu132",
+  "config": {
+    "compile_model": true,
+    "compile_mode": "max-autotune",
+    "num_steps": 1,
+    "empty_cameras": 0,
+    "compile_denoise": false
+  },
+  "first_call_s": 164.25,
+  "latency": {
+    "calls": 300,
+    "median_ms": 14.5,
+    "p90_ms": 16.53,
+    "p99_ms": 18.58,
+    "mean_ms": 14.88,
+    "min_ms": 13.48,
+    "max_ms": 19.08
+  },
+  "dynamo_after_first_call": {
+    "frames": {
+      "total": 20,
+      "ok": 18
+    },
+    "unique_graphs": 11,
+    "graph_break_count": 6,
+    "unimplemented_reasons": {
+      "Dynamic shape operator | Explanation: Operator `aten.nonzero.default`'s output shape depends on input Tensor data.": 2,
+      "Reconstruction failure | Explanation: Dynamo has no bytecode reconstruction implemented for sourceless variable DictItemsIterator().": 1,
+      "Reconstruction failure | Explanation: Dynamo has no bytecode reconstruction implemented for sourceless variable DictIterator().": 1
+    }
+  },
+  "dynamo_after_all_calls": {
+    "frames": {
+      "total": 20,
+      "ok": 18
+    },
+    "unique_graphs": 11,
+    "graph_break_count": 6,
+    "unimplemented_reasons": {
+      "Dynamic shape operator | Explanation: Operator `aten.nonzero.default`'s output shape depends on input Tensor data.": 2,
+      "Reconstruction failure | Explanation: Dynamo has no bytecode reconstruction implemented for sourceless variable DictItemsIterator().": 1,
+      "Reconstruction failure | Explanation: Dynamo has no bytecode reconstruction implemented for sourceless variable DictIterator().": 1
+    }
+  },
+  "recompiled_after_first_call": false,
+  "temps_start": {
+    "cpu_pkg_c": 59.0,
+    "gpu_c": 43
+  },
+  "during_timed": {
+    "samples": 42,
+    "sm_mhz_mean": 1790.7,
+    "gpu_temp_c_mean": 55.7,
+    "gpu_temp_c_max": 58,
+    "power_w_avg_mean": 93.6,
+    "cpu_pkg_temp_c_mean": 85.5,
+    "cpu_pkg_temp_c_max": 92.0,
+    "cpu_mhz_mean": 1920.3
+  }
+}

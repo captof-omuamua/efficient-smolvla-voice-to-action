@@ -1,0 +1,74 @@
+{
+  "base": {
+    "origin_main_sha": "d490e472a5d1a207cfe0255caaaf74b6d66e4656",
+    "origin_main_subject": "chore(dependencies): Bump lerobot to 0.7.1 (#5269)",
+    "old_base_sha": "3f797de5",
+    "rebase": "git apply --index of batch_cameras.patch: both files applied cleanly, no conflicts, no offsets; hunks identical to the old patch",
+    "worktree": "<project>/lerobot-bc-rebased (detached HEAD, change staged, not committed)"
+  },
+  "env": {
+    "python": "3.12.13",
+    "torch": "2.15.0+cu132",
+    "transformers": "5.22.1",
+    "extras": "test dev smolvla",
+    "uv": "0.11.28"
+  },
+  "pre_commit": {
+    "files_mode": "19 hooks, all Passed or Skipped (no files of that type)",
+    "all_files_mode": "19 hooks, all Passed",
+    "logs": [
+      "<project>/logs/pr_batch_cameras_precommit_files.log",
+      "<project>/logs/pr_batch_cameras_precommit_all.log"
+    ]
+  },
+  "doc_checks": {
+    "check_docstrings": "pass",
+    "check_config_docstrings": "pass",
+    "check_doctest_list": "pass",
+    "interrogate": "PASSED 58.5% (min 52%)",
+    "log": "<project>/logs/pr_batch_cameras_doc_checks.log"
+  },
+  "tests": {
+    "tests/policies/smolvla (CUDA)": {
+      "passed": 13,
+      "failed": 0,
+      "skipped": 0,
+      "log": "<project>/logs/pr_batch_cameras_tests_smolvla.log"
+    },
+    "pi0 + pi05 vision_inference (CUDA)": {
+      "passed": 23,
+      "failed": 0,
+      "log": "<project>/logs/pr_batch_cameras_tests_pi0_vision.log"
+    },
+    "CPU tier: pytest tests -m 'not gpu', GPU hidden, --continue-on-collection-errors": {
+      "passed": 1992,
+      "failed": 8,
+      "errors": 2,
+      "skipped": 231,
+      "deselected": 1099,
+      "wall": "73 s",
+      "log": "<project>/logs/pr_batch_cameras_tests_cpu_tier.log",
+      "failures": "pi0/pi05 processor openpi-reference tests (gated google/paligemma-3b-pt-224, needs HF login); tests/rl/test_learner_service.py 6 failed + 1 error (needs datasets extra); test_sarm_subtask_annotations.py collection error (needs pandas, dataset extra)",
+      "same_on_clean_main": "yes: identical 8 failed, 2 errors",
+      "clean_main_log": "<project>/logs/pr_batch_cameras_cpu_failures_on_clean_main.log"
+    },
+    "CI base tier for tests/policies/smolvla (test extra only, no transformers, GPU hidden)": {
+      "passed": 2,
+      "skipped": 11,
+      "log": "<project>/logs/pr_batch_cameras_tests_base_tier_smolvla.log"
+    }
+  },
+  "compat": {
+    "5120": {
+      "head": "8ff9599739e5607d5ccaeaacd3e12441dc24ae49",
+      "applies_on_main_plus_ours": "all 4 files, no conflicts (offsets only in pi0/pi05)",
+      "tests": "test_smolvla_vision_inference.py + tests/policies/common/test_image_camera_slots.py: 33 passed"
+    },
+    "5129": {
+      "head": "52d44203ed5bd5442dfd85d88ab78f7e91e54d77",
+      "applies_on_main_plus_ours": "all 7 files, no conflicts (offsets only in pi0/pi05/pi0_fast)",
+      "tests": "test_smolvla_vision_inference.py + tests/policies/test_missing_camera_slots.py: 33 passed"
+    },
+    "log": "<project>/logs/pr_batch_cameras_compat.log"
+  }
+}

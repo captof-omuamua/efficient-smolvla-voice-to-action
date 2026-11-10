@@ -1,0 +1,66 @@
+{
+ "fps": 20,
+ "steps": 496,
+ "success": false,
+ "goals_hold_at_end": false,
+ "expected": [
+  7,
+  2
+ ],
+ "did_expected": false,
+ "earlier_goals_hold": false,
+ "plan": [
+  7,
+  2
+ ],
+ "done": [
+  7
+ ],
+ "lines": [
+  {
+   "file": "<project>/voice-robot/results/voice_robot/stage2b_take2/runs/two_step_1_s0/line_1_trimmed.raw",
+   "recorded_s": 5.3743125,
+   "trim_flag": "",
+   "speech_end_s": 4.12,
+   "start_s": 0.0,
+   "end_s": 4.22,
+   "heard": "Turn on the stove then put the wine bottle on top of the cabinet.",
+   "event": "plan",
+   "commands": [
+    7,
+    2
+   ],
+   "level": "rule",
+   "speech_ms": 70.11856400094985,
+   "parse_ms": 0.24872399990272243,
+   "effect_s": 4.3
+  }
+ ],
+ "states": [
+  {
+   "from_step": 0,
+   "state": "WAITING",
+   "command": null
+  },
+  {
+   "from_step": 86,
+   "state": "MOVING",
+   "command": "turn on the stove"
+  },
+  {
+   "from_step": 160,
+   "state": "RETURNING",
+   "command": "put the wine bottle on top of the cabinet"
+  },
+  {
+   "from_step": 196,
+   "state": "MOVING",
+   "command": "put the wine bottle on top of the cabinet"
+  },
+  {
+   "from_step": 496,
+   "state": "FAILED",
+   "command": null
+  }
+ ]
+}

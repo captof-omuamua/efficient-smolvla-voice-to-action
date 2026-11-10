@@ -1,0 +1,26 @@
+{
+  "mode": "alone",
+  "created": "2026-11-07T20:35:22+00:00",
+  "cpu_pkg_temp_c_start": 63.0,
+  "children": 0,
+  "A0": {
+    "calls": 300,
+    "median_ms": 114.69,
+    "p90_ms": 126.35,
+    "p99_ms": 168.66,
+    "mean_ms": 117.34,
+    "min_ms": 105.81,
+    "max_ms": 171.69
+  },
+  "A0_again": {
+    "calls": 300,
+    "median_ms": 106.84,
+    "p90_ms": 117.85,
+    "p99_ms": 162.76,
+    "mean_ms": 110.38,
+    "min_ms": 104.6,
+    "max_ms": 175.36
+  },
+  "cpu_pkg_temp_c_end": 95.0,
+  "foreign_gpu_pids_at_end": []
+}

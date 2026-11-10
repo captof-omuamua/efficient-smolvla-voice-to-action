@@ -1,0 +1,26 @@
+{
+  "setup": "C",
+  "label": "eager",
+  "created": "2026-11-07T19:02:30+00:00",
+  "import_s": 6.73,
+  "load_s": 1.72,
+  "first_call_s": 0.43,
+  "second_call_ms": 26.7,
+  "script_start_to_first_action_s": 8.95,
+  "median_ms_warm_calls": 26.34,
+  "warm_calls": 50,
+  "peak_gpu_mb_allocated": 936,
+  "peak_gpu_mb_reserved": 1010,
+  "compile_mode": null,
+  "dynamo_after_first_call": {},
+  "dynamo_after_warm_calls": {},
+  "recompiled_after_first_call": false,
+  "env": {
+    "TORCHINDUCTOR_FORCE_DISABLE_CACHES": null,
+    "TORCHINDUCTOR_CACHE_DIR": "/tmp/torchinductor_<user>",
+    "TRITON_CACHE_DIR": null,
+    "TORCH_LOGS": null,
+    "HF_HUB_OFFLINE": "1"
+  },
+  "torch": "2.15.0+cu132"
+}

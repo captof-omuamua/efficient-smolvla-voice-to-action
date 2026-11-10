@@ -1,0 +1,57 @@
+{
+ "fps": 20,
+ "steps": 142,
+ "success": true,
+ "goals_hold_at_end": true,
+ "expected": [
+  7
+ ],
+ "did_expected": true,
+ "plan": [
+  7
+ ],
+ "done": [
+  7
+ ],
+ "lines": [
+  {
+   "file": "<project>/voice-robot/results/voice_robot/stage1/runs/line1_cmd7_s0/line_1_trimmed.raw",
+   "recorded_s": 3.923625,
+   "trim_flag": "",
+   "speech_end_s": 1.9,
+   "start_s": 0.0,
+   "end_s": 2.0,
+   "heard": "Turn on the stuff.",
+   "event": "plan",
+   "commands": [
+    7
+   ],
+   "level": "llm",
+   "speech_ms": 57.975673998953425,
+   "parse_ms": 105.72475399931136,
+   "effect_s": 2.2
+  }
+ ],
+ "states": [
+  {
+   "from_step": 0,
+   "state": "WAITING",
+   "command": null
+  },
+  {
+   "from_step": 44,
+   "state": "MOVING",
+   "command": "turn on the stove"
+  },
+  {
+   "from_step": 122,
+   "state": "DONE",
+   "command": null
+  },
+  {
+   "from_step": 142,
+   "state": "DONE",
+   "command": null
+  }
+ ]
+}

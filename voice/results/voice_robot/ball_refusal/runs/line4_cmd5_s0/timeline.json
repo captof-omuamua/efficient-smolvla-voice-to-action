@@ -1,0 +1,58 @@
+{
+ "fps": 20,
+ "steps": 207,
+ "success": true,
+ "goals_hold_at_end": true,
+ "expected": [
+  5
+ ],
+ "did_expected": true,
+ "earlier_goals_hold": true,
+ "plan": [
+  5
+ ],
+ "done": [
+  5
+ ],
+ "lines": [
+  {
+   "file": "<project>/voice-robot/results/voice_robot/ball_refusal/runs/line4_cmd5_s0/line_1_trimmed.raw",
+   "recorded_s": 4.0943125,
+   "trim_flag": "",
+   "speech_end_s": 2.4,
+   "start_s": 0.0,
+   "end_s": 2.5,
+   "heard": "Push the plate to the front of the stove.",
+   "event": "plan",
+   "commands": [
+    5
+   ],
+   "level": "rule",
+   "speech_ms": 68.81705700106977,
+   "parse_ms": 0.06749699969077483,
+   "effect_s": 2.6
+  }
+ ],
+ "states": [
+  {
+   "from_step": 0,
+   "state": "WAITING",
+   "command": null
+  },
+  {
+   "from_step": 52,
+   "state": "MOVING",
+   "command": "push the plate to the front of the stove"
+  },
+  {
+   "from_step": 187,
+   "state": "DONE",
+   "command": null
+  },
+  {
+   "from_step": 207,
+   "state": "DONE",
+   "command": null
+  }
+ ]
+}

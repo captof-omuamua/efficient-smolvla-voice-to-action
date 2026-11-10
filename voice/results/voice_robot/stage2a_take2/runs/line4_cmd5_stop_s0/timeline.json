@@ -1,0 +1,98 @@
+{
+ "fps": 20,
+ "steps": 309,
+ "success": true,
+ "goals_hold_at_end": true,
+ "expected": [
+  5
+ ],
+ "did_expected": true,
+ "earlier_goals_hold": true,
+ "plan": [
+  5
+ ],
+ "done": [
+  5
+ ],
+ "lines": [
+  {
+   "file": "<project>/voice-robot/results/voice_robot/stage2a_take2/runs/line4_cmd5_stop_s0/line_1_trimmed.raw",
+   "recorded_s": 4.0943125,
+   "trim_flag": "",
+   "speech_end_s": 2.4,
+   "start_s": 0.0,
+   "end_s": 2.5,
+   "heard": "Push the plate to the front of the stove.",
+   "event": "plan",
+   "commands": [
+    5
+   ],
+   "level": "rule",
+   "speech_ms": 60.86734699965746,
+   "parse_ms": 0.06852200021967292,
+   "effect_s": 2.6
+  },
+  {
+   "file": "<project>/voice-robot/results/voice_robot/stage2a_take2/runs/line4_cmd5_stop_s0/line_2_trimmed.raw",
+   "recorded_s": 2.1743125,
+   "trim_flag": "",
+   "speech_end_s": 0.36,
+   "start_s": 3.6,
+   "end_s": 4.0600000000000005,
+   "heard": "Stop.",
+   "event": "stop",
+   "commands": [],
+   "level": "rule",
+   "speech_ms": 45.54417500003183,
+   "parse_ms": 0.009528001100989059,
+   "effect_s": 4.15
+  },
+  {
+   "file": "<project>/voice-robot/results/voice_robot/stage2a_take2/runs/line4_cmd5_stop_s0/line_3_trimmed.raw",
+   "recorded_s": 2.1743125,
+   "trim_flag": "",
+   "speech_end_s": 0.88,
+   "start_s": 7.15,
+   "end_s": 8.13,
+   "heard": "Continue",
+   "event": "continue",
+   "commands": [],
+   "level": "rule",
+   "speech_ms": 46.044658000027994,
+   "parse_ms": 0.008465000064461492,
+   "effect_s": 8.200000000000001
+  }
+ ],
+ "states": [
+  {
+   "from_step": 0,
+   "state": "WAITING",
+   "command": null
+  },
+  {
+   "from_step": 52,
+   "state": "MOVING",
+   "command": "push the plate to the front of the stove"
+  },
+  {
+   "from_step": 83,
+   "state": "HOLDING",
+   "command": "push the plate to the front of the stove"
+  },
+  {
+   "from_step": 164,
+   "state": "MOVING",
+   "command": "push the plate to the front of the stove"
+  },
+  {
+   "from_step": 289,
+   "state": "DONE",
+   "command": null
+  },
+  {
+   "from_step": 309,
+   "state": "DONE",
+   "command": null
+  }
+ ]
+}

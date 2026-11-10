@@ -1,0 +1,326 @@
+[19:50:48] L_withPR_looped_r2: {"lerobot_file": "<project>/lerobot-final-2026-11-07/src/lerobot/__init__.py", "modeling_file": "<project>/lerobot-final-2026-11-07/src/lerobot/policies/smolvla/modeling_smolvla.py", "has_pr4634_compile_denoise": true, "has_batching_patch__embed_images": true}
+[transformers] `torch_dtype` is deprecated! Use `dtype` instead!
+Loading  HuggingFaceTB/SmolVLM2-500M-Video-Instruct weights ...
+
+Loading weights:   0%|          | 0/489 [00:00<?, ?it/s]
+Loading weights: 100%|██████████| 489/489 [00:00<00:00, 6624.62it/s]
+V1110 19:50:51.846000 91699 torch/_dynamo/symbolic_convert.py:5577] [0/0] [__graph_breaks] Graph break in user code at <project>/lerobot-final-2026-11-07/.venv/lib/python3.12/site-packages/transformers/models/smolvlm/modeling_smolvlm.py:130
+V1110 19:50:51.846000 91699 torch/_dynamo/symbolic_convert.py:5577] [0/0] [__graph_breaks] Graph Break Reason: Encountered graph break when attempting to trace CALL: a function call, e.g. f(x, y):
+V1110 19:50:51.846000 91699 torch/_dynamo/symbolic_convert.py:5577] [0/0] [__graph_breaks] 
+V1110 19:50:51.846000 91699 torch/_dynamo/symbolic_convert.py:5577] [0/0] [__graph_breaks] Dynamic shape operator
+V1110 19:50:51.846000 91699 torch/_dynamo/symbolic_convert.py:5577] [0/0] [__graph_breaks]   Explanation: Operator `aten.nonzero.default`'s output shape depends on input Tensor data.
+V1110 19:50:51.846000 91699 torch/_dynamo/symbolic_convert.py:5577] [0/0] [__graph_breaks]   Hint: Enable tracing of dynamic shape operators with `torch._dynamo.config.capture_dynamic_output_shape_ops = True`
+V1110 19:50:51.846000 91699 torch/_dynamo/symbolic_convert.py:5577] [0/0] [__graph_breaks] 
+V1110 19:50:51.846000 91699 torch/_dynamo/symbolic_convert.py:5577] [0/0] [__graph_breaks]   Developer debug context: aten.nonzero.default
+V1110 19:50:51.846000 91699 torch/_dynamo/symbolic_convert.py:5577] [0/0] [__graph_breaks] 
+V1110 19:50:51.846000 91699 torch/_dynamo/symbolic_convert.py:5577] [0/0] [__graph_breaks]  For more details about this graph break, please visit: https://meta-pytorch.github.io/compile-graph-break-site/gb/gb0036.html
+V1110 19:50:51.846000 91699 torch/_dynamo/symbolic_convert.py:5577] [0/0] [__graph_breaks] 
+V1110 19:50:51.846000 91699 torch/_dynamo/symbolic_convert.py:5577] [0/0] [__graph_breaks] User code traceback:
+V1110 19:50:51.846000 91699 torch/_dynamo/symbolic_convert.py:5577] [0/0] [__graph_breaks]   File "<scratch>/tuned_check.py", line 33, in <module>
+V1110 19:50:51.846000 91699 torch/_dynamo/symbolic_convert.py:5577] [0/0] [__graph_breaks]     actions, first_ms = timed(predict)
+V1110 19:50:51.846000 91699 torch/_dynamo/symbolic_convert.py:5577] [0/0] [__graph_breaks]                         ~~~~~^^^^^^^^^
+V1110 19:50:51.846000 91699 torch/_dynamo/symbolic_convert.py:5577] [0/0] [__graph_breaks]   File "<project>/bench/results_final_2026-11-07/followups/followup_common.py", line 45, in timed
+V1110 19:50:51.846000 91699 torch/_dynamo/symbolic_convert.py:5577] [0/0] [__graph_breaks]     result = fn()
+V1110 19:50:51.846000 91699 torch/_dynamo/symbolic_convert.py:5577] [0/0] [__graph_breaks]              ~~^^
+V1110 19:50:51.846000 91699 torch/_dynamo/symbolic_convert.py:5577] [0/0] [__graph_breaks]   File "<scratch>/tuned_check.py", line 32, in <lambda>
+V1110 19:50:51.846000 91699 torch/_dynamo/symbolic_convert.py:5577] [0/0] [__graph_breaks]     predict = lambda: policy.predict_action_chunk(dict(batch), noise=noise.clone())
+V1110 19:50:51.846000 91699 torch/_dynamo/symbolic_convert.py:5577] [0/0] [__graph_breaks]                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+V1110 19:50:51.846000 91699 torch/_dynamo/symbolic_convert.py:5577] [0/0] [__graph_breaks]   File "<project>/lerobot-final-2026-11-07/.venv/lib/python3.12/site-packages/torch/utils/_contextlib.py", line 158, in no_grad
+V1110 19:50:51.846000 91699 torch/_dynamo/symbolic_convert.py:5577] [0/0] [__graph_breaks]     return func(*args, **kwargs)
+V1110 19:50:51.846000 91699 torch/_dynamo/symbolic_convert.py:5577] [0/0] [__graph_breaks]            ~~~~^^^^^^^^^^^^^^^^^
+V1110 19:50:51.846000 91699 torch/_dynamo/symbolic_convert.py:5577] [0/0] [__graph_breaks]   File "<project>/lerobot-final-2026-11-07/src/lerobot/policies/smolvla/modeling_smolvla.py", line 252, in predict_action_chunk
+V1110 19:50:51.846000 91699 torch/_dynamo/symbolic_convert.py:5577] [0/0] [__graph_breaks]     actions = self._get_action_chunk(batch, noise=noise, **kwargs)
+V1110 19:50:51.846000 91699 torch/_dynamo/symbolic_convert.py:5577] [0/0] [__graph_breaks]               ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+V1110 19:50:51.846000 91699 torch/_dynamo/symbolic_convert.py:5577] [0/0] [__graph_breaks]   File "<project>/lerobot-final-2026-11-07/src/lerobot/policies/smolvla/modeling_smolvla.py", line 218, in _get_action_chunk
+V1110 19:50:51.846000 91699 torch/_dynamo/symbolic_convert.py:5577] [0/0] [__graph_breaks]     actions = self.model.sample_actions(
+V1110 19:50:51.846000 91699 torch/_dynamo/symbolic_convert.py:5577] [0/0] [__graph_breaks]               ~~~~~~~~~~~~~~~~~~~~~~~~~^
+V1110 19:50:51.846000 91699 torch/_dynamo/symbolic_convert.py:5577] [0/0] [__graph_breaks]         images, img_masks, lang_tokens, lang_masks, state, noise=noise, **kwargs
+V1110 19:50:51.846000 91699 torch/_dynamo/symbolic_convert.py:5577] [0/0] [__graph_breaks]         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+V1110 19:50:51.846000 91699 torch/_dynamo/symbolic_convert.py:5577] [0/0] [__graph_breaks]     )
+V1110 19:50:51.846000 91699 torch/_dynamo/symbolic_convert.py:5577] [0/0] [__graph_breaks]     ^
+V1110 19:50:51.846000 91699 torch/_dynamo/symbolic_convert.py:5577] [0/0] [__graph_breaks]   File "<project>/lerobot-final-2026-11-07/src/lerobot/policies/smolvla/modeling_smolvla.py", line 807, in sample_actions
+V1110 19:50:51.846000 91699 torch/_dynamo/symbolic_convert.py:5577] [0/0] [__graph_breaks]     prefix_embs, prefix_pad_masks, prefix_att_masks = self.embed_prefix(
+V1110 19:50:51.846000 91699 torch/_dynamo/symbolic_convert.py:5577] [0/0] [__graph_breaks]                                                       ~~~~~~~~~~~~~~~~~^
+V1110 19:50:51.846000 91699 torch/_dynamo/symbolic_convert.py:5577] [0/0] [__graph_breaks]         images, img_masks, lang_tokens, lang_masks, state=state
+V1110 19:50:51.846000 91699 torch/_dynamo/symbolic_convert.py:5577] [0/0] [__graph_breaks]         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+V1110 19:50:51.846000 91699 torch/_dynamo/symbolic_convert.py:5577] [0/0] [__graph_breaks]     )
+V1110 19:50:51.846000 91699 torch/_dynamo/symbolic_convert.py:5577] [0/0] [__graph_breaks]     ^
+V1110 19:50:51.846000 91699 torch/_dynamo/symbolic_convert.py:5577] [0/0] [__graph_breaks]   File "<project>/lerobot-final-2026-11-07/src/lerobot/policies/smolvla/modeling_smolvla.py", line 630, in embed_prefix
+V1110 19:50:51.846000 91699 torch/_dynamo/symbolic_convert.py:5577] [0/0] [__graph_breaks]     ) in enumerate(zip(images, self._embed_images(images), img_masks, strict=False)):
+V1110 19:50:51.846000 91699 torch/_dynamo/symbolic_convert.py:5577] [0/0] [__graph_breaks]                                ~~~~~~~~~~~~~~~~~~^^^^^^^^
+V1110 19:50:51.846000 91699 torch/_dynamo/symbolic_convert.py:5577] [0/0] [__graph_breaks]   File "<project>/bench/results_final_2026-11-07/followups/followup_common.py", line 61, in <lambda>
+V1110 19:50:51.846000 91699 torch/_dynamo/symbolic_convert.py:5577] [0/0] [__graph_breaks]     model._embed_images = lambda images: [model.vlm_with_expert.embed_image(img) for img in images]
+V1110 19:50:51.846000 91699 torch/_dynamo/symbolic_convert.py:5577] [0/0] [__graph_breaks]                                           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+V1110 19:50:51.846000 91699 torch/_dynamo/symbolic_convert.py:5577] [0/0] [__graph_breaks]   File "<project>/lerobot-final-2026-11-07/src/lerobot/policies/smolvla/smolvlm_with_expert.py", line 207, in embed_image
+V1110 19:50:51.846000 91699 torch/_dynamo/symbolic_convert.py:5577] [0/0] [__graph_breaks]     .vision_model(
+V1110 19:50:51.846000 91699 torch/_dynamo/symbolic_convert.py:5577] [0/0] [__graph_breaks]      ~~~~~~~~~~~~^
+V1110 19:50:51.846000 91699 torch/_dynamo/symbolic_convert.py:5577] [0/0] [__graph_breaks]         pixel_values=image.to(dtype=self.get_vlm_model().vision_model.dtype),
+V1110 19:50:51.846000 91699 torch/_dynamo/symbolic_convert.py:5577] [0/0] [__graph_breaks]         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+V1110 19:50:51.846000 91699 torch/_dynamo/symbolic_convert.py:5577] [0/0] [__graph_breaks]         patch_attention_mask=patch_attention_mask,
+V1110 19:50:51.846000 91699 torch/_dynamo/symbolic_convert.py:5577] [0/0] [__graph_breaks]         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+V1110 19:50:51.846000 91699 torch/_dynamo/symbolic_convert.py:5577] [0/0] [__graph_breaks]     )
+V1110 19:50:51.846000 91699 torch/_dynamo/symbolic_convert.py:5577] [0/0] [__graph_breaks]     ^
+V1110 19:50:51.846000 91699 torch/_dynamo/symbolic_convert.py:5577] [0/0] [__graph_breaks]   File "<project>/lerobot-final-2026-11-07/.venv/lib/python3.12/site-packages/transformers/utils/output_capturing.py", line 287, in wrapper
+V1110 19:50:51.846000 91699 torch/_dynamo/symbolic_convert.py:5577] [0/0] [__graph_breaks]     outputs = func(self, *args, **kwargs)
+V1110 19:50:51.846000 91699 torch/_dynamo/symbolic_convert.py:5577] [0/0] [__graph_breaks]               ~~~~^^^^^^^^^^^^^^^^^^^^^^^
+V1110 19:50:51.846000 91699 torch/_dynamo/symbolic_convert.py:5577] [0/0] [__graph_breaks]   File "<project>/lerobot-final-2026-11-07/.venv/lib/python3.12/site-packages/transformers/models/smolvlm/modeling_smolvlm.py", line 130, in forward
+V1110 19:50:51.846000 91699 torch/_dynamo/symbolic_convert.py:5577] [0/0] [__graph_breaks]     position_ids[patch_attention_mask.view(batch_size, -1)] = pos_ids[patch_attention_mask.view(batch_size, -1)]
+V1110 19:50:51.846000 91699 torch/_dynamo/symbolic_convert.py:5577] [0/0] [__graph_breaks]                                                               ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+V1110 19:50:51.846000 91699 torch/_dynamo/symbolic_convert.py:5577] [0/0] [__graph_breaks] 
+V1110 19:50:52.632000 91699 torch/_dynamo/symbolic_convert.py:5584] [1/0] [__graph_breaks] Graph break (user stack suppressed due to duplicate graph break) in user code at <project>/lerobot-final-2026-11-07/.venv/lib/python3.12/site-packages/transformers/models/smolvlm/modeling_smolvlm.py:130
+V1110 19:50:52.632000 91699 torch/_dynamo/symbolic_convert.py:5584] [1/0] [__graph_breaks] Graph Break Reason: Encountered graph break when attempting to trace CALL: a function call, e.g. f(x, y):
+V1110 19:50:52.632000 91699 torch/_dynamo/symbolic_convert.py:5584] [1/0] [__graph_breaks] 
+V1110 19:50:52.632000 91699 torch/_dynamo/symbolic_convert.py:5584] [1/0] [__graph_breaks] Dynamic shape operator
+V1110 19:50:52.632000 91699 torch/_dynamo/symbolic_convert.py:5584] [1/0] [__graph_breaks]   Explanation: Operator `aten.nonzero.default`'s output shape depends on input Tensor data.
+V1110 19:50:52.632000 91699 torch/_dynamo/symbolic_convert.py:5584] [1/0] [__graph_breaks]   Hint: Enable tracing of dynamic shape operators with `torch._dynamo.config.capture_dynamic_output_shape_ops = True`
+V1110 19:50:52.632000 91699 torch/_dynamo/symbolic_convert.py:5584] [1/0] [__graph_breaks] 
+V1110 19:50:52.632000 91699 torch/_dynamo/symbolic_convert.py:5584] [1/0] [__graph_breaks]   Developer debug context: aten.nonzero.default
+V1110 19:50:52.632000 91699 torch/_dynamo/symbolic_convert.py:5584] [1/0] [__graph_breaks] 
+V1110 19:50:52.632000 91699 torch/_dynamo/symbolic_convert.py:5584] [1/0] [__graph_breaks]  For more details about this graph break, please visit: https://meta-pytorch.github.io/compile-graph-break-site/gb/gb0036.html
+V1110 19:50:52.735000 91699 torch/_dynamo/symbolic_convert.py:5584] [2/0] [__graph_breaks] Graph break (user stack suppressed due to duplicate graph break) in user code at <project>/lerobot-final-2026-11-07/.venv/lib/python3.12/site-packages/transformers/models/smolvlm/modeling_smolvlm.py:130
+V1110 19:50:52.735000 91699 torch/_dynamo/symbolic_convert.py:5584] [2/0] [__graph_breaks] Graph Break Reason: Encountered graph break that we cannot resume from. Compiling up to the previous resumable state, then skipping the rest of the function. Graph break encountered:
+V1110 19:50:52.735000 91699 torch/_dynamo/symbolic_convert.py:5584] [2/0] [__graph_breaks] 
+V1110 19:50:52.735000 91699 torch/_dynamo/symbolic_convert.py:5584] [2/0] [__graph_breaks] Dynamic shape operator
+V1110 19:50:52.735000 91699 torch/_dynamo/symbolic_convert.py:5584] [2/0] [__graph_breaks]   Explanation: Operator `aten.nonzero.default`'s output shape depends on input Tensor data.
+V1110 19:50:52.735000 91699 torch/_dynamo/symbolic_convert.py:5584] [2/0] [__graph_breaks]   Hint: Enable tracing of dynamic shape operators with `torch._dynamo.config.capture_dynamic_output_shape_ops = True`
+V1110 19:50:52.735000 91699 torch/_dynamo/symbolic_convert.py:5584] [2/0] [__graph_breaks] 
+V1110 19:50:52.735000 91699 torch/_dynamo/symbolic_convert.py:5584] [2/0] [__graph_breaks]   Developer debug context: aten.nonzero.default
+V1110 19:50:52.735000 91699 torch/_dynamo/symbolic_convert.py:5584] [2/0] [__graph_breaks] 
+V1110 19:50:52.735000 91699 torch/_dynamo/symbolic_convert.py:5584] [2/0] [__graph_breaks]  For more details about this graph break, please visit: https://meta-pytorch.github.io/compile-graph-break-site/gb/gb0036.html
+V1110 19:50:52.816000 91699 torch/_dynamo/symbolic_convert.py:5584] [3/0] [__graph_breaks] Graph break (user stack suppressed due to duplicate graph break) in user code at <project>/lerobot-final-2026-11-07/.venv/lib/python3.12/site-packages/transformers/models/smolvlm/modeling_smolvlm.py:130
+V1110 19:50:52.816000 91699 torch/_dynamo/symbolic_convert.py:5584] [3/0] [__graph_breaks] Graph Break Reason: Encountered graph break when attempting to trace CALL: a function call, e.g. f(x, y):
+V1110 19:50:52.816000 91699 torch/_dynamo/symbolic_convert.py:5584] [3/0] [__graph_breaks] 
+V1110 19:50:52.816000 91699 torch/_dynamo/symbolic_convert.py:5584] [3/0] [__graph_breaks] Dynamic shape operator
+V1110 19:50:52.816000 91699 torch/_dynamo/symbolic_convert.py:5584] [3/0] [__graph_breaks]   Explanation: Operator `aten.nonzero.default`'s output shape depends on input Tensor data.
+V1110 19:50:52.816000 91699 torch/_dynamo/symbolic_convert.py:5584] [3/0] [__graph_breaks]   Hint: Enable tracing of dynamic shape operators with `torch._dynamo.config.capture_dynamic_output_shape_ops = True`
+V1110 19:50:52.816000 91699 torch/_dynamo/symbolic_convert.py:5584] [3/0] [__graph_breaks] 
+V1110 19:50:52.816000 91699 torch/_dynamo/symbolic_convert.py:5584] [3/0] [__graph_breaks]   Developer debug context: aten.nonzero.default
+V1110 19:50:52.816000 91699 torch/_dynamo/symbolic_convert.py:5584] [3/0] [__graph_breaks] 
+V1110 19:50:52.816000 91699 torch/_dynamo/symbolic_convert.py:5584] [3/0] [__graph_breaks]  For more details about this graph break, please visit: https://meta-pytorch.github.io/compile-graph-break-site/gb/gb0036.html
+<project>/lerobot-final-2026-11-07/.venv/lib/python3.12/site-packages/triton/knobs.py:504: UserWarning: TRITON_DEFAULT_FP_FUSION is unset: defaulting to FP fusion ENABLED for backward compatibility in Triton 3.9. The default will change to DISABLED in Triton 3.10; set TRITON_DEFAULT_FP_FUSION=1 to keep fusion enabled or =0 to adopt the new default early and silence this warning.
+  warn_once(FP_FUSION_DEFAULT_WARNING)
+V1110 19:50:52.973000 91699 torch/_dynamo/symbolic_convert.py:5584] [4/0] [__graph_breaks] Graph break (user stack suppressed due to duplicate graph break) in user code at <project>/lerobot-final-2026-11-07/.venv/lib/python3.12/site-packages/transformers/models/smolvlm/modeling_smolvlm.py:130
+V1110 19:50:52.973000 91699 torch/_dynamo/symbolic_convert.py:5584] [4/0] [__graph_breaks] Graph Break Reason: Failed to handle graph break gracefully. Skipping the function and falling back to eager. Graph break encountered:
+V1110 19:50:52.973000 91699 torch/_dynamo/symbolic_convert.py:5584] [4/0] [__graph_breaks] 
+V1110 19:50:52.973000 91699 torch/_dynamo/symbolic_convert.py:5584] [4/0] [__graph_breaks] Dynamic shape operator
+V1110 19:50:52.973000 91699 torch/_dynamo/symbolic_convert.py:5584] [4/0] [__graph_breaks]   Explanation: Operator `aten.nonzero.default`'s output shape depends on input Tensor data.
+V1110 19:50:52.973000 91699 torch/_dynamo/symbolic_convert.py:5584] [4/0] [__graph_breaks]   Hint: Enable tracing of dynamic shape operators with `torch._dynamo.config.capture_dynamic_output_shape_ops = True`
+V1110 19:50:52.973000 91699 torch/_dynamo/symbolic_convert.py:5584] [4/0] [__graph_breaks] 
+V1110 19:50:52.973000 91699 torch/_dynamo/symbolic_convert.py:5584] [4/0] [__graph_breaks]   Developer debug context: aten.nonzero.default
+V1110 19:50:52.973000 91699 torch/_dynamo/symbolic_convert.py:5584] [4/0] [__graph_breaks] 
+V1110 19:50:52.973000 91699 torch/_dynamo/symbolic_convert.py:5584] [4/0] [__graph_breaks]  For more details about this graph break, please visit: https://meta-pytorch.github.io/compile-graph-break-site/gb/gb0036.html
+V1110 19:50:53.022000 91699 torch/_dynamo/symbolic_convert.py:5584] [5/0] [__graph_breaks] Graph break (user stack suppressed due to duplicate graph break) in user code at <project>/lerobot-final-2026-11-07/.venv/lib/python3.12/site-packages/transformers/models/smolvlm/modeling_smolvlm.py:130
+V1110 19:50:53.022000 91699 torch/_dynamo/symbolic_convert.py:5584] [5/0] [__graph_breaks] Graph Break Reason: Encountered graph break that we cannot resume from. Compiling up to the previous resumable state, then skipping the rest of the function. Graph break encountered:
+V1110 19:50:53.022000 91699 torch/_dynamo/symbolic_convert.py:5584] [5/0] [__graph_breaks] 
+V1110 19:50:53.022000 91699 torch/_dynamo/symbolic_convert.py:5584] [5/0] [__graph_breaks] Dynamic shape operator
+V1110 19:50:53.022000 91699 torch/_dynamo/symbolic_convert.py:5584] [5/0] [__graph_breaks]   Explanation: Operator `aten.nonzero.default`'s output shape depends on input Tensor data.
+V1110 19:50:53.022000 91699 torch/_dynamo/symbolic_convert.py:5584] [5/0] [__graph_breaks]   Hint: Enable tracing of dynamic shape operators with `torch._dynamo.config.capture_dynamic_output_shape_ops = True`
+V1110 19:50:53.022000 91699 torch/_dynamo/symbolic_convert.py:5584] [5/0] [__graph_breaks] 
+V1110 19:50:53.022000 91699 torch/_dynamo/symbolic_convert.py:5584] [5/0] [__graph_breaks]   Developer debug context: aten.nonzero.default
+V1110 19:50:53.022000 91699 torch/_dynamo/symbolic_convert.py:5584] [5/0] [__graph_breaks] 
+V1110 19:50:53.022000 91699 torch/_dynamo/symbolic_convert.py:5584] [5/0] [__graph_breaks]  For more details about this graph break, please visit: https://meta-pytorch.github.io/compile-graph-break-site/gb/gb0036.html
+V1110 19:50:53.039000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_1] [__graph_breaks] Graph break in user code at <project>/lerobot-final-2026-11-07/.venv/lib/python3.12/site-packages/transformers/utils/output_capturing.py:272
+V1110 19:50:53.039000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_1] [__graph_breaks] Graph Break Reason: Encountered graph break that we cannot resume from. Compiling up to the previous resumable state, then skipping the rest of the function. Graph break encountered:
+V1110 19:50:53.039000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_1] [__graph_breaks] 
+V1110 19:50:53.039000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_1] [__graph_breaks] Reconstruction failure
+V1110 19:50:53.039000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_1] [__graph_breaks]   Explanation: Dynamo has no bytecode reconstruction implemented for sourceless variable DictItemsIterator().
+V1110 19:50:53.039000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_1] [__graph_breaks]   Hint: If Dynamo is attempting to trace a return statement and your code is attempting to return a variable that Dynamo cannot reconstruct, then remove it from the return statement.
+V1110 19:50:53.039000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_1] [__graph_breaks]   Hint: This graph break may have been caused by an earlier graph break. Resolving the earlier graph break may resolve this one.
+V1110 19:50:53.039000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_1] [__graph_breaks]   Hint: Report an issue to PyTorch if you need reconstrtuction support. Note that objects that don't have reconstruction rules may be fundamentally unreconstructable.
+V1110 19:50:53.039000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_1] [__graph_breaks] 
+V1110 19:50:53.039000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_1] [__graph_breaks]   Developer debug context: DictItemsIterator()
+V1110 19:50:53.039000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_1] [__graph_breaks] 
+V1110 19:50:53.039000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_1] [__graph_breaks]  For more details about this graph break, please visit: https://meta-pytorch.github.io/compile-graph-break-site/gb/gb0092.html
+V1110 19:50:53.039000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_1] [__graph_breaks] 
+V1110 19:50:53.039000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_1] [__graph_breaks] Stack variable source attribution:
+V1110 19:50:53.039000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_1] [__graph_breaks]   NullVariable originated from:
+V1110 19:50:53.039000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_1] [__graph_breaks]   File "<project>/lerobot-final-2026-11-07/.venv/lib/python3.12/site-packages/transformers/utils/output_capturing.py", line 272
+V1110 19:50:53.039000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_1] [__graph_breaks]                 collected_outputs = {k.replace("output_", ""): [] for k, v in recordable_keys.items() if v}
+V1110 19:50:53.039000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_1] [__graph_breaks]                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+V1110 19:50:53.039000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_1] [__graph_breaks]   NullVariable originated from:
+V1110 19:50:53.039000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_1] [__graph_breaks]   File "<project>/lerobot-final-2026-11-07/.venv/lib/python3.12/site-packages/transformers/utils/output_capturing.py", line 257
+V1110 19:50:53.039000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_1] [__graph_breaks]                 recordable_keys = {
+V1110 19:50:53.039000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_1] [__graph_breaks]                                   ^
+V1110 19:50:53.039000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_1] [__graph_breaks]                     f"output_{k}": kwargs.get(f"output_{k}", getattr(self.config, f"output_{k}", False))
+V1110 19:50:53.039000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_1] [__graph_breaks]                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+V1110 19:50:53.039000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_1] [__graph_breaks]                     for k in capturable_flags
+V1110 19:50:53.039000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_1] [__graph_breaks]                     ^^^^^^^^^^^^^^^^^^^^^^^^^
+V1110 19:50:53.039000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_1] [__graph_breaks]                 }
+V1110 19:50:53.039000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_1] [__graph_breaks]                 ^
+V1110 19:50:53.039000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_1] [__graph_breaks]   DictItemsIterator() originated from:
+V1110 19:50:53.039000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_1] [__graph_breaks]   File "<project>/lerobot-final-2026-11-07/.venv/lib/python3.12/site-packages/transformers/utils/output_capturing.py", line 272
+V1110 19:50:53.039000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_1] [__graph_breaks]                 collected_outputs = {k.replace("output_", ""): [] for k, v in recordable_keys.items() if v}
+V1110 19:50:53.039000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_1] [__graph_breaks]                                                                               ~~~~~~~~~~~~~~~~~~~~~^^
+V1110 19:50:53.039000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_1] [__graph_breaks] 
+V1110 19:50:53.039000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_1] [__graph_breaks] User code traceback:
+V1110 19:50:53.039000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_1] [__graph_breaks]   File "<scratch>/tuned_check.py", line 33, in <module>
+V1110 19:50:53.039000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_1] [__graph_breaks]     actions, first_ms = timed(predict)
+V1110 19:50:53.039000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_1] [__graph_breaks]                         ~~~~~^^^^^^^^^
+V1110 19:50:53.039000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_1] [__graph_breaks]   File "<project>/bench/results_final_2026-11-07/followups/followup_common.py", line 45, in timed
+V1110 19:50:53.039000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_1] [__graph_breaks]     result = fn()
+V1110 19:50:53.039000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_1] [__graph_breaks]              ~~^^
+V1110 19:50:53.039000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_1] [__graph_breaks]   File "<scratch>/tuned_check.py", line 32, in <lambda>
+V1110 19:50:53.039000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_1] [__graph_breaks]     predict = lambda: policy.predict_action_chunk(dict(batch), noise=noise.clone())
+V1110 19:50:53.039000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_1] [__graph_breaks]                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+V1110 19:50:53.039000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_1] [__graph_breaks]   File "<project>/lerobot-final-2026-11-07/.venv/lib/python3.12/site-packages/torch/utils/_contextlib.py", line 158, in no_grad
+V1110 19:50:53.039000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_1] [__graph_breaks]     return func(*args, **kwargs)
+V1110 19:50:53.039000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_1] [__graph_breaks]            ~~~~^^^^^^^^^^^^^^^^^
+V1110 19:50:53.039000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_1] [__graph_breaks]   File "<project>/lerobot-final-2026-11-07/src/lerobot/policies/smolvla/modeling_smolvla.py", line 252, in predict_action_chunk
+V1110 19:50:53.039000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_1] [__graph_breaks]     actions = self._get_action_chunk(batch, noise=noise, **kwargs)
+V1110 19:50:53.039000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_1] [__graph_breaks]               ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+V1110 19:50:53.039000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_1] [__graph_breaks]   File "<project>/lerobot-final-2026-11-07/src/lerobot/policies/smolvla/modeling_smolvla.py", line 218, in _get_action_chunk
+V1110 19:50:53.039000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_1] [__graph_breaks]     actions = self.model.sample_actions(
+V1110 19:50:53.039000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_1] [__graph_breaks]               ~~~~~~~~~~~~~~~~~~~~~~~~~^
+V1110 19:50:53.039000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_1] [__graph_breaks]         images, img_masks, lang_tokens, lang_masks, state, noise=noise, **kwargs
+V1110 19:50:53.039000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_1] [__graph_breaks]         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+V1110 19:50:53.039000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_1] [__graph_breaks]     )
+V1110 19:50:53.039000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_1] [__graph_breaks]     ^
+V1110 19:50:53.039000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_1] [__graph_breaks]   File "<project>/lerobot-final-2026-11-07/src/lerobot/policies/smolvla/modeling_smolvla.py", line 807, in sample_actions
+V1110 19:50:53.039000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_1] [__graph_breaks]     prefix_embs, prefix_pad_masks, prefix_att_masks = self.embed_prefix(
+V1110 19:50:53.039000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_1] [__graph_breaks]                                                       ~~~~~~~~~~~~~~~~~^
+V1110 19:50:53.039000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_1] [__graph_breaks]         images, img_masks, lang_tokens, lang_masks, state=state
+V1110 19:50:53.039000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_1] [__graph_breaks]         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+V1110 19:50:53.039000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_1] [__graph_breaks]     )
+V1110 19:50:53.039000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_1] [__graph_breaks]     ^
+V1110 19:50:53.039000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_1] [__graph_breaks]   File "<project>/lerobot-final-2026-11-07/src/lerobot/policies/smolvla/modeling_smolvla.py", line 630, in embed_prefix
+V1110 19:50:53.039000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_1] [__graph_breaks]     ) in enumerate(zip(images, self._embed_images(images), img_masks, strict=False)):
+V1110 19:50:53.039000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_1] [__graph_breaks]                                ~~~~~~~~~~~~~~~~~~^^^^^^^^
+V1110 19:50:53.039000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_1] [__graph_breaks]   File "<project>/bench/results_final_2026-11-07/followups/followup_common.py", line 61, in <lambda>
+V1110 19:50:53.039000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_1] [__graph_breaks]     model._embed_images = lambda images: [model.vlm_with_expert.embed_image(img) for img in images]
+V1110 19:50:53.039000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_1] [__graph_breaks]   File "<project>/bench/results_final_2026-11-07/followups/followup_common.py", line 61, in __comprehension_<lambda>_at_61_9
+V1110 19:50:53.039000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_1] [__graph_breaks]     model._embed_images = lambda images: [model.vlm_with_expert.embed_image(img) for img in images]
+V1110 19:50:53.039000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_1] [__graph_breaks]                                           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+V1110 19:50:53.039000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_1] [__graph_breaks]   File "<project>/lerobot-final-2026-11-07/src/lerobot/policies/smolvla/smolvlm_with_expert.py", line 207, in embed_image
+V1110 19:50:53.039000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_1] [__graph_breaks]     .vision_model(
+V1110 19:50:53.039000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_1] [__graph_breaks]      ~~~~~~~~~~~~^
+V1110 19:50:53.039000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_1] [__graph_breaks]         pixel_values=image.to(dtype=self.get_vlm_model().vision_model.dtype),
+V1110 19:50:53.039000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_1] [__graph_breaks]         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+V1110 19:50:53.039000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_1] [__graph_breaks]         patch_attention_mask=patch_attention_mask,
+V1110 19:50:53.039000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_1] [__graph_breaks]         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+V1110 19:50:53.039000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_1] [__graph_breaks]     )
+V1110 19:50:53.039000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_1] [__graph_breaks]     ^
+V1110 19:50:53.039000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_1] [__graph_breaks]   File "<project>/lerobot-final-2026-11-07/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1787, in _wrapped_call_impl
+V1110 19:50:53.039000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_1] [__graph_breaks]     return self._call_impl(*args, **kwargs)
+V1110 19:50:53.039000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_1] [__graph_breaks]            ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+V1110 19:50:53.039000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_1] [__graph_breaks]   File "<project>/lerobot-final-2026-11-07/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1798, in _call_impl
+V1110 19:50:53.039000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_1] [__graph_breaks]     return forward_call(*args, **kwargs)
+V1110 19:50:53.039000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_1] [__graph_breaks]            ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+V1110 19:50:53.039000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_1] [__graph_breaks]   File "<project>/lerobot-final-2026-11-07/.venv/lib/python3.12/site-packages/transformers/utils/output_capturing.py", line 272, in wrapper
+V1110 19:50:53.039000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_1] [__graph_breaks]     collected_outputs = {k.replace("output_", ""): [] for k, v in recordable_keys.items() if v}
+V1110 19:50:53.039000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_1] [__graph_breaks]                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+V1110 19:50:53.039000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_1] [__graph_breaks] 
+V1110 19:50:53.048000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_2] [__graph_breaks] Graph break in user code at <project>/lerobot-final-2026-11-07/.venv/lib/python3.12/site-packages/transformers/utils/output_capturing.py:257
+V1110 19:50:53.048000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_2] [__graph_breaks] Graph Break Reason: Failed to handle graph break gracefully. Skipping the function and falling back to eager. Graph break encountered:
+V1110 19:50:53.048000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_2] [__graph_breaks] 
+V1110 19:50:53.048000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_2] [__graph_breaks] Reconstruction failure
+V1110 19:50:53.048000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_2] [__graph_breaks]   Explanation: Dynamo has no bytecode reconstruction implemented for sourceless variable DictIterator().
+V1110 19:50:53.048000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_2] [__graph_breaks]   Hint: If Dynamo is attempting to trace a return statement and your code is attempting to return a variable that Dynamo cannot reconstruct, then remove it from the return statement.
+V1110 19:50:53.048000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_2] [__graph_breaks]   Hint: This graph break may have been caused by an earlier graph break. Resolving the earlier graph break may resolve this one.
+V1110 19:50:53.048000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_2] [__graph_breaks]   Hint: Report an issue to PyTorch if you need reconstrtuction support. Note that objects that don't have reconstruction rules may be fundamentally unreconstructable.
+V1110 19:50:53.048000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_2] [__graph_breaks] 
+V1110 19:50:53.048000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_2] [__graph_breaks]   Developer debug context: DictIterator()
+V1110 19:50:53.048000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_2] [__graph_breaks] 
+V1110 19:50:53.048000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_2] [__graph_breaks]  For more details about this graph break, please visit: https://meta-pytorch.github.io/compile-graph-break-site/gb/gb0092.html
+V1110 19:50:53.048000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_2] [__graph_breaks] 
+V1110 19:50:53.048000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_2] [__graph_breaks] Stack variable source attribution:
+V1110 19:50:53.048000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_2] [__graph_breaks]   NullVariable originated from:
+V1110 19:50:53.048000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_2] [__graph_breaks]   File "<project>/lerobot-final-2026-11-07/.venv/lib/python3.12/site-packages/transformers/utils/output_capturing.py", line 257
+V1110 19:50:53.048000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_2] [__graph_breaks]                 recordable_keys = {
+V1110 19:50:53.048000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_2] [__graph_breaks]                                   ^
+V1110 19:50:53.048000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_2] [__graph_breaks]                     f"output_{k}": kwargs.get(f"output_{k}", getattr(self.config, f"output_{k}", False))
+V1110 19:50:53.048000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_2] [__graph_breaks]                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+V1110 19:50:53.048000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_2] [__graph_breaks]                     for k in capturable_flags
+V1110 19:50:53.048000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_2] [__graph_breaks]                     ^^^^^^^^^^^^^^^^^^^^^^^^^
+V1110 19:50:53.048000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_2] [__graph_breaks]                 }
+V1110 19:50:53.048000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_2] [__graph_breaks]                 ^
+V1110 19:50:53.048000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_2] [__graph_breaks]   DictIterator() originated from:
+V1110 19:50:53.048000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_2] [__graph_breaks]   File "<project>/lerobot-final-2026-11-07/.venv/lib/python3.12/site-packages/transformers/utils/output_capturing.py", line 259
+V1110 19:50:53.048000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_2] [__graph_breaks]                     for k in capturable_flags
+V1110 19:50:53.048000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_2] [__graph_breaks]                              ^^^^^^^^^^^^^^^^
+V1110 19:50:53.048000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_2] [__graph_breaks] 
+V1110 19:50:53.048000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_2] [__graph_breaks] User code traceback:
+V1110 19:50:53.048000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_2] [__graph_breaks]   File "<scratch>/tuned_check.py", line 33, in <module>
+V1110 19:50:53.048000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_2] [__graph_breaks]     actions, first_ms = timed(predict)
+V1110 19:50:53.048000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_2] [__graph_breaks]                         ~~~~~^^^^^^^^^
+V1110 19:50:53.048000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_2] [__graph_breaks]   File "<project>/bench/results_final_2026-11-07/followups/followup_common.py", line 45, in timed
+V1110 19:50:53.048000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_2] [__graph_breaks]     result = fn()
+V1110 19:50:53.048000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_2] [__graph_breaks]              ~~^^
+V1110 19:50:53.048000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_2] [__graph_breaks]   File "<scratch>/tuned_check.py", line 32, in <lambda>
+V1110 19:50:53.048000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_2] [__graph_breaks]     predict = lambda: policy.predict_action_chunk(dict(batch), noise=noise.clone())
+V1110 19:50:53.048000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_2] [__graph_breaks]                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+V1110 19:50:53.048000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_2] [__graph_breaks]   File "<project>/lerobot-final-2026-11-07/.venv/lib/python3.12/site-packages/torch/utils/_contextlib.py", line 158, in no_grad
+V1110 19:50:53.048000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_2] [__graph_breaks]     return func(*args, **kwargs)
+V1110 19:50:53.048000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_2] [__graph_breaks]            ~~~~^^^^^^^^^^^^^^^^^
+V1110 19:50:53.048000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_2] [__graph_breaks]   File "<project>/lerobot-final-2026-11-07/src/lerobot/policies/smolvla/modeling_smolvla.py", line 252, in predict_action_chunk
+V1110 19:50:53.048000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_2] [__graph_breaks]     actions = self._get_action_chunk(batch, noise=noise, **kwargs)
+V1110 19:50:53.048000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_2] [__graph_breaks]               ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+V1110 19:50:53.048000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_2] [__graph_breaks]   File "<project>/lerobot-final-2026-11-07/src/lerobot/policies/smolvla/modeling_smolvla.py", line 218, in _get_action_chunk
+V1110 19:50:53.048000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_2] [__graph_breaks]     actions = self.model.sample_actions(
+V1110 19:50:53.048000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_2] [__graph_breaks]               ~~~~~~~~~~~~~~~~~~~~~~~~~^
+V1110 19:50:53.048000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_2] [__graph_breaks]         images, img_masks, lang_tokens, lang_masks, state, noise=noise, **kwargs
+V1110 19:50:53.048000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_2] [__graph_breaks]         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+V1110 19:50:53.048000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_2] [__graph_breaks]     )
+V1110 19:50:53.048000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_2] [__graph_breaks]     ^
+V1110 19:50:53.048000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_2] [__graph_breaks]   File "<project>/lerobot-final-2026-11-07/src/lerobot/policies/smolvla/modeling_smolvla.py", line 807, in sample_actions
+V1110 19:50:53.048000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_2] [__graph_breaks]     prefix_embs, prefix_pad_masks, prefix_att_masks = self.embed_prefix(
+V1110 19:50:53.048000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_2] [__graph_breaks]                                                       ~~~~~~~~~~~~~~~~~^
+V1110 19:50:53.048000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_2] [__graph_breaks]         images, img_masks, lang_tokens, lang_masks, state=state
+V1110 19:50:53.048000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_2] [__graph_breaks]         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+V1110 19:50:53.048000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_2] [__graph_breaks]     )
+V1110 19:50:53.048000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_2] [__graph_breaks]     ^
+V1110 19:50:53.048000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_2] [__graph_breaks]   File "<project>/lerobot-final-2026-11-07/src/lerobot/policies/smolvla/modeling_smolvla.py", line 630, in embed_prefix
+V1110 19:50:53.048000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_2] [__graph_breaks]     ) in enumerate(zip(images, self._embed_images(images), img_masks, strict=False)):
+V1110 19:50:53.048000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_2] [__graph_breaks]                                ~~~~~~~~~~~~~~~~~~^^^^^^^^
+V1110 19:50:53.048000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_2] [__graph_breaks]   File "<project>/bench/results_final_2026-11-07/followups/followup_common.py", line 61, in <lambda>
+V1110 19:50:53.048000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_2] [__graph_breaks]     model._embed_images = lambda images: [model.vlm_with_expert.embed_image(img) for img in images]
+V1110 19:50:53.048000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_2] [__graph_breaks]   File "<project>/bench/results_final_2026-11-07/followups/followup_common.py", line 61, in __comprehension_<lambda>_at_61_9
+V1110 19:50:53.048000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_2] [__graph_breaks]     model._embed_images = lambda images: [model.vlm_with_expert.embed_image(img) for img in images]
+V1110 19:50:53.048000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_2] [__graph_breaks]                                           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+V1110 19:50:53.048000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_2] [__graph_breaks]   File "<project>/lerobot-final-2026-11-07/src/lerobot/policies/smolvla/smolvlm_with_expert.py", line 207, in embed_image
+V1110 19:50:53.048000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_2] [__graph_breaks]     .vision_model(
+V1110 19:50:53.048000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_2] [__graph_breaks]      ~~~~~~~~~~~~^
+V1110 19:50:53.048000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_2] [__graph_breaks]         pixel_values=image.to(dtype=self.get_vlm_model().vision_model.dtype),
+V1110 19:50:53.048000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_2] [__graph_breaks]         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+V1110 19:50:53.048000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_2] [__graph_breaks]         patch_attention_mask=patch_attention_mask,
+V1110 19:50:53.048000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_2] [__graph_breaks]         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+V1110 19:50:53.048000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_2] [__graph_breaks]     )
+V1110 19:50:53.048000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_2] [__graph_breaks]     ^
+V1110 19:50:53.048000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_2] [__graph_breaks]   File "<project>/lerobot-final-2026-11-07/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1787, in _wrapped_call_impl
+V1110 19:50:53.048000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_2] [__graph_breaks]     return self._call_impl(*args, **kwargs)
+V1110 19:50:53.048000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_2] [__graph_breaks]            ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+V1110 19:50:53.048000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_2] [__graph_breaks]   File "<project>/lerobot-final-2026-11-07/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1798, in _call_impl
+V1110 19:50:53.048000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_2] [__graph_breaks]     return forward_call(*args, **kwargs)
+V1110 19:50:53.048000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_2] [__graph_breaks]            ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+V1110 19:50:53.048000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_2] [__graph_breaks]   File "<project>/lerobot-final-2026-11-07/.venv/lib/python3.12/site-packages/transformers/utils/output_capturing.py", line 257, in wrapper
+V1110 19:50:53.048000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_2] [__graph_breaks]     recordable_keys = {
+V1110 19:50:53.048000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_2] [__graph_breaks]                       ^
+V1110 19:50:53.048000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_2] [__graph_breaks]         f"output_{k}": kwargs.get(f"output_{k}", getattr(self.config, f"output_{k}", False))
+V1110 19:50:53.048000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_2] [__graph_breaks]         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+V1110 19:50:53.048000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_2] [__graph_breaks]         for k in capturable_flags
+V1110 19:50:53.048000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_2] [__graph_breaks]         ^^^^^^^^^^^^^^^^^^^^^^^^^
+V1110 19:50:53.048000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_2] [__graph_breaks]     }
+V1110 19:50:53.048000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_2] [__graph_breaks]     ^
+V1110 19:50:53.048000 91699 torch/_dynamo/symbolic_convert.py:5577] [5/0_2] [__graph_breaks] 
+V1110 19:50:53.075000 91699 torch/_dynamo/symbolic_convert.py:5584] [6/0] [__graph_breaks] Graph break (user stack suppressed due to duplicate graph break) in user code at <project>/lerobot-final-2026-11-07/.venv/lib/python3.12/site-packages/transformers/models/smolvlm/modeling_smolvlm.py:130
+V1110 19:50:53.075000 91699 torch/_dynamo/symbolic_convert.py:5584] [6/0] [__graph_breaks] Graph Break Reason: Encountered graph break when attempting to trace CALL: a function call, e.g. f(x, y):
+V1110 19:50:53.075000 91699 torch/_dynamo/symbolic_convert.py:5584] [6/0] [__graph_breaks] 
+V1110 19:50:53.075000 91699 torch/_dynamo/symbolic_convert.py:5584] [6/0] [__graph_breaks] Dynamic shape operator
+V1110 19:50:53.075000 91699 torch/_dynamo/symbolic_convert.py:5584] [6/0] [__graph_breaks]   Explanation: Operator `aten.nonzero.default`'s output shape depends on input Tensor data.
+V1110 19:50:53.075000 91699 torch/_dynamo/symbolic_convert.py:5584] [6/0] [__graph_breaks]   Hint: Enable tracing of dynamic shape operators with `torch._dynamo.config.capture_dynamic_output_shape_ops = True`
+V1110 19:50:53.075000 91699 torch/_dynamo/symbolic_convert.py:5584] [6/0] [__graph_breaks] 
+V1110 19:50:53.075000 91699 torch/_dynamo/symbolic_convert.py:5584] [6/0] [__graph_breaks]   Developer debug context: aten.nonzero.default
+V1110 19:50:53.075000 91699 torch/_dynamo/symbolic_convert.py:5584] [6/0] [__graph_breaks] 
+V1110 19:50:53.075000 91699 torch/_dynamo/symbolic_convert.py:5584] [6/0] [__graph_breaks]  For more details about this graph break, please visit: https://meta-pytorch.github.io/compile-graph-break-site/gb/gb0036.html
+V1110 19:50:53.128000 91699 torch/_dynamo/symbolic_convert.py:5584] [7/0] [__graph_breaks] Graph break (user stack suppressed due to duplicate graph break) in user code at <project>/lerobot-final-2026-11-07/.venv/lib/python3.12/site-packages/transformers/models/smolvlm/modeling_smolvlm.py:130
+V1110 19:50:53.128000 91699 torch/_dynamo/symbolic_convert.py:5584] [7/0] [__graph_breaks] Graph Break Reason: Encountered graph break when attempting to trace BINARY_SUBSCR: a binary subscript, e.g. x[attr]:
+V1110 19:50:53.128000 91699 torch/_dynamo/symbolic_convert.py:5584] [7/0] [__graph_breaks] 
+V1110 19:50:53.128000 91699 torch/_dynamo/symbolic_convert.py:5584] [7/0] [__graph_breaks] Dynamic shape operator
+V1110 19:50:53.128000 91699 torch/_dynamo/symbolic_convert.py:5584] [7/0] [__graph_breaks]   Explanation: Operator `aten.nonzero.default`'s output shape depends on input Tensor data.
+V1110 19:50:53.128000 91699 torch/_dynamo/symbolic_convert.py:5584] [7/0] [__graph_breaks]   Hint: Enable tracing of dynamic shape operators with `torch._dynamo.config.capture_dynamic_output_shape_ops = True`
+V1110 19:50:53.128000 91699 torch/_dynamo/symbolic_convert.py:5584] [7/0] [__graph_breaks] 
+V1110 19:50:53.128000 91699 torch/_dynamo/symbolic_convert.py:5584] [7/0] [__graph_breaks]   Developer debug context: aten.nonzero.default
+V1110 19:50:53.128000 91699 torch/_dynamo/symbolic_convert.py:5584] [7/0] [__graph_breaks] 
+V1110 19:50:53.128000 91699 torch/_dynamo/symbolic_convert.py:5584] [7/0] [__graph_breaks]  For more details about this graph break, please visit: https://meta-pytorch.github.io/compile-graph-break-site/gb/gb0036.html
+Reducing the number of VLM layers to 16 ...
+[19:50:57] L_withPR_looped_r2: first call 5.9 s
+[19:51:02] L_withPR_looped_r2: {"first_call_s": 5.9, "median_ms": 15.14, "p99_ms": 17.92, "recompiled": false, "graphs": 9, "graph_breaks": 5, "frames": {"total": 19, "ok": 17}}

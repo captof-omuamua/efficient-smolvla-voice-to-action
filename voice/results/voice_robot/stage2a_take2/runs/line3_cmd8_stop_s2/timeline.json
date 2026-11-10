@@ -1,0 +1,98 @@
+{
+ "fps": 20,
+ "steps": 234,
+ "success": true,
+ "goals_hold_at_end": true,
+ "expected": [
+  8
+ ],
+ "did_expected": true,
+ "earlier_goals_hold": true,
+ "plan": [
+  8
+ ],
+ "done": [
+  8
+ ],
+ "lines": [
+  {
+   "file": "<project>/voice-robot/results/voice_robot/stage2a_take2/runs/line3_cmd8_stop_s2/line_1_trimmed.raw",
+   "recorded_s": 3.667625,
+   "trim_flag": "",
+   "speech_end_s": 2.66,
+   "start_s": 0.0,
+   "end_s": 2.76,
+   "heard": "Kindly keep the bowl on the plate.",
+   "event": "plan",
+   "commands": [
+    8
+   ],
+   "level": "rule",
+   "speech_ms": 69.3591640010709,
+   "parse_ms": 0.06205399949976709,
+   "effect_s": 2.85
+  },
+  {
+   "file": "<project>/voice-robot/results/voice_robot/stage2a_take2/runs/line3_cmd8_stop_s2/line_2_trimmed.raw",
+   "recorded_s": 2.1743125,
+   "trim_flag": "",
+   "speech_end_s": 0.36,
+   "start_s": 3.85,
+   "end_s": 4.3100000000000005,
+   "heard": "Stop.",
+   "event": "stop",
+   "commands": [],
+   "level": "rule",
+   "speech_ms": 49.682746999678784,
+   "parse_ms": 0.011423999239923432,
+   "effect_s": 4.4
+  },
+  {
+   "file": "<project>/voice-robot/results/voice_robot/stage2a_take2/runs/line3_cmd8_stop_s2/line_3_trimmed.raw",
+   "recorded_s": 2.1743125,
+   "trim_flag": "",
+   "speech_end_s": 0.88,
+   "start_s": 7.4,
+   "end_s": 8.38,
+   "heard": "Continue",
+   "event": "continue",
+   "commands": [],
+   "level": "rule",
+   "speech_ms": 46.19882099905226,
+   "parse_ms": 0.008343999070348218,
+   "effect_s": 8.450000000000001
+  }
+ ],
+ "states": [
+  {
+   "from_step": 0,
+   "state": "WAITING",
+   "command": null
+  },
+  {
+   "from_step": 57,
+   "state": "MOVING",
+   "command": "put the bowl on the plate"
+  },
+  {
+   "from_step": 88,
+   "state": "HOLDING",
+   "command": "put the bowl on the plate"
+  },
+  {
+   "from_step": 169,
+   "state": "MOVING",
+   "command": "put the bowl on the plate"
+  },
+  {
+   "from_step": 214,
+   "state": "DONE",
+   "command": null
+  },
+  {
+   "from_step": 234,
+   "state": "DONE",
+   "command": null
+  }
+ ]
+}

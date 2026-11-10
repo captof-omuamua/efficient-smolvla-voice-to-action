@@ -1,0 +1,58 @@
+{
+ "fps": 20,
+ "steps": 315,
+ "success": true,
+ "goals_hold_at_end": true,
+ "expected": [
+  8
+ ],
+ "did_expected": true,
+ "earlier_goals_hold": true,
+ "plan": [
+  8
+ ],
+ "done": [
+  8
+ ],
+ "lines": [
+  {
+   "file": "<project>/voice-robot/results/voice_robot/stage1_final_code/runs/line3_cmd8_s0/line_1_trimmed.raw",
+   "recorded_s": 3.667625,
+   "trim_flag": "",
+   "speech_end_s": 2.66,
+   "start_s": 0.0,
+   "end_s": 2.76,
+   "heard": "Kindly keep the bowl on the plate.",
+   "event": "plan",
+   "commands": [
+    8
+   ],
+   "level": "rule",
+   "speech_ms": 68.16299499951128,
+   "parse_ms": 0.06609699994442053,
+   "effect_s": 2.85
+  }
+ ],
+ "states": [
+  {
+   "from_step": 0,
+   "state": "WAITING",
+   "command": null
+  },
+  {
+   "from_step": 57,
+   "state": "MOVING",
+   "command": "put the bowl on the plate"
+  },
+  {
+   "from_step": 295,
+   "state": "DONE",
+   "command": null
+  },
+  {
+   "from_step": 315,
+   "state": "DONE",
+   "command": null
+  }
+ ]
+}

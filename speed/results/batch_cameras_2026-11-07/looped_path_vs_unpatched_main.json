@@ -1,0 +1,51 @@
+{
+  "what": "looped-path actions (the restored 'before' path) vs unpatched main, same input and noise, bf16 as deployed",
+  "main": {
+    "lerobot_src": "<scratch>/wt-main/src/lerobot",
+    "base_sha": "d490e472a5d1a207cfe0255caaaf74b6d66e4656",
+    "pr_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "pr": {
+    "lerobot_src": "<project>/lerobot-bc-rebased/src/lerobot",
+    "base_sha": "d490e472a5d1a207cfe0255caaaf74b6d66e4656",
+    "pr_diff_sha256": "8276d62cada208dbfba2ec52c64f9012d4f339c2c0a410d90f27378ef050d581"
+  },
+  "settings": {
+    "blank1_steps1": {
+      "bitwise_equal": true,
+      "max_abs": 0.0,
+      "shape": [
+        1,
+        50,
+        7
+      ]
+    },
+    "blank1_steps10": {
+      "bitwise_equal": true,
+      "max_abs": 0.0,
+      "shape": [
+        1,
+        50,
+        7
+      ]
+    },
+    "blank0_steps1": {
+      "bitwise_equal": true,
+      "max_abs": 0.0,
+      "shape": [
+        1,
+        50,
+        7
+      ]
+    },
+    "blank0_steps10": {
+      "bitwise_equal": true,
+      "max_abs": 0.0,
+      "shape": [
+        1,
+        50,
+        7
+      ]
+    }
+  }
+}

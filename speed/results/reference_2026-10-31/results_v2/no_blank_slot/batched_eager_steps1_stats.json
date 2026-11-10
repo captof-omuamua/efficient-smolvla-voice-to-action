@@ -1,0 +1,21 @@
+{
+  "label": "batched",
+  "model": "lerobot/smolvla_libero",
+  "variant": "eager",
+  "num_steps": 1,
+  "gpu": "NVIDIA GeForce RTX 5090 Laptop GPU",
+  "torch": "2.11.0+cu128",
+  "first_call_ms": 471.5,
+  "median_ms": 25.46,
+  "p90_ms": 26.12,
+  "p99_ms": 27.76,
+  "prefix_prep_ms": 0.09,
+  "prefix_vision_embed_ms": 9.47,
+  "prefix_vlm_ms": 8.4,
+  "denoise_est_ms": 7.5,
+  "peak_gpu_mb": 945,
+  "idle_w": 39.5,
+  "busy_w": 94.8,
+  "energy_j_per_call": 2.423,
+  "iters": 200
+}
