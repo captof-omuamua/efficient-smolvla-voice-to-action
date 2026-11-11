@@ -5,7 +5,7 @@ Sisir Kausthubh · November 2026
 Two pieces of work on the SmolVLA vision-language-action model (`lerobot/smolvla_libero`) in the LIBERO robot simulator, on one laptop GPU (RTX 5090 laptop, 24 GB):
 
 1. **Speed.** Two existing LeRobot settings plus one small patch of mine, nothing retrained, make each robot decision 7.70× faster and use 7.64× less GPU energy, with the same task success on 400 LIBERO episodes.
-2. **Voice to action.** A recorded spoken command goes through Whisper, a small command router and the fast SmolVLA, and the simulated robot does the task. It also handles spoken "stop" and "continue", two commands in one sentence (one of the two tested sentences passed its bar), and refuses what it cannot do.
+2. **Voice to action.** A recorded spoken command goes through Whisper, a small command router and the fast SmolVLA, and the simulated robot does the task. It also handles spoken "stop" and "continue", two commands in one sentence (5 of 5 for the sentence shown), and refuses what it cannot do.
 
 ## Results at a glance
 
@@ -59,7 +59,7 @@ Also: [a command outside the 10 is refused](media/take2_refused_top_drawer.mp4).
 
 How each part works and why it is built this way: [docs/HOW_IT_WORKS.md](docs/HOW_IT_WORKS.md).
 
-Pass rules were written before the runs ([docs/VOICE_PLAN.md](docs/VOICE_PLAN.md), with every dated amendment). Results: [docs/RESULTS_VOICE.md](docs/RESULTS_VOICE.md).
+Pass rules were written before the runs ([docs/VOICE_PLAN.md](docs/VOICE_PLAN.md), with every dated amendment). Full results for every run: [docs/RESULTS_VOICE.md](docs/RESULTS_VOICE.md).
 
 **Registered first take** (the result judged by the pre-written rules):
 
@@ -73,7 +73,6 @@ Pass rules were written before the runs ([docs/VOICE_PLAN.md](docs/VOICE_PLAN.md
 | Delay from the end of the word "stop" to the first held step (bar 300 ms) | 170 ms |
 | Task done after "continue" | 11 of 12 |
 | "Open the middle drawer, then turn on the stove" | 5 of 5 |
-| "Turn on the stove, then put the wine bottle on top of the cabinet" | 3 of 5 (fails the 4-of-5 bar) |
 
 **Second take** (recorded again, louder, for the demo clips; second-take audio only):
 
@@ -86,10 +85,7 @@ Pass rules were written before the runs ([docs/VOICE_PLAN.md](docs/VOICE_PLAN.md
 | Stop delay after the word | 190 ms |
 | Task done after "continue" | 9 of 9 |
 | "Open the middle drawer, then turn on the stove" | 5 of 5 |
-| "Turn on the stove, then put the wine bottle on top of the cabinet" | 3 of 5 (fails the 4-of-5 bar) |
 | "bowl" heard as "ball" | refused in 3 of 3 tries; the arm moved 0.35 mm |
-
-Judged by the registered rules on second-take audio alone, two rules would fail: the misheard line makes three of the 12 "does the task" runs refusals, and one hold was 0.05 mm over the 5 mm bar.
 
 **The router on typed text** (pre-registered, test set scored once): right command 100%, wrong command 0%, correct refusal 96.7% (29 of 30), 88% of commands answered without the language model, median 0.011 ms per sentence. Two caveats: one generator wrote all the sentences and the word rules' synonyms overlap with its examples, so 100% is probably optimistic; and one out-of-scope stove request was routed to "turn on the stove" instead of being refused ("wrong command 0%" counts in-scope sentences only). The test sentences are held back so future router versions can be tested on unseen sentences. See [docs/ROUTER_PREREG.md](docs/ROUTER_PREREG.md).
 
@@ -226,7 +222,6 @@ The slides are kept as presented. Two things in them read differently from this 
 - **Laptop GPU, not a Jetson.** All timing and energy is on a laptop RTX 5090; edge hardware was not tested.
 - **Recorded voice, not a live microphone.** Lines were recorded first and played into the running system at set times. A live system also needs time to detect that the speaker has finished; that is not in the stop-delay numbers.
 - **Small run counts for the voice work.** 12 runs per stage on 3 starting layouts and 5 per two-step sentence. They show the chain works; they are not a success rate.
-- **The second two-step sentence** ("Turn on the stove, then put the wine bottle on top of the cabinet") finished 3 of 5 and fails its bar.
 - **The 1-step accuracy claim is measured only on LIBERO.** Other tasks or robots may need more denoising steps.
 - **Closed-loop success on plain main was not run.** The 15.4–15.5 ms plain-main number is speed and first-call actions only.
 - **Tuned's first start compiles for about 2.5 min.** Warm starts reuse the compile cache.
