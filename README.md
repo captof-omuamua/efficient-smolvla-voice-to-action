@@ -34,17 +34,19 @@ Full numbers, the method and every source file: [docs/RESULTS_SPEED.md](docs/RES
 
 ## Demos
 
-**Demo 1: the same episode, Original and Tuned side by side.** The counters are decisions so far × the measured median time and energy per decision (from the speed session, not measured inside this episode). Both runs succeed in 242 steps with 25 decisions, so only the cost per decision differs. Click the picture for the video.
+The previews below play on the page, without sound. Each links to its MP4 file; the voice clips have sound.
 
-[![Original and Tuned side by side, with think-time and energy counters](media/meters_side_by_side_clean.png)](media/meters_side_by_side_clean.mp4)
+**Demo 1: the same episode, Original and Tuned side by side.** The counters are decisions so far × the measured median time and energy per decision (from the speed session, not measured inside this episode). Both runs succeed in 242 steps with 25 decisions, so only the cost per decision differs.
 
-**Demo 2: voice to action** (my recorded voice, played into the running system; simulator). Click a picture for its video.
+[![Original and Tuned side by side, with think-time and energy counters](media/meters_side_by_side_clean.gif)](media/meters_side_by_side_clean.mp4)
+
+**Demo 2: voice to action** (my recorded voice, played into the running system; simulator).
 
 | One spoken command | Stop, then continue |
 |---|---|
-| [![One spoken command: turn on the stove](media/voice_single_poster.png)](media/take2_single_stove.mp4) | [![Stop and continue while turning on the stove](media/voice_stop_poster.png)](media/take2_stop_continue_stove.mp4) |
+| [![One spoken command: turn on the stove](media/take2_single_stove.gif)](media/take2_single_stove.mp4) | [![Stop and continue while turning on the stove](media/take2_stop_continue_stove.gif)](media/take2_stop_continue_stove.mp4) |
 | **Two commands in one sentence** | **A misheard word is refused** |
-| [![Open the middle drawer, then turn on the stove](media/voice_two_step_poster.png)](media/take2_two_step_drawer_then_stove.mp4) | [![Bowl heard as ball: refused](media/voice_refusal_poster.png)](media/refusal_bowl_heard_as_ball.mp4) |
+| [![Open the middle drawer, then turn on the stove](media/take2_two_step_drawer_then_stove.gif)](media/take2_two_step_drawer_then_stove.mp4) | [![Bowl heard as ball: refused](media/refusal_bowl_heard_as_ball.gif)](media/refusal_bowl_heard_as_ball.mp4) |
 
 Also: [a command outside the 10 is refused](media/take2_refused_top_drawer.mp4).
 

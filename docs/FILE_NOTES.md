@@ -26,6 +26,7 @@ This repository was assembled by copying files from my working project folders. 
 | `voice/results/share/` | `voice-robot/results/share/` (all six run folders) |
 | `slides/` | `talk/latex/slides_v2.tex`, `slides_v2.pdf` (the PDF as presented; in the `.tex`, only the two header comments and the media paths, now `../media/`, changed) |
 | `media/` | `talk/latex/media/` (Demo 1 clip and still, the four voice posters, `pr4634_table.png` used by the slides) and `voice-robot/clips/` (the four second-take clips and `refusal_bowl_heard_as_ball.mp4`) |
+| `media/*.gif` | Silent looping previews made from the MP4s in `media/` with ffmpeg (8 to 10 frames per second, 640 or 960 pixels wide), so the README shows the demos on the page |
 | `LICENSE` | the Apache-2.0 `LICENSE` text of the LeRobot checkout, with the copyright line changed to this repository's author |
 | `requirements-lock.txt` | `uv pip freeze` of the LeRobot checkout's venv, without the editable LeRobot line |
 
