@@ -1,6 +1,6 @@
 # Does Tuned need pull request #4634? (measured 10 Nov 2026, 19:41–19:51 IST)
 
-**Answer: no.** Tuned settings compile and run on plain LeRobot main. Median 15.4–15.5 ms per decision on plain main, against 13.8–14.5 ms in the final tested checkout (PR #4634 + camera-batching patch). With the PR but cameras looped: 15.1–15.2 ms.
+**Result:** Tuned settings compile and run on plain LeRobot main. Median 15.4–15.5 ms per decision on plain main, against 13.8–14.5 ms in the final tested checkout (PR #4634 + camera-batching patch). With the PR but cameras looped: 15.1–15.2 ms.
 
 Tuned settings: `compile_model=True` (mode `max-autotune`), `num_steps=1`, `empty_cameras=0`, `lerobot/smolvla_libero` (cached snapshot `a24f1f38`), batch 1, laptop RTX 5090, TF32 on. `compile_denoise` (the PR's new flag) is off in all runs.
 

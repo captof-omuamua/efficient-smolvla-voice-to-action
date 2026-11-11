@@ -20,7 +20,7 @@ Same model, same weights.
 
 The steps add up as: 111.0 ms (Original), 27.9 ms with one step and batched cameras, 14.4 ms with compile on top.
 
-LeRobot PR #4634 by NotNANtoN keeps the stored reading of the scene (the key/value cache) a fixed shape, so that the 10-step denoise loop can be compiled. It was part of the code I measured, but Tuned does not depend on it: at one step there is little loop left to speed up. See [TUNED_WITHOUT_PR4634.md](TUNED_WITHOUT_PR4634.md).
+LeRobot PR #4634 by NotNANtoN keeps the stored reading of the scene (the key/value cache) a fixed shape, so that the 10-step denoise loop can be compiled. It was part of the code I measured. Its gain is at 10 steps, where it gave 2.2× end to end on this laptop; at one step there is little loop left to speed up, so the Tuned settings also run on plain LeRobot main. See [TUNED_WITHOUT_PR4634.md](TUNED_WITHOUT_PR4634.md).
 
 ## The voice pipeline
 
